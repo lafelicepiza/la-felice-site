@@ -31,7 +31,7 @@ function buildBuilderUI(){
   const sz=document.getElementById('bSizes');sz.innerHTML='';
   BUILDER.sizes.forEach((s,i)=>sz.appendChild(segBtn(s.label,s.price,i===B.size,()=>{B.size=i;buildBuilderUI();updateBuilder();},'bs-crust')));
   const cr=document.getElementById('bCrusts');cr.innerHTML='';
-  BUILDER.crusts.forEach((c,i)=>cr.appendChild(segBtn(tname(c),c.price,i===B.crust,()=>{B.crust=i;buildBuilderUI();updateBuilder();},'bs-sauce')));
+  BUILDER.crusts.forEach((c,i)=>cr.appendChild(segBtn(tname(c),c.price,i===B.crust,()=>{B.crust=i;const cc=BUILDER.crusts[i];B.shape=cc.shape||'round';buildBuilderUI();updateBuilder();},'bs-sauce')));
   const shp=document.getElementById('bShapes');shp.innerHTML='';
   BUILDER.shapes.forEach(sp=>shp.appendChild(segBtn(tname(sp),0,B.shape===sp.id,()=>{B.shape=sp.id;buildBuilderUI();updateBuilder();},'bs-sauce')));
   const sc=document.getElementById('bSauces');sc.innerHTML='';
@@ -55,7 +55,7 @@ function buildBuilderUI(){
     const st=B.tops[tp.id],on=!!st;
     const row=document.createElement('div');row.className='toprow'+(on?' on':'');
     row.innerHTML=`<div class="tophead"><span class="tdot" style="background:${tp.color}"></span>
-      <span class="tname">${tname(tp)}</span><span class="tprice">+${fmt(tp.price)}</span>
+      <span class="tname">${tname(tp)}</span><span class="tprice">+${fmt(TOPPING_PRICE[builderSizeKey()].half)}/${fmt(TOPPING_PRICE[builderSizeKey()].whole)}</span>
       <button class="tcheck">${on?'✓':''}</button></div><div class="topopts"></div>`;
     const opts=row.querySelector('.topopts');
     if(on){
@@ -79,9 +79,10 @@ function buildBuilderUI(){
   });
 }
 function builderPrice(){
-  let p=BUILDER.sizes[B.size].price+BUILDER.crusts[B.crust].price+BUILDER.sauces[B.sauce].price;
+  const csz=BUILDER.crusts[B.crust];
+  let p=(csz.base||BUILDER.sizes[B.size].price)+csz.price+BUILDER.sauces[B.sauce].price;
   const ch=BUILDER.cheese.find(c=>c.id===B.cheese);p+=ch.price;
-  Object.keys(B.tops).forEach(tid=>{const tp=BUILDER.tops.find(x=>x.id===tid);if(tp)p+=tp.price;});
+  Object.keys(B.tops).forEach(tid=>{const tp=BUILDER.tops.find(x=>x.id===tid);if(tp)p+=toppingPrice(tp);});
   p+=B.xdips.length*EXTRA_DIP_PRICE;
   return p;
 }
@@ -129,10 +130,10 @@ function openGBuilder(it,edit){
   GB.item=it;GB.kind=it.builder;GB.qty=1;
   if(edit&&edit.cfg){GB.sel=JSON.parse(JSON.stringify(edit.cfg.sel));GB.editIdx=edit.idx;}  // "Edit" from cart
   else{
-    if(it.builder==='sub')GB.sel={size:'s8',bread:'white',fillings:['turkey'],cheese:'mozz',veggies:['lettuce','tomato'],sauce:'mayo'};
+    if(it.builder==='sub')GB.sel={size:'half',bread:'white',fillings:['turkey'],cheese:'mozz',veggies:['lettuce','tomato'],sauce:'mayo'};
     else if(it.builder==='salad')GB.sel={base:'romaine',protein:'none',ingredients:['croutons','parmesan'],dressing:'ranch'};
     else if(it.builder==='wings')GB.sel={count:'w6',wtype:'plain'};
-  else GB.sel={size:'can',flavor:'coke'};
+  else GB.sel={size:(it.drinkSizes||DRINKDEF.sizes)[0].id,flavor:'pepsi'};
     GB.editIdx=null;
   }
   renderG();
@@ -205,7 +206,7 @@ const SUB_ART={
    return `<path d="M14 44 q9 -7 18 0 t18 0 t18 0" fill="none" stroke="${c}" stroke-width="3.4" stroke-linecap="round"/>`;},
 };
 function subSVG(s){
-  const bc=SUB_ART.breadColor(s.bread), sc=s.size==='s12'?1.12:0.98;
+  const bc=SUB_ART.breadColor(s.bread), sc=s.size==='whole'?1.12:0.98;
   let mid='';
   s.fillings.forEach((f,i)=>{mid+=SUB_ART.filling(f,14+i*3,36+i*8,50);});
   if(s.cheese!=='none')mid+=SUB_ART.cheese(12,62,54);
@@ -277,7 +278,7 @@ function gPrice(){
     p+=D.bases.find(x=>x.id===s.base).p+D.proteins.find(x=>x.id===s.protein).p;
   }else if(GB.kind==='wings'){const D=WINGDEF;
     p+=D.counts.find(x=>x.id===s.count).p+D.types.find(x=>x.id===s.wtype).p;
-  }else{const D=DRINKDEF;p+=D.sizes.find(x=>x.id===s.size).p;}
+  }else{const D=DRINKDEF,SZ=it.drinkSizes||D.sizes;p+=SZ.find(x=>x.id===s.size).p;}
   return p;
 }
 function gSummary(){
@@ -291,8 +292,8 @@ function gSummary(){
       s.ingredients.map(i=>one(D.ingredients,i)).join(', '),one(D.dressings,s.dressing));
   }else if(GB.kind==='wings'){const D=WINGDEF,one=(l,id)=>nm(l.find(x=>x.id===id));
     parts.push(one(D.counts,s.count),one(D.types,s.wtype));
-  }else{const D=DRINKDEF,one=(l,id)=>nm(l.find(x=>x.id===id));
-    parts.push(one(D.sizes,s.size),one(D.flavors,s.flavor));}
+  }else{const D=DRINKDEF,SZ=it.drinkSizes||D.sizes,one=(l,id)=>nm(l.find(x=>x.id===id));
+    parts.push(one(SZ,s.size),one(D.flavors,s.flavor));}
   return parts.join(' • ');
 }
 function renderG(){
@@ -318,8 +319,8 @@ function renderG(){
   }else if(GB.kind==='wings'){const D=WINGDEF;
     body.appendChild(gSec(t('sec_count'),gSeg(D.counts,s.count,id=>{s.count=id;})));
     body.appendChild(gSec(t('sec_wtype'),gSeg(D.types,s.wtype,id=>{s.wtype=id;})));
-  }else{const D=DRINKDEF;
-    body.appendChild(gSec(t('sec_dsize'),gSeg(D.sizes,s.size,id=>{s.size=id;})));
+  }else{const D=DRINKDEF,SZ=it.drinkSizes||D.sizes;
+    body.appendChild(gSec(t('sec_dsize'),gSeg(SZ,s.size,id=>{s.size=id;})));
     body.appendChild(gSec(t('sec_flavor'),gSeg(D.flavors,s.flavor,id=>{s.flavor=id;})));
   }
   const sum=document.createElement('div');sum.id='bsummary';sum.innerHTML='<b>'+gSummary()+'</b>';body.appendChild(sum);
