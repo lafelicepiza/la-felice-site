@@ -216,7 +216,8 @@ footer{padding:18px 14px 90px;text-align:center;font-family:Arial;font-size:12px
 /* comic sub-headings: builder sections + menu item names */
 .bsec h3,.card .name{font-family:var(--font-display);color:var(--yellow);-webkit-text-stroke:1px var(--black);
   paint-order:stroke fill;text-shadow:1.5px 1.5px 0 var(--red);letter-spacing:.5px}
-.logostyle{font-family:var(--font-display);color:var(--yellow);-webkit-text-stroke:2.5px var(--black);paint-order:stroke fill;
+.logostyle{font-family:var(--font-display);background:linear-gradient(180deg,#FFE45C 15%,#FFB81C 55%,#FF8A00 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:2.5px var(--black);paint-order:stroke fill;
   text-shadow:3px 3px 0 var(--red),6px 6px 0 rgba(0,0,0,.28);letter-spacing:1px}
 /* ---------- cart upsell + promo ---------- */
 .upsell{margin:10px 0;padding:10px;border:3px dashed var(--black);border-radius:12px;background:#FFFDF5}
