@@ -274,3 +274,11 @@ footer{padding:18px 14px 90px;text-align:center;font-family:Arial;font-size:12px
 #pengyBubble .plink{color:var(--terra);font-weight:bold;cursor:pointer;text-decoration:underline}
 #zoneBtn{border:3px solid var(--black);border-radius:10px;padding:8px 16px;background:var(--yellow);cursor:pointer;box-shadow:3px 3px 0 var(--black);font-size:14px}
 #trLink{color:var(--terra);font-weight:bold}
+
+/* ---------- desktop: use the full screen ---------- */
+@media(min-width:900px){
+  body{max-width:1080px}
+  #menu{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:start}
+  #menu .card{margin-bottom:0}
+  .panel{max-width:720px}
+}
