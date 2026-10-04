@@ -737,8 +737,8 @@ function quickAdd(it,fromEl,si){
   const line={name:mname(it),name_en:it.name.en,desc:s.label,desc_en:s.label,qty:1,unit:s.price,ill:it.art};
   if(it.art==='pizza')line.freeDip=FREE_DIP_DEFAULT; // every pizza comes with 1 free sauce (ranch default)
   cart.push(line);
+  renderCart();  /* shows the bar now that the cart is non-empty — before we measure it */
   if(fromEl)flyToCart(fromEl);
-  renderCart();
   const bar=document.getElementById('bar');bar.style.transform='scale(1.04)';
   setTimeout(()=>bar.style.transform='',150);
 }
