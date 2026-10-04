@@ -444,6 +444,8 @@ function renderCart(){
   document.getElementById('count').textContent=n;
   document.getElementById('bartotal').textContent=fmt(tt.total);
   document.getElementById('checkoutBtn').disabled=!cart.length||isPaused();
+  /* the checkout bar lives only while the order is being built — hidden on a fresh homepage */
+  document.getElementById('bar').style.display=cart.length?'flex':'none';
   applyPausedBanner();
   const L=document.getElementById('lines');L.innerHTML='';
   cart.forEach((l,i)=>{const d=document.createElement('div');d.className='line small';
@@ -597,7 +599,7 @@ function editCartLine(i){
    condition holds, and waddles away when it resolves. Max 1 hint per order
    (resets when the cart is emptied). Never blocks checkout. */
 const HINTS={giftThreshold:4000 /* $40 → SAMPLE free garlic sticks; owner edits the real gift rule later */};
-const hintSt={done:false,shownId:null,muted:false};
+const hintSt={done:false,shownId:null,muted:false,visible:false,arrived:false};
 try{hintSt.muted=localStorage.getItem('lf_hints_muted')==='1';}catch(e){}
 const pengEl=document.getElementById('pengy');
 function syncMuteLabel(){const l=document.getElementById('pengyMuteLabel');
@@ -619,25 +621,34 @@ function penguinCondition(){
   return null;
 }
 function penguinShow(h){
-  hintSt.done=true;hintSt.shownId=h.id;   // max 1 hint per order
+  hintSt.done=true;hintSt.shownId=h.id;hintSt.visible=true;hintSt.arrived=false;
   document.getElementById('pengyText').innerHTML=h.html;
-  document.getElementById('pengyBubble').classList.add('show');
   pengEl.classList.remove('out');pengEl.classList.add('in');
+  /* the speech bubble appears only AFTER the penguin arrives — no flash, stays readable */
 }
 function penguinHide(){
+  if(!hintSt.visible)return;
+  hintSt.visible=false;hintSt.arrived=false;
   document.getElementById('pengyBubble').classList.remove('show');
   pengEl.classList.remove('in','idle');pengEl.classList.add('out');
 }
 pengEl.addEventListener('animationend',e=>{
-  if(e.animationName==='pengywalkin'){pengEl.classList.remove('in');pengEl.classList.add('idle');}
+  if(e.target!==pengEl)return;  /* ignore animations of the bubble / image inside */
+  if(e.animationName==='pengywalkin'){
+    pengEl.classList.remove('in');pengEl.classList.add('idle');hintSt.arrived=true;
+    /* show the bubble only if the hint is still relevant now that he's here */
+    if(hintSt.visible&&!hintSt.muted&&penguinCondition())
+      document.getElementById('pengyBubble').classList.add('show');
+    else
+      penguinHide();
+  }
   if(e.animationName==='pengywalkout'){pengEl.classList.remove('out');}
 });
 function penguinTick(){
-  const visible=pengEl.classList.contains('in')||pengEl.classList.contains('idle');
-  if(hintSt.muted){if(visible)penguinHide();return;}
+  if(hintSt.muted){if(hintSt.visible)penguinHide();return;}
   const c=penguinCondition();
-  if(!c){if(visible)penguinHide();return;}       // condition resolved → waddles away
-  if(!visible&&!hintSt.done)penguinShow(c);       // new relevant condition → waddles in
+  if(!c){if(hintSt.visible&&hintSt.arrived)penguinHide();return;}  /* never cut the walk-in short */
+  if(!hintSt.visible&&!hintSt.done)penguinShow(c);
 }
 document.getElementById('pengyX').onclick=()=>{hintSt.done=true;penguinHide();};
 document.getElementById('pengyImg').onclick=()=>{
