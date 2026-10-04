@@ -1,0 +1,276 @@
+
+:root{--yellow:#FFC928;--black:#141414;--terra:#C96A2C;--blue:#2C6AC9;--paper:#FFFDF6;--red:#D23B2E;--green:#2E9E5B;--font-display:"Arial Rounded MT Bold","Helvetica Rounded","Arial Black",Arial,sans-serif;
+--font-body:Arial,Helvetica,sans-serif}
+/* FONTS: every font on the site comes from --font-display / --font-body above.
+   The owner will send real font files later — swap them in here, in one place. */
+/* ART: display font — swap --font-display with the real La Felice font file when the owner provides it */
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{margin:0 auto;max-width:640px;min-height:100vh;background:var(--paper);color:var(--black);
+  font-family:"Arial Black","Arial Bold",Arial,sans-serif}
+body,p,span,div,input,select,button{font-family:"Arial Black","Arial Bold",Arial,sans-serif}
+.small,.note,.line span,.warn,label,.addr-row,.desc{font-family:Arial,Helvetica,sans-serif}
+/* ---------- header ---------- */
+header{background:var(--black);color:var(--yellow);padding:7px 10px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:30}
+header h1{margin:0;font-size:17px;letter-spacing:1px}
+header h1 .slice{display:inline-block;animation:wiggle 2.4s ease-in-out infinite}
+@keyframes wiggle{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+header .sub{font-family:Arial;font-size:10px;color:#fff}
+#lang button{background:transparent;border:2px solid var(--yellow);color:var(--yellow);border-radius:8px;margin-left:4px;padding:3px 7px;font-size:11px;cursor:pointer}
+#lang button.on{background:var(--yellow);color:var(--black)}
+.sec{padding:12px 14px}
+/* ---------- fulfillment toggle ---------- */
+.toggle{display:flex;gap:10px}
+.toggle button{flex:1;border:3px solid var(--black);border-radius:12px;padding:8px;font-size:14px;background:#fff;cursor:pointer;box-shadow:4px 4px 0 var(--black)}
+.toggle button.on{background:var(--yellow)}
+.addr-row{display:none;margin-top:10px}
+.addr-row.show{display:block}
+.addr-row input{width:100%;border:3px solid var(--black);border-radius:10px;padding:10px;font-size:15px;font-family:Arial}
+.zone-ok{display:none;background:#E8F5E9;border:3px solid var(--black);border-radius:10px;padding:8px;margin-top:8px;font-family:Arial;font-size:14px}
+.zone-ok.show{display:block}
+/* ---------- promo deals strip ---------- */
+.deals{display:flex;gap:10px;overflow-x:auto;padding:6px 14px 12px;scroll-snap-type:x mandatory}
+.deal{flex:0 0 240px;scroll-snap-align:start;background:var(--yellow);border:3px solid var(--black);border-radius:14px;
+  padding:12px;box-shadow:5px 5px 0 var(--black);position:relative;overflow:hidden}
+.deal.alt{background:var(--terra);color:#fff}
+.deal .burst{position:absolute;top:-18px;right:-18px;width:74px;height:74px;background:var(--red);color:#fff;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:11px;transform:rotate(12deg);border:3px solid var(--black)}
+.deal b{font-size:15px}.deal p{font-family:Arial;font-size:12px;margin:6px 0 0}
+.deal .tag{font-size:10px;background:var(--black);color:var(--yellow);border-radius:6px;padding:2px 8px;display:inline-block;margin-bottom:6px}
+/* ---------- mix & match ---------- */
+#mixmatch{margin:4px 14px 12px;background:#fff;border:3px solid var(--black);border-radius:14px;padding:12px;box-shadow:5px 5px 0 var(--black)}
+#mmItems{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.mmitem{display:flex;align-items:center;gap:8px;border:3px solid var(--black);border-radius:10px;padding:6px;cursor:pointer;background:#FFFDF5;font-family:Arial;font-size:12px}
+.mmitem.on{background:var(--yellow)}
+.mmitem .ill{width:40px;height:40px}
+.mmfoot{display:flex;align-items:center;justify-content:space-between;gap:8px}
+#mmAdd{background:var(--terra);color:#fff;border:3px solid var(--black);border-radius:10px;padding:10px 16px;box-shadow:3px 3px 0 var(--black);cursor:pointer}
+#mmAdd:disabled{opacity:.45;cursor:default}
+/* ---------- kids banner ---------- */
+.kidsbanner{display:flex;gap:12px;align-items:center;background:linear-gradient(135deg,var(--yellow),#FFE9A8);border:3px solid var(--black);border-radius:14px;padding:12px;margin-bottom:12px;box-shadow:5px 5px 0 var(--black)}
+.kidsbanner .ill{width:64px;height:64px;flex:0 0 auto}
+.kidsbanner p{font-family:Arial;font-size:12px;margin:4px 0 0}
+/* ---------- order tracker ---------- */
+.trsteps{display:flex;align-items:flex-start;margin:14px 0}
+.trstep{flex:1;text-align:center;position:relative;font-family:Arial;font-size:11px;color:var(--black)}
+.trstep .dot{width:34px;height:34px;border-radius:50%;border:3px solid var(--black);background:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;font-weight:bold}
+.trstep.done .dot{background:var(--green);color:#fff}
+.trstep.now .dot{background:var(--yellow);animation:trpop .5s ease}
+.trstep:not(:last-child):after{content:'';position:absolute;top:17px;left:calc(50% + 20px);right:calc(-50% + 20px);border-top:3px dashed var(--black)}
+@keyframes trpop{0%{transform:scale(.6)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
+/* ---------- generic builder ---------- */
+#gHead{display:flex;justify-content:space-between;align-items:center}
+#gClose{background:var(--red);color:#fff;border:3px solid var(--black);border-radius:10px;width:36px;height:36px;font-size:16px;cursor:pointer}
+#gVisual{display:flex;justify-content:center;padding:6px}
+#gVisual svg{width:190px;height:190px}
+#gAdd{width:100%;background:var(--terra);color:#fff;border:3px solid var(--black);border-radius:14px;padding:16px;font-size:18px;cursor:pointer;box-shadow:5px 5px 0 var(--black);margin-top:8px}
+.ill.photo{object-fit:cover;border-radius:12px}
+/* ---------- reorder tab ---------- */
+.reorder-card{background:#fff;border:3px solid var(--black);border-radius:14px;padding:12px;margin-bottom:10px;box-shadow:4px 4px 0 var(--black);font-family:Arial;font-size:13px}
+/* ---------- quick reorder ---------- */
+.tipsbox{border:3px solid var(--black);border-radius:14px;background:#FFF8E1;padding:12px;margin:10px 0;box-shadow:4px 4px 0 var(--black)}
+.tipsbox .tipr{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.tipsbox .tipr button.on{background:var(--black);color:var(--yellow)}
+#reorder{display:none;margin:0 14px 4px;background:#fff;border:3px dashed var(--blue);border-radius:14px;padding:12px}
+#reorder.show{display:block}
+#reorder button{background:var(--blue);color:#fff;border:3px solid var(--black);border-radius:10px;padding:10px 16px;cursor:pointer;box-shadow:3px 3px 0 var(--black)}
+/* ---------- category chips ---------- */
+.chips{display:flex;gap:8px;overflow-x:auto;padding:4px 0 10px;position:sticky;top:46px;background:var(--paper);z-index:20}
+.chips button{white-space:nowrap;border:3px solid var(--black);border-radius:20px;padding:8px 14px;background:#fff;font-size:14px;cursor:pointer}
+.chips button.on{background:var(--terra);color:#fff}
+.chips button.hot{background:var(--terra);color:#fff;box-shadow:3px 3px 0 var(--black)}
+.chips button.hot.on{background:var(--black);color:var(--y)}
+.tabnew{display:inline-block;margin-left:6px;background:var(--y);color:var(--black);font-size:10px;font-weight:bold;
+  padding:1px 7px;border-radius:9px;border:2px solid var(--black);vertical-align:middle;animation:newpulse 1.2s ease-in-out infinite}
+@keyframes newpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
+/* ---------- menu cards ---------- */
+.card{background:#fff;border:3px solid var(--black);border-radius:14px;padding:12px;margin-bottom:12px;
+  box-shadow:5px 5px 0 var(--black);display:flex;gap:12px;align-items:center;animation:pop .25s ease}
+@keyframes pop{from{transform:scale(.96);opacity:.4}to{transform:scale(1);opacity:1}}
+.card .ill{flex-shrink:0;width:76px;height:76px}
+.card .info{flex:1;min-width:0}
+.card .name{font-size:15px}
+.card .desc{font-size:12px;color:#555;margin:2px 0}
+.card .price{color:var(--terra);font-size:16px}
+.card .row{display:flex;gap:8px;margin-top:6px}
+.card button{background:var(--yellow);border:3px solid var(--black);border-radius:10px;padding:8px 14px;cursor:pointer;font-size:13px;box-shadow:3px 3px 0 var(--black)}
+.card button.ghost{background:#fff}
+.card button:active{transform:translateY(2px);box-shadow:1px 1px 0 var(--black)}
+.builder-card{background:linear-gradient(135deg,var(--yellow) 60%,#ffd970);cursor:pointer}
+/* ---------- sticky cart bar ---------- */
+#bar{position:sticky;bottom:0;background:var(--black);color:#fff;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;z-index:30}
+#checkoutBtn{background:var(--terra);color:#fff;border:3px solid #fff;border-radius:12px;padding:12px 22px;font-size:17px;cursor:pointer}
+#checkoutBtn:disabled{opacity:.4}
+/* ---------- sheets / modals ---------- */
+.sheet{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:50;align-items:flex-end;justify-content:center}
+.sheet.open{display:flex}
+.panel{background:var(--paper);border-radius:18px 18px 0 0;padding:20px;width:100%;max-width:640px;max-height:94vh;overflow-y:auto;border:4px solid var(--black)}
+.panel h2{margin:0 0 12px}
+.line{display:flex;justify-content:space-between;font-size:14px;padding:3px 0;gap:8px}
+.line.total{font-size:18px;border-top:3px solid var(--black);margin-top:8px;padding-top:8px}
+.tipr{display:flex;gap:8px;margin:8px 0}
+.tipr button{flex:1;border:3px solid var(--black);border-radius:10px;padding:10px;background:#fff;cursor:pointer}
+.tipr button.on{background:var(--blue);color:#fff}
+.field{margin:8px 0}
+.field label{display:block;font-size:13px;margin-bottom:4px}
+.field input{width:100%;border:3px solid var(--black);border-radius:10px;padding:10px;font-size:15px;font-family:Arial}
+.paybtn{display:block;width:100%;margin:8px 0;border:3px solid var(--black);border-radius:12px;padding:14px;font-size:16px;background:var(--yellow);cursor:pointer;box-shadow:4px 4px 0 var(--black)}
+.paybtn:active{transform:translateY(2px);box-shadow:1px 1px 0 var(--black)}
+.paybtn:disabled{opacity:.5}
+.ghostbtn{display:block;width:100%;margin:8px 0;border:none;background:none;color:var(--blue);font-size:14px;cursor:pointer;text-decoration:underline;font-family:Arial}
+.warnbox{background:#FFF3D6;border:3px dashed var(--terra);border-radius:10px;padding:12px;font-size:14px;margin:10px 0}
+.timebanner{background:var(--red);color:#fff;border:3px solid var(--black);border-radius:12px;padding:12px;text-align:center;font-size:18px;margin:12px 0;box-shadow:4px 4px 0 var(--black)}
+.okbanner{background:#E8F5E9;border:3px solid var(--black);border-radius:12px;padding:16px;text-align:center;margin:12px 0}
+.okbanner .num{font-size:26px;color:var(--terra)}
+.note{font-size:12px;color:#666;padding:10px 0}
+.optrow{display:flex;align-items:center;gap:8px;margin:6px 0;font-family:Arial;font-size:14px}
+.qtyrow{display:flex;align-items:center;gap:12px;margin:10px 0}
+.qtyrow button{width:44px;height:44px;font-size:22px;border:3px solid var(--black);border-radius:10px;background:#fff;cursor:pointer}
+.timeopt{border:3px solid var(--black);border-radius:12px;padding:10px;margin:10px 0;background:#fff}
+.timeopt input{width:100%;border:2px solid var(--black);border-radius:8px;padding:8px;font-size:14px;font-family:Arial;margin-top:6px}
+.spin{display:inline-block;width:18px;height:18px;border:3px solid #fff;border-top-color:transparent;border-radius:50%;animation:s 1s linear infinite;vertical-align:-3px}
+@keyframes s{to{transform:rotate(360deg)}}
+/* ---------- pizza builder ---------- */
+#bSheet .panel{padding:0;overflow:hidden;display:flex;flex-direction:column}
+#bHead{background:var(--black);color:var(--yellow);padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
+#bHead h2{margin:0;font-size:18px;color:var(--yellow)}
+#bHead button{background:transparent;border:2px solid var(--yellow);color:var(--yellow);border-radius:8px;padding:6px 12px;cursor:pointer;font-size:14px}
+#bBody{overflow-y:auto;flex:1;padding:0 0 90px}
+#pizzaStage{position:sticky;top:0;z-index:5;background:radial-gradient(circle at 50% 40%,#FFE9A8 0%,var(--yellow) 55%,#F5B800 100%);
+  border-bottom:4px solid var(--black);padding:10px;display:flex;justify-content:center}
+#pizzaStage svg{width:190px;height:190px;filter:drop-shadow(4px 5px 0 rgba(0,0,0,.25));animation:pop .3s ease}
+.bsec{padding:12px 16px;border-bottom:2px dashed #d8c98a}
+.bsec h3{margin:0 0 10px;font-size:16px}
+.seg{display:flex;gap:8px;flex-wrap:wrap}
+.seg button{border:3px solid var(--black);border-radius:12px;padding:10px 14px;background:#fff;cursor:pointer;font-size:13px;box-shadow:3px 3px 0 var(--black)}
+.seg button.on{background:var(--yellow)}
+.seg button .p{color:var(--terra);font-size:12px}
+.toprow{border:3px solid var(--black);border-radius:12px;margin-bottom:10px;background:#fff;overflow:hidden}
+.toprow .tophead{display:flex;align-items:center;gap:10px;padding:10px 12px;cursor:pointer}
+.toprow .tdot{width:26px;height:26px;border-radius:50%;border:3px solid var(--black);flex-shrink:0}
+.toprow .tname{flex:1;font-size:14px}
+.toprow .tprice{color:var(--terra);font-size:13px}
+.toprow .tcheck{width:30px;height:30px;border:3px solid var(--black);border-radius:8px;background:#fff;font-size:18px;line-height:1;cursor:pointer;flex-shrink:0}
+.toprow.on .tcheck{background:var(--green);color:#fff}
+.toprow .topopts{display:none;padding:0 12px 12px;border-top:2px dashed #ddd}
+.toprow.on .topopts{display:block}
+.mini-seg{display:flex;gap:6px;margin-top:8px}
+.mini-seg button{flex:1;border:2px solid var(--black);border-radius:8px;padding:7px 4px;background:#fff;font-size:11px;cursor:pointer}
+.mini-seg button.on{background:var(--black);color:var(--yellow)}
+.mini-label{font-family:Arial;font-size:11px;color:#666;margin:8px 0 2px}
+#bsummary{background:#fff;border:3px solid var(--black);border-radius:12px;padding:10px 12px;margin:0 16px;font-family:Arial;font-size:13px}
+#bsummary b{font-family:"Arial Black",Arial}
+#bCTA{position:sticky;bottom:0;background:var(--paper);border-top:4px solid var(--black);padding:12px 16px;z-index:6}
+#bAdd{width:100%;background:var(--terra);color:#fff;border:3px solid var(--black);border-radius:14px;padding:16px;font-size:18px;cursor:pointer;box-shadow:5px 5px 0 var(--black)}
+#bAdd:active{transform:translateY(3px);box-shadow:1px 1px 0 var(--black)}
+.halfhint{font-family:Arial;font-size:12px;color:#666;margin-top:6px}
+/* ---------- city picker ---------- */
+#cityBtn{background:transparent;border:2px solid var(--yellow);color:var(--yellow);border-radius:8px;padding:3px 8px;font-size:11px;cursor:pointer;margin-right:6px}
+.cityrow{display:flex;justify-content:space-between;align-items:center;border:3px solid var(--black);border-radius:12px;padding:12px;margin-bottom:10px;background:#fff;cursor:pointer}
+.cityrow.off{opacity:.55;cursor:default}
+.cityrow.on{background:var(--yellow)}
+.cityrow .soon{font-size:11px;background:var(--black);color:#fff;border-radius:6px;padding:2px 8px}
+/* ---------- new badge ---------- */
+.newbadge{display:inline-block;background:var(--red);color:#fff;font-size:10px;border-radius:6px;padding:2px 8px;margin-left:6px;transform:rotate(-3deg);border:2px solid var(--black);animation:pop .3s ease}
+/* ---------- fly to cart ---------- */
+.fly{position:fixed;z-index:99;font-size:34px;pointer-events:none;transition:transform .7s cubic-bezier(.3,.7,.4,1),opacity .7s}
+/* ---------- builder step polish ---------- */
+.bsec{transition:background .35s}
+.bsec.flash{animation:secflash .9s ease}
+@keyframes secflash{0%{background:#FFF3D6}100%{background:transparent}}
+.seg button{transition:transform .12s}
+.seg button.picked{animation:pop .3s ease}
+.toprow{transition:transform .15s}
+.toprow.on{transform:scale(1.015)}
+/* ---------- cart thumbnails ---------- */
+.thumb{flex-shrink:0;width:44px;height:44px}
+.thumb svg{width:44px;height:44px}
+/* ---------- loyalty (SAMPLE groundwork) ---------- */
+.ptsline{color:var(--terra)}
+#loyalSheet .panel{text-align:center}
+.loyalburst{width:110px;height:110px;margin:6px auto;background:var(--yellow);border:4px solid var(--black);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:44px;transform:rotate(-8deg);box-shadow:5px 5px 0 var(--black)}
+.acctbox{border:3px dashed var(--blue);border-radius:12px;padding:12px;margin:10px 0;background:#F2F7FF}
+.acctbox .ptsnum{font-size:30px;color:var(--blue)}
+/* ---------- paused / tax-exempt / allergens / stock ---------- */
+#pausedBanner{display:none;background:var(--red);color:#fff;border-bottom:4px solid var(--black);padding:12px 14px;text-align:center;font-size:15px;position:sticky;top:46px;z-index:25}
+#pausedBanner.show{display:block}
+#pausedBanner .small{font-family:Arial;font-size:12px}
+.allg{display:flex;gap:4px;flex-wrap:wrap;margin-top:4px}
+.allg span{font-size:10px;font-family:Arial;background:#FFF3D6;border:2px solid var(--terra);border-radius:6px;padding:1px 6px}
+.card.oos{opacity:.55;filter:grayscale(.6)}
+.oosbtn{background:#ddd!important;color:#666!important;cursor:default!important;box-shadow:none!important}
+.taxexbox{border:3px dashed var(--green);border-radius:12px;padding:10px;margin:10px 0;background:#F2FBF5}
+#taxexSheet .panel input[type=file]{margin:8px 0;font-family:Arial}
+footer .fline{margin:4px 0}
+.deal{cursor:pointer}
+.deal:active{transform:scale(.97)}
+footer{padding:18px 14px 90px;text-align:center;font-family:Arial;font-size:12px;color:#888}
+/* ---------- kids menu banner ---------- */
+.kidbanner{background:linear-gradient(135deg,var(--yellow),#FF9D2E);border:4px solid var(--black);border-radius:16px;
+  padding:12px;margin-bottom:12px;box-shadow:5px 5px 0 var(--black);display:flex;gap:12px;align-items:center}
+.kidbanner img{width:84px;height:auto;border-radius:12px;border:3px solid var(--black);background:#fff}
+.kidbanner .kt{font-family:var(--font-display);font-size:18px;color:var(--yellow);-webkit-text-stroke:1px var(--black);
+  paint-order:stroke fill;text-shadow:2px 2px 0 var(--red)}
+.kidbanner .kd{font-family:Arial;font-size:12px;color:var(--black);margin-top:4px}
+/* ---------- La Felice logo-style headlines (owner's signage style: yellow + black outline + red accent) ---------- */
+/* comic sub-headings: builder sections + menu item names */
+.bsec h3,.card .name{font-family:var(--font-display);color:var(--yellow);-webkit-text-stroke:1px var(--black);
+  paint-order:stroke fill;text-shadow:1.5px 1.5px 0 var(--red);letter-spacing:.5px}
+.logostyle{font-family:var(--font-display);color:var(--yellow);-webkit-text-stroke:2.5px var(--black);paint-order:stroke fill;
+  text-shadow:3px 3px 0 var(--red),6px 6px 0 rgba(0,0,0,.28);letter-spacing:1px}
+/* ---------- cart upsell + promo ---------- */
+.upsell{margin:10px 0;padding:10px;border:3px dashed var(--black);border-radius:12px;background:#FFFDF5}
+.upsrow{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:2px dotted #E0D6C2;font-family:Arial;font-size:13px}
+.upsrow:last-child{border-bottom:none}
+.upsrow .un{flex:1}
+.upsrow .up{font-weight:bold;white-space:nowrap}
+.upsadd{border:2px solid var(--black);border-radius:8px;background:var(--y);font-weight:bold;padding:5px 12px;cursor:pointer;box-shadow:2px 2px 0 var(--black);font-size:15px}
+.promorow{display:flex;gap:8px;margin:10px 0}
+.promorow input{flex:1;border:3px solid var(--black);border-radius:10px;padding:10px;font-size:14px;font-family:Arial;text-transform:uppercase}
+.promorow button{border:3px solid var(--black);border-radius:10px;padding:10px 16px;background:var(--terra);color:#fff;font-weight:bold;cursor:pointer;box-shadow:3px 3px 0 var(--black)}
+/* ---------- penguin mascot hints ---------- */
+/* MASCOT ART: real owner artwork — assets/penguin-mascot-comic.jpg (swap the file to replace).
+   NO frame, NO window: the real photo full-size, soft drop shadow only. */
+#pengy{position:fixed;left:10px;bottom:70px;z-index:35;transform:translateX(-230px);pointer-events:none}
+/* waddle IN from the left edge: side-to-side rock + slight bounce */
+#pengy.in{animation:pengywalkin 1.5s cubic-bezier(.4,.7,.5,1) forwards}
+@keyframes pengywalkin{
+  0%{transform:translateX(-230px) rotate(0)}
+  14%{transform:translateX(-165px) rotate(-16deg) translateY(-10px)}
+  28%{transform:translateX(-115px) rotate(14deg)}
+  42%{transform:translateX(-76px) rotate(-14deg) translateY(-10px)}
+  56%{transform:translateX(-45px) rotate(12deg)}
+  70%{transform:translateX(-20px) rotate(-10deg) translateY(-8px)}
+  84%{transform:translateX(-6px) rotate(6deg)}
+  100%{transform:translateX(0) rotate(0)}}
+/* gentle idle bob once arrived */
+#pengy.idle #pengyImg{animation:pengybob 2.4s ease-in-out infinite}
+@keyframes pengybob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-7px) rotate(2deg)}}
+/* waddle AWAY when the condition resolves */
+#pengy.out{animation:pengywalkout 1s ease-in forwards}
+@keyframes pengywalkout{
+  0%{transform:translateX(0) rotate(0)}
+  25%{transform:translateX(-40px) rotate(12deg) translateY(-8px)}
+  55%{transform:translateX(-115px) rotate(-14deg)}
+  100%{transform:translateX(-230px) rotate(0)}}
+#pengyImg{width:118px;height:auto;filter:drop-shadow(4px 5px 0 rgba(20,20,20,.35));
+  pointer-events:auto;cursor:pointer;display:block}
+/* Classic comic speech balloon: white, bold black outline, logo-style font,
+   pointed tail aimed at the penguin's head. */
+#pengyBubble{pointer-events:auto;display:none;max-width:230px;background:#fff;border:4px solid var(--black);border-radius:16px;
+  padding:12px 14px;margin-bottom:14px;box-shadow:5px 5px 0 var(--black);position:relative;animation:pengyin .35s ease;
+  color:var(--black);transform:rotate(-1.5deg)}
+#pengyBubble.show{display:block}
+@keyframes pengyin{from{transform:translateY(14px) scale(.9) rotate(-1.5deg);opacity:0}to{transform:rotate(-1.5deg);opacity:1}}
+#pengyText{font-family:var(--font-display);font-size:15px;line-height:1.35}
+#pengyBubble:before{content:'';position:absolute;bottom:-24px;left:36px;width:0;height:0;
+  border:12px solid transparent;border-top:22px solid var(--black)}
+#pengyBubble:after{content:'';position:absolute;bottom:-13px;left:41px;width:0;height:0;
+  border:7px solid transparent;border-top:13px solid #fff}
+#pengyX{position:absolute;top:-11px;left:-11px;width:26px;height:26px;border-radius:50%;background:var(--red);color:#fff;
+  border:2px solid var(--black);font-size:13px;cursor:pointer;line-height:1}
+#pengyMute{display:block;margin-top:8px;background:none;border:none;color:var(--blue);font-size:11px;cursor:pointer;
+  text-decoration:underline;font-family:Arial;padding:0}
+#pengyBubble .plink{color:var(--terra);font-weight:bold;cursor:pointer;text-decoration:underline}
+#zoneBtn{border:3px solid var(--black);border-radius:10px;padding:8px 16px;background:var(--yellow);cursor:pointer;box-shadow:3px 3px 0 var(--black);font-size:14px}
+#trLink{color:var(--terra);font-weight:bold}
