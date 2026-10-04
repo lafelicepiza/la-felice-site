@@ -1,5 +1,5 @@
 
-:root{--yellow:#FFC928;--black:#141414;--terra:#C96A2C;--blue:#2C6AC9;--paper:#FFFDF6;--red:#D23B2E;--green:#2E9E5B;--font-display:"Arial Rounded MT Bold","Helvetica Rounded","Arial Black",Arial,sans-serif;
+:root{--yellow:#FFC928;--black:#141414;--terra:#E07F2E;--blue:#2C6AC9;--paper:#FFFDF6;--red:#D23B2E;--green:#2E9E5B;--font-display:"Arial Rounded MT Bold","Helvetica Rounded","Arial Black",Arial,sans-serif;
 --font-body:Arial,Helvetica,sans-serif}
 /* FONTS: every font on the site comes from --font-display / --font-body above.
    The owner will send real font files later — swap them in here, in one place. */
@@ -80,7 +80,7 @@ header .sub{font-family:Arial;font-size:10px;color:#fff}
 .chips button.on{background:var(--terra);color:#fff}
 .chips button.hot{background:var(--terra);color:#fff;box-shadow:3px 3px 0 var(--black)}
 .chips button.hot.on{background:var(--black);color:var(--y)}
-.tabnew{display:inline-block;margin-left:6px;background:var(--y);color:var(--black);font-size:10px;font-weight:bold;
+.tabnew{display:inline-block;margin-left:6px;background:var(--red);color:#fff;font-size:10px;font-weight:bold;
   padding:1px 7px;border-radius:9px;border:2px solid var(--black);vertical-align:middle;animation:newpulse 1.2s ease-in-out infinite}
 @keyframes newpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
 /* ---------- menu cards ---------- */
