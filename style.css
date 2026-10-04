@@ -11,12 +11,14 @@ body{margin:0 auto;max-width:640px;min-height:100vh;background:var(--paper);colo
 body,p,span,div,input,select,button{font-family:"Arial Black","Arial Bold",Arial,sans-serif}
 .small,.note,.line span,.warn,label,.addr-row,.desc{font-family:Arial,Helvetica,sans-serif}
 /* ---------- header ---------- */
-header{background:var(--black);color:var(--yellow);padding:7px 10px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:30}
-header h1{margin:0;font-size:17px;letter-spacing:1px}
+header{background:linear-gradient(180deg,#FFD93B 0%,#FF9E1B 100%);color:var(--black);padding:7px 10px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:30;border-bottom:4px solid var(--black)}
+header h1{margin:0;font-size:24px;letter-spacing:1px}
+.brand{display:flex;align-items:center;gap:10px}
+#logoPengy{width:56px;height:56px;border-radius:50%;border:3px solid var(--black);object-fit:cover;background:#fff;box-shadow:2px 2px 0 var(--black)}
 header h1 .slice{display:inline-block;animation:wiggle 2.4s ease-in-out infinite}
 @keyframes wiggle{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
-header .sub{font-family:Arial;font-size:10px;color:#fff}
-#lang button{background:transparent;border:2px solid var(--yellow);color:var(--yellow);border-radius:8px;margin-left:4px;padding:3px 7px;font-size:11px;cursor:pointer}
+header .sub{font-family:Arial;font-size:10px;color:#6b4a00;font-weight:bold}
+#lang button{background:transparent;border:2px solid var(--black);color:var(--black);border-radius:8px;margin-left:4px;padding:3px 7px;font-size:11px;cursor:pointer}
 #lang button.on{background:var(--yellow);color:var(--black)}
 .sec{padding:12px 14px}
 /* ---------- fulfillment toggle ---------- */
@@ -165,7 +167,7 @@ header .sub{font-family:Arial;font-size:10px;color:#fff}
 #bAdd:active{transform:translateY(3px);box-shadow:1px 1px 0 var(--black)}
 .halfhint{font-family:Arial;font-size:12px;color:#666;margin-top:6px}
 /* ---------- city picker ---------- */
-#cityBtn{background:transparent;border:2px solid var(--yellow);color:var(--yellow);border-radius:8px;padding:3px 8px;font-size:11px;cursor:pointer;margin-right:6px}
+#cityBtn{background:transparent;border:2px solid var(--black);color:var(--black);border-radius:8px;padding:3px 8px;font-size:11px;cursor:pointer;margin-right:6px}
 .cityrow{display:flex;justify-content:space-between;align-items:center;border:3px solid var(--black);border-radius:12px;padding:12px;margin-bottom:10px;background:#fff;cursor:pointer}
 .cityrow.off{opacity:.55;cursor:default}
 .cityrow.on{background:var(--yellow)}
