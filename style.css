@@ -11,10 +11,15 @@ body{margin:0 auto;max-width:640px;min-height:100vh;background:var(--paper);colo
 body,p,span,div,input,select,button{font-family:"Arial Black","Arial Bold",Arial,sans-serif}
 .small,.note,.line span,.warn,label,.addr-row,.desc{font-family:Arial,Helvetica,sans-serif}
 /* ---------- header ---------- */
-header{background:linear-gradient(180deg,#FFD93B 0%,#FF9E1B 100%);color:var(--black);padding:7px 10px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:30;border-bottom:4px solid var(--black)}
+header{background:linear-gradient(180deg,#FFD93B 0%,#FF9E1B 100%);color:var(--black);padding:7px 10px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:30;border-bottom:4px solid var(--black);
+/* full-bleed: the bar spans the whole viewport, not just the 640px column */}
+header{margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
 header h1{margin:0;font-size:24px;letter-spacing:1px}
 .brand{display:flex;align-items:center;gap:10px}
-#logoPengy{width:56px;height:56px;border-radius:50%;border:3px solid var(--black);object-fit:cover;background:#fff;box-shadow:2px 2px 0 var(--black)}
+/* header penguin: just the mascot itself, no circular frame */
+#logoPengy{height:58px;width:auto;border:none;border-radius:0;box-shadow:none;background:transparent;object-fit:contain}
+/* header wordmark: single clean comic style like the owner's flyer — no doubled offset shadow */
+header .logostyle{text-shadow:none}
 header h1 .slice{display:inline-block;animation:wiggle 2.4s ease-in-out infinite}
 @keyframes wiggle{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
 header .sub{font-family:Arial;font-size:10px;color:#6b4a00;font-weight:bold}
