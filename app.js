@@ -16,7 +16,7 @@ build_title:"Build your pizza",size:"1. Size",crust:"2. Crust",sauce:"3. Sauce",
 your_pizza:"Your pizza",add_to_cart:"Add to cart",half_hint:"Tap a topping, then choose Light / Normal / Extra and Left / Whole / Right half.",
 p_light:"Light",p_normal:"Normal",p_extra:"Extra",h_left:"Left",h_whole:"Whole",h_right:"Right",
 order_again:"Loved it last time?",reorder_btn:"Order it again — 1 tap",
-deal1t:"2 Large Pizzas",deal1d:"Any 2 large pizzas for a bundle price. SAMPLE promo.",deal2t:"Family Night",deal2d:"Large pizza + fries + 4 sodas. SAMPLE promo.",deal3t:"Lunch Slice",deal3d:"Weekday slice + soda. SAMPLE promo.",
+deal_tag:"Mon\u2013Thu",deal1t:"2 Pizzas + Wings Deal",deal1d:"2 large cheese pizzas, 12 plain wings, 2L soda. Monday\u2013Thursday.",deal2t:"2 Pizzas + Sub Deal",deal2d:"2 large cheese pizzas, one whole sub, 2L soda. Monday\u2013Thursday.",deal3t:"Large Cheese Pizza",deal3d:"16\" cheese pizza. Monday\u2013Thursday.",
 no_toppings:"Just cheese, please",qty:"Qty",
 change_city:"Choose your city",city_note:"SAMPLE — more cities coming. Each city will have its own menu, tax and delivery zones.",
 coming_soon:"soon",new_badge:"NEW",points_earn:"This order earns",points:"pts",
@@ -37,7 +37,7 @@ hint_deals:"Check our weekly specials!",hints_off:"don't show hints",hints_on:"s
 first_order_promo:"Sign up and get {p}% off your first order!",first_order_disc:"First-order signup discount",
 acct_save:"With an account this order would cost {x} less ({p}% off)",
 sms_consent:"I agree to receive SMS marketing messages",email_consent:"I agree to receive email marketing messages",
-consent_note:"Consents are saved to your customer profile for our future mailing list. You can withdraw anytime.",menu_subs:"Subs",menu_appetizers:"Appetizers",menu_wings:"Wings",menu_chicken:"Chicken",menu_stromboli:"Stromboli",menu_rolls:"Rolls",menu_breadsticks:"Breadsticks",menu_kids:"Kids Menu",menu_breakfast:"Breakfast",min_delivery_warn:"Delivery minimum is {m} — add {x} more for delivery (pickup has no minimum).",hint_mindel:"Delivery starts at {m} — add {x} more!",tips:"Tips",tips_note:"Tips are optional — no pressure. Our crew appreciates every bit!",tip_custom:"Custom",tip_custom_ph:"Amount, e.g. 3.50",no_tip:"No tip",menu_extra:"Extras",build_sub:"Build your sub",kids_title:"Fun food for little champions!",kids_desc:"Small portions, big smiles. SAMPLE — real kids menu coming.",build_salad:"Build your salad",build_drink:"Pick your drink",sec_bread:"2. Bread",sec_fillings:"3. Fillings",sec_base:"1. Base",sec_flavor:"2. Flavor",sec_dsize:"1. Size",your_build:"Your build",free_sauce:"Free sauce",free:"free",hint_sauce:"Want to add an extra sauce?",dip_ranch:"Ranch",dip_marinara:"Marinara",dip_garlic:"Garlic Butter",dip_bbq:"BBQ",extra_dip_name:"Extra Dipping Sauce",extra_dip_desc:"2 oz cup — ranch, marinara, garlic butter or BBQ",allergy_tag:"Allergy",reorder_tab:"Order again",reorder_empty:"No past orders yet — your history will show up here.",reorder_repeat:"Repeat",mixmatch_title:"Mix & Match — build your own combo",mixmatch_desc:"Pick any 2 from the list — {p} each. SAMPLE price, the owner edits the real one.",mixmatch_pick:"Pick 2",mixmatch_add:"Add combo",mixmatch_need:"Pick 2 items to add the combo",tracker_title:"Track your order",tracker_ph:"Order number, e.g. LF-123456",tracker_btn:"Track",tracker_notfound:"Order not found — check the number on your receipt.",tr_prep:"Preparing",tr_oven:"In the oven",tr_way:"On the way",tr_ready:"Ready for pickup",tr_eta:"~{n} min",sec_size:"1. Size",sec_cheese:"4. Cheese",sec_veggies:"5. Veggies",sec_protein:"2. Protein",sec_ingr:"3. Ingredients",sec_dressing:"4. Dressing",multi_hint:"tap to toggle",style:"Style",build_wings:"Build your wings",sec_count:"1. Count",sec_wtype:"2. Style",p_none:"no",cheese_none:"No cheese",edit_item:"Edit",save_item:"Save",promo_ph:"Promo code",promo_apply:"Apply",promo_ok:"Promo applied: -{p}%",promo_bad:"That code didn't work",promo_disc:"Promo discount",upsell_title:"Add to your order?"},
+consent_note:"Consents are saved to your customer profile for our future mailing list. You can withdraw anytime.",menu_subs:"Subs",menu_appetizers:"Appetizers",menu_wings:"Wings",menu_chicken:"Chicken",menu_stromboli:"Stromboli",menu_rolls:"Rolls",menu_breadsticks:"Breadsticks",menu_kids:"Kids Menu",menu_breakfast:"Breakfast",min_delivery_warn:"Delivery minimum is {m} — add {x} more for delivery (pickup has no minimum).",hint_mindel:"Delivery starts at {m} — add {x} more!",tips:"Tips",tips_note:"Tips are optional — no pressure. Our crew appreciates every bit!",tip_custom:"Custom",tip_custom_ph:"Amount, e.g. 3.50",no_tip:"No tip",menu_extra:"Extras",build_sub:"Build your sub",kids_title:"Fun food for little champions!",kids_desc:"Small portions, big smiles.",build_salad:"Build your salad",build_drink:"Pick your drink",sec_bread:"2. Bread",sec_fillings:"3. Fillings",sec_base:"1. Base",sec_flavor:"2. Flavor",sec_dsize:"1. Size",your_build:"Your build",free_sauce:"Free sauce",free:"free",hint_sauce:"Want to add an extra sauce?",dip_ranch:"Ranch",dip_marinara:"Marinara",dip_garlic:"Garlic Butter",dip_bbq:"BBQ",extra_dip_name:"Extra Dipping Sauce",extra_dip_desc:"2 oz cup — ranch, marinara, garlic butter or BBQ",allergy_tag:"Allergy",reorder_tab:"Order again",reorder_empty:"No past orders yet — your history will show up here.",reorder_repeat:"Repeat",mixmatch_title:"Mix & Match — build your own combo",mixmatch_desc:"Pick any 2 from the list — {p} each. SAMPLE price, the owner edits the real one.",mixmatch_pick:"Pick 2",mixmatch_add:"Add combo",mixmatch_need:"Pick 2 items to add the combo",tracker_title:"Track your order",tracker_ph:"Order number, e.g. LF-123456",tracker_btn:"Track",tracker_notfound:"Order not found — check the number on your receipt.",tr_prep:"Preparing",tr_oven:"In the oven",tr_way:"On the way",tr_ready:"Ready for pickup",tr_eta:"~{n} min",sec_size:"1. Size",sec_cheese:"4. Cheese",sec_veggies:"5. Veggies",sec_protein:"2. Protein",sec_ingr:"3. Ingredients",sec_dressing:"4. Dressing",multi_hint:"tap to toggle",style:"Style",build_wings:"Build your wings",sec_count:"1. Count",sec_wtype:"2. Style",p_none:"no",cheese_none:"No cheese",edit_item:"Edit",save_item:"Save",promo_ph:"Promo code",promo_apply:"Apply",promo_ok:"Promo applied: -{p}%",promo_bad:"That code didn't work",promo_disc:"Promo discount",upsell_title:"Add to your order?"},
 ru:{pickup:"Самовывоз",delivery:"Доставка",address_ph:"Адрес доставки — улица, квартира",check_zone:"Проверить мою зону",
 zone_ok:"Доставим! Стоимость {fee}, ~{eta} мин.",menu_builder:"Конструктор пиццы",menu_pizza:"Пиццы",menu_salads:"Салаты",menu_drinks:"Напитки",menu_desserts:"Десерты",
 add:"Добавить",customize:"Собрать",back:"Назад",checkout:"Оформить",your_order:"Ваш заказ",subtotal:"Сумма",tax:"Налог",
@@ -53,7 +53,7 @@ build_title:"Соберите пиццу",size:"1. Размер",crust:"2. Те�
 your_pizza:"Ваша пицца",add_to_cart:"В корзину",half_hint:"Нажмите на начинку, затем выберите Мало / Норма / Много и Левая / Вся / Правая половина.",
 p_light:"Мало",p_normal:"Норма",p_extra:"Много",h_left:"Левая",h_whole:"Вся",h_right:"Правая",
 order_again:"Понравилось в прошлый раз?",reorder_btn:"Заказать снова — в 1 тап",
-deal1t:"2 большие пиццы",deal1d:"Любые 2 большие пиццы по цене набора. ДЕМО-акция.",deal2t:"Семейный вечер",deal2d:"Большая пицца + фри + 4 напитка. ДЕМО-акция.",deal3t:"Обеденный слайс",deal3d:"Слайс + напиток по будням. ДЕМО-акция.",
+deal_tag:"Пн\u2013Чт",deal1t:"2 пиццы + крылышки",deal1d:"2 большие сырные пиццы, 12 крылышек, газировка 2 л. Понедельник\u2013четверг.",deal2t:"2 пиццы + саб",deal2d:"2 большие сырные пиццы, целый саб, газировка 2 л. Понедельник\u2013четверг.",deal3t:"Большая сырная пицца",deal3d:"Сырная пицца 16\". Понедельник\u2013четверг.",
 no_toppings:"Только сыр, спасибо",qty:"Кол-во",
 change_city:"Выберите город",city_note:"ДЕМО — скоро будет больше городов. У каждого города своё меню, налог и зоны доставки.",
 coming_soon:"скоро",new_badge:"НОВИНКА",points_earn:"Этот заказ принесёт",points:"баллов",
@@ -74,7 +74,7 @@ hint_deals:"Глянь наши спешалы недели!",hints_off:"не п
 first_order_promo:"Зарегистрируйся и получи скидку {p}% на первый заказ!",first_order_disc:"Скидка за регистрацию",
 acct_save:"С аккаунтом этот заказ стоил бы на {x} меньше (скидка {p}%)",
 sms_consent:"Согласен получать SMS-рассылки",email_consent:"Согласен получать email-рассылки",
-consent_note:"Согласия сохраняются в ваш профиль клиента для будущей базы рассылок. Можно отозвать в любой момент.",menu_subs:"Сабы",menu_appetizers:"Закуски",menu_wings:"Крылышки",menu_chicken:"Курица",menu_stromboli:"Стромболи",menu_rolls:"Роллы",menu_breadsticks:"Хлебные палочки",menu_kids:"Детское меню",menu_breakfast:"Завтраки",min_delivery_warn:"Минимальный заказ для доставки — {m}. Добавь ещё на {x} (для самовывоза минимума нет).",hint_mindel:"Доставка от {m} — добавь ещё на {x}!",tips:"Чаевые",tips_note:"Чаевые необязательны — только по желанию. Команда будет благодарна!",tip_custom:"Своя сумма",tip_custom_ph:"Сумма, напр. 3.50",no_tip:"Без чаевых",kids_title:"Весёлая еда для маленьких чемпионов!",kids_desc:"Маленькие порции — большие улыбки. ДЕМО.",menu_extra:"Дополнительно",build_sub:"Собери саб",build_salad:"Собери салат",build_drink:"Выбери напиток",sec_bread:"2. Хлеб",sec_fillings:"3. Начинка",sec_base:"1. Основа",sec_flavor:"2. Вкус",sec_dsize:"1. Размер",your_build:"Ваш набор",free_sauce:"Соус в подарок",free:"в подарок",hint_sauce:"Соус не хочешь добавить?",dip_ranch:"Ранч",dip_marinara:"Маринара",dip_garlic:"Чесночное масло",dip_bbq:"Барбекю",extra_dip_name:"Доп. соус",extra_dip_desc:"Соусник 60 мл — ранч, маринара, чесночный или барбекю",allergy_tag:"Аллергия",reorder_tab:"Закажи снова",reorder_empty:"Прошлых заказов пока нет — история появится здесь.",reorder_repeat:"Повторить",mixmatch_title:"Комбо «Собери сам»",mixmatch_desc:"Выбери любые 2 позиции из списка — {p} за каждую. ДЕМО-цена, владелица поставит настоящую.",mixmatch_pick:"Выбери 2",mixmatch_add:"В корзину",mixmatch_need:"Выбери 2 позиции, чтобы добавить комбо",tracker_title:"Где моя пицца",tracker_ph:"Номер заказа, напр. LF-123456",tracker_btn:"Найти",tracker_notfound:"Заказ не найден — проверь номер в чеке.",tr_prep:"Готовим",tr_oven:"В печи",tr_way:"В пути",tr_ready:"Готов к выдаче",tr_eta:"~{n} мин",sec_size:"1. Размер",sec_cheese:"4. Сыр",sec_veggies:"5. Овощи",sec_protein:"2. Белок",sec_ingr:"3. Ингредиенты",sec_dressing:"4. Заправка",multi_hint:"нажми, чтобы выбрать",style:"Стиль",build_wings:"Собери крылышки",sec_count:"1. Количество",sec_wtype:"2. Вид",p_none:"без",cheese_none:"Без сыра",edit_item:"Изменить",save_item:"Сохранить",promo_ph:"Промокод",promo_apply:"Применить",promo_ok:"Промокод применён: -{p}%",promo_bad:"Такой код не найден",promo_disc:"Скидка по промокоду",upsell_title:"Добавить к заказу?"},
+consent_note:"Согласия сохраняются в ваш профиль клиента для будущей базы рассылок. Можно отозвать в любой момент.",menu_subs:"Сабы",menu_appetizers:"Закуски",menu_wings:"Крылышки",menu_chicken:"Курица",menu_stromboli:"Стромболи",menu_rolls:"Роллы",menu_breadsticks:"Хлебные палочки",menu_kids:"Детское меню",menu_breakfast:"Завтраки",min_delivery_warn:"Минимальный заказ для доставки — {m}. Добавь ещё на {x} (для самовывоза минимума нет).",hint_mindel:"Доставка от {m} — добавь ещё на {x}!",tips:"Чаевые",tips_note:"Чаевые необязательны — только по желанию. Команда будет благодарна!",tip_custom:"Своя сумма",tip_custom_ph:"Сумма, напр. 3.50",no_tip:"Без чаевых",kids_title:"Весёлая еда для маленьких чемпионов!",kids_desc:"Маленькие порции — большие улыбки.",menu_extra:"Дополнительно",build_sub:"Собери саб",build_salad:"Собери салат",build_drink:"Выбери напиток",sec_bread:"2. Хлеб",sec_fillings:"3. Начинка",sec_base:"1. Основа",sec_flavor:"2. Вкус",sec_dsize:"1. Размер",your_build:"Ваш набор",free_sauce:"Соус в подарок",free:"в подарок",hint_sauce:"Соус не хочешь добавить?",dip_ranch:"Ранч",dip_marinara:"Маринара",dip_garlic:"Чесночное масло",dip_bbq:"Барбекю",extra_dip_name:"Доп. соус",extra_dip_desc:"Соусник 60 мл — ранч, маринара, чесночный или барбекю",allergy_tag:"Аллергия",reorder_tab:"Закажи снова",reorder_empty:"Прошлых заказов пока нет — история появится здесь.",reorder_repeat:"Повторить",mixmatch_title:"Комбо «Собери сам»",mixmatch_desc:"Выбери любые 2 позиции из списка — {p} за каждую. ДЕМО-цена, владелица поставит настоящую.",mixmatch_pick:"Выбери 2",mixmatch_add:"В корзину",mixmatch_need:"Выбери 2 позиции, чтобы добавить комбо",tracker_title:"Где моя пицца",tracker_ph:"Номер заказа, напр. LF-123456",tracker_btn:"Найти",tracker_notfound:"Заказ не найден — проверь номер в чеке.",tr_prep:"Готовим",tr_oven:"В печи",tr_way:"В пути",tr_ready:"Готов к выдаче",tr_eta:"~{n} мин",sec_size:"1. Размер",sec_cheese:"4. Сыр",sec_veggies:"5. Овощи",sec_protein:"2. Белок",sec_ingr:"3. Ингредиенты",sec_dressing:"4. Заправка",multi_hint:"нажми, чтобы выбрать",style:"Стиль",build_wings:"Собери крылышки",sec_count:"1. Количество",sec_wtype:"2. Вид",p_none:"без",cheese_none:"Без сыра",edit_item:"Изменить",save_item:"Сохранить",promo_ph:"Промокод",promo_apply:"Применить",promo_ok:"Промокод применён: -{p}%",promo_bad:"Такой код не найден",promo_disc:"Скидка по промокоду",upsell_title:"Добавить к заказу?"},
 es:{pickup:"Recoger",delivery:"Entrega",address_ph:"Dirección de entrega",check_zone:"Verificar mi zona",
 zone_ok:"¡Entregamos! Tarifa {fee}, ~{eta} min.",menu_builder:"Arma tu pizza",menu_pizza:"Pizzas",menu_salads:"Ensaladas",menu_drinks:"Bebidas",menu_desserts:"Postres",
 add:"Añadir",customize:"Personalizar",back:"Atrás",checkout:"Pagar",your_order:"Su pedido",subtotal:"Subtotal",tax:"Impuesto",
@@ -90,7 +90,7 @@ build_title:"Arma tu pizza",size:"1. Tamaño",crust:"2. Masa",sauce:"3. Salsa",c
 your_pizza:"Tu pizza",add_to_cart:"Añadir",half_hint:"Toca un ingrediente y elige Poco / Normal / Extra y mitad Izquierda / Entera / Derecha.",
 p_light:"Poco",p_normal:"Normal",p_extra:"Extra",h_left:"Izq.",h_whole:"Entera",h_right:"Der.",
 order_again:"¿Te gustó la última vez?",reorder_btn:"Pídelo de nuevo — 1 toque",
-deal1t:"2 pizzas grandes",deal1d:"2 pizzas grandes a precio de combo. Promo EJEMPLO.",deal2t:"Noche familiar",deal2d:"Pizza grande + papas + 4 refrescos. Promo EJEMPLO.",deal3t:"Rebanada lunch",deal3d:"Rebanada + refresco entre semana. Promo EJEMPLO.",
+deal_tag:"Lun\u2013Jue",deal1t:"2 pizzas + alitas",deal1d:"2 pizzas grandes de queso, 12 alitas, refresco 2 l. Lunes a jueves.",deal2t:"2 pizzas + sub",deal2d:"2 pizzas grandes de queso, un sub entero, refresco 2 l. Lunes a jueves.",deal3t:"Pizza grande de queso",deal3d:"Pizza de queso 16\". Lunes a jueves.",
 no_toppings:"Solo queso, gracias",qty:"Cant.",
 change_city:"Elige tu ciudad",city_note:"EJEMPLO — más ciudades pronto. Cada ciudad tendrá su menú, impuesto y zonas.",
 coming_soon:"pronto",new_badge:"NUEVO",points_earn:"Este pedido gana",points:"pts",
@@ -111,7 +111,7 @@ hint_deals:"¡Mira nuestras ofertas de la semana!",hints_off:"no mostrar consejo
 first_order_promo:"¡Regístrate y obtén {p}% de descuento en tu primer pedido!",first_order_disc:"Descuento por registro",
 acct_save:"Con una cuenta este pedido costaría {x} menos ({p}% de descuento)",
 sms_consent:"Acepto recibir mensajes SMS promocionales",email_consent:"Acepto recibir correos promocionales",
-consent_note:"Los consentimientos se guardan en tu perfil de cliente para nuestra futura lista de correo. Puedes retirarlos cuando quieras.",menu_subs:"Subs",menu_appetizers:"Aperitivos",menu_wings:"Alitas",menu_chicken:"Pollo",menu_stromboli:"Stromboli",menu_rolls:"Rollos",menu_breadsticks:"Palitos de pan",menu_kids:"Menú infantil",menu_breakfast:"Desayuno",min_delivery_warn:"El pedido mínimo para entrega es {m} — añade {x} más (recoger no tiene mínimo).",hint_mindel:"La entrega es desde {m} — ¡añade {x} más!",tips:"Propina",tips_note:"La propina es opcional — sin presión. ¡Nuestro equipo la agradece!",tip_custom:"Otra",tip_custom_ph:"Cantidad, ej. 3.50",no_tip:"Sin propina",menu_extra:"Extras",build_sub:"Arma tu sub",kids_title:"¡Comida divertida para pequeños campeones!",kids_desc:"Porciones pequeñas, grandes sonrisas. EJEMPLO.",build_salad:"Arma tu ensalada",build_drink:"Elige tu bebida",sec_bread:"2. Pan",sec_fillings:"3. Relleno",sec_base:"1. Base",sec_flavor:"2. Sabor",sec_dsize:"1. Tamaño",your_build:"Tu creación",free_sauce:"Salsa gratis",free:"gratis",hint_sauce:"¿Quieres añadir una salsa extra?",dip_ranch:"Ranch",dip_marinara:"Marinara",dip_garlic:"Mantequilla de ajo",dip_bbq:"BBQ",extra_dip_name:"Salsa extra",extra_dip_desc:"Vaso 2 oz — ranch, marinara, ajo o BBQ",allergy_tag:"Alergia",reorder_tab:"Pedir de nuevo",reorder_empty:"Aún no hay pedidos anteriores — tu historial aparecerá aquí.",reorder_repeat:"Repetir",mixmatch_title:"Combo «Arma el tuyo»",mixmatch_desc:"Elige 2 de la lista — {p} cada uno. Precio EJEMPLO.",mixmatch_pick:"Elige 2",mixmatch_add:"Añadir combo",mixmatch_need:"Elige 2 artículos para añadir el combo",tracker_title:"¿Dónde está mi pizza?",tracker_ph:"Número de pedido, ej. LF-123456",tracker_btn:"Rastrear",tracker_notfound:"Pedido no encontrado — revisa el número del recibo.",tr_prep:"Preparando",tr_oven:"En el horno",tr_way:"En camino",tr_ready:"Lista para recoger",tr_eta:"~{n} min",sec_size:"1. Tamaño",sec_cheese:"4. Queso",sec_veggies:"5. Verduras",sec_protein:"2. Proteína",sec_ingr:"3. Ingredientes",sec_dressing:"4. Aderezo",multi_hint:"toca para elegir",style:"Estilo",build_wings:"Arma tus alitas",sec_count:"1. Cantidad",sec_wtype:"2. Estilo",p_none:"sin",cheese_none:"Sin queso",edit_item:"Editar",save_item:"Guardar",promo_ph:"Código promo",promo_apply:"Aplicar",promo_ok:"Promo aplicado: -{p}%",promo_bad:"Ese código no funciona",promo_disc:"Descuento promo",upsell_title:"¿Añadir a tu pedido?"}
+consent_note:"Los consentimientos se guardan en tu perfil de cliente para nuestra futura lista de correo. Puedes retirarlos cuando quieras.",menu_subs:"Subs",menu_appetizers:"Aperitivos",menu_wings:"Alitas",menu_chicken:"Pollo",menu_stromboli:"Stromboli",menu_rolls:"Rollos",menu_breadsticks:"Palitos de pan",menu_kids:"Menú infantil",menu_breakfast:"Desayuno",min_delivery_warn:"El pedido mínimo para entrega es {m} — añade {x} más (recoger no tiene mínimo).",hint_mindel:"La entrega es desde {m} — ¡añade {x} más!",tips:"Propina",tips_note:"La propina es opcional — sin presión. ¡Nuestro equipo la agradece!",tip_custom:"Otra",tip_custom_ph:"Cantidad, ej. 3.50",no_tip:"Sin propina",menu_extra:"Extras",build_sub:"Arma tu sub",kids_title:"¡Comida divertida para pequeños campeones!",kids_desc:"Porciones pequeñas, grandes sonrisas.",build_salad:"Arma tu ensalada",build_drink:"Elige tu bebida",sec_bread:"2. Pan",sec_fillings:"3. Relleno",sec_base:"1. Base",sec_flavor:"2. Sabor",sec_dsize:"1. Tamaño",your_build:"Tu creación",free_sauce:"Salsa gratis",free:"gratis",hint_sauce:"¿Quieres añadir una salsa extra?",dip_ranch:"Ranch",dip_marinara:"Marinara",dip_garlic:"Mantequilla de ajo",dip_bbq:"BBQ",extra_dip_name:"Salsa extra",extra_dip_desc:"Vaso 2 oz — ranch, marinara, ajo o BBQ",allergy_tag:"Alergia",reorder_tab:"Pedir de nuevo",reorder_empty:"Aún no hay pedidos anteriores — tu historial aparecerá aquí.",reorder_repeat:"Repetir",mixmatch_title:"Combo «Arma el tuyo»",mixmatch_desc:"Elige 2 de la lista — {p} cada uno. Precio EJEMPLO.",mixmatch_pick:"Elige 2",mixmatch_add:"Añadir combo",mixmatch_need:"Elige 2 artículos para añadir el combo",tracker_title:"¿Dónde está mi pizza?",tracker_ph:"Número de pedido, ej. LF-123456",tracker_btn:"Rastrear",tracker_notfound:"Pedido no encontrado — revisa el número del recibo.",tr_prep:"Preparando",tr_oven:"En el horno",tr_way:"En camino",tr_ready:"Lista para recoger",tr_eta:"~{n} min",sec_size:"1. Tamaño",sec_cheese:"4. Queso",sec_veggies:"5. Verduras",sec_protein:"2. Proteína",sec_ingr:"3. Ingredientes",sec_dressing:"4. Aderezo",multi_hint:"toca para elegir",style:"Estilo",build_wings:"Arma tus alitas",sec_count:"1. Cantidad",sec_wtype:"2. Estilo",p_none:"sin",cheese_none:"Sin queso",edit_item:"Editar",save_item:"Guardar",promo_ph:"Código promo",promo_apply:"Aplicar",promo_ok:"Promo aplicado: -{p}%",promo_bad:"Ese código no funciona",promo_disc:"Descuento promo",upsell_title:"¿Añadir a tu pedido?"}
 };
 let LANG='en';
 const t=k=>(T[LANG]&&T[LANG][k])||T.en[k]||k;
@@ -126,22 +126,58 @@ const IC={
    CRUSTS: gluten-free / cauliflower pin their own size via sizeIn (configurable).
    SHAPES: round + sicilian square today; add more shapes here later. */
 const BUILDER={
- sizes:[{id:'s12',in:12,label:'12"',price:799},{id:'s14',in:14,label:'14"',price:1099},{id:'s16',in:16,label:'16"',price:1499},{id:'s18',in:18,label:'18"',price:1899}],
- crusts:[{id:'hand',en:'Hand Tossed',ru:'Классическое',es:'Clásica',price:0},{id:'thin',en:'Thin',ru:'Тонкое',es:'Delgada',price:0},{id:'stuffed',en:'Stuffed Crust',ru:'С сырным бортиком',es:'Borde relleno',price:299},{id:'gf',en:'Gluten-Free',ru:'Без глютена',es:'Sin gluten',price:200,sizeIn:10},{id:'cauli',en:'Cauliflower',ru:'Цветная капуста',es:'Coliflor',price:250,sizeIn:10}],
+ sizes:[{id:'s12',in:12,label:'12"',price:1399},{id:'s14',in:14,label:'14"',price:1599},{id:'s16',in:16,label:'16"',price:1799},{id:'s18',in:18,label:'18"',price:1999}],
+ crusts:[{id:'hand',en:'Hand Tossed',ru:'Классическое',es:'Clásica',price:0},
+  {id:'thin',en:'Thin',ru:'Тонкое',es:'Delgada',price:0},
+  {id:'gf',en:'Gluten-Free 10"',ru:'Без глютена 10"',es:'Sin gluten 10"',price:0,base:1599,sizeIn:10},
+  {id:'cauli',en:'Cauliflower 10"',ru:'Из цветной капусты 10"',es:'Coliflor 10"',price:0,base:1599,sizeIn:10},
+  {id:'sic',en:'Sicilian 16-cut',ru:'Сицилийская (16 кусков)',es:'Siciliana (16 cortes)',price:0,base:2399,sizeIn:16,shape:'sicilian'}],
  shapes:[{id:'round',en:'Classic Round',ru:'Классическая круглая',es:'Redonda clásica'},{id:'sicilian',en:'Sicilian Square',ru:'Сицилийская квадратная',es:'Siciliana cuadrada'}],
  sauces:[{id:'tomato',en:'Tomato',ru:'Томатный',es:'Tomate',color:'#C0392B',price:0},{id:'white',en:'White Garlic',ru:'Чесночный',es:'Ajo',color:'#F3E9D2',price:0},{id:'bbq',en:'BBQ',ru:'Барбекю',es:'BBQ',color:'#7B3F00',price:50},{id:'none',en:'No sauce',ru:'Без соуса',es:'Sin salsa',color:null,price:0}],
  cheese:[{id:'light',price:0},{id:'normal',price:0},{id:'extra',price:175},{id:'none',price:0}],
  tops:[
-  {id:'pep',   en:'Pepperoni',   ru:'Пепперони',   es:'Pepperoni',   price:150, color:'#B03A2E', shape:'pep'},
-  {id:'saus',  en:'Sausage',     ru:'Колбаски',    es:'Salchicha',   price:150, color:'#8B5A2B', shape:'saus'},
-  {id:'mush',  en:'Mushrooms',   ru:'Грибы',       es:'Champiñones', price:125, color:'#EAD9B8', shape:'mush'},
-  {id:'onion', en:'Onions',      ru:'Лук',         es:'Cebolla',     price:100, color:'#F6F1FF', shape:'onion'},
-  {id:'gpep',  en:'Green Peppers',ru:'Перец',      es:'Pimiento',    price:100, color:'#27AE60', shape:'gpep'},
-  {id:'olive', en:'Black Olives',ru:'Оливки',      es:'Aceitunas',   price:125, color:'#1A1A1A', shape:'olive'},
-  {id:'bacon', en:'Bacon',       ru:'Бекон',       es:'Tocino',      price:175, color:'#A93226', shape:'bacon'},
-  {id:'xch',   en:'Extra Cheese',ru:'Доп. сыр',    es:'Queso extra', price:175, color:'#F7DC6F', shape:'xch'}
+  /* MEATS */
+  {id:'pepperoni',en:'Pepperoni',ru:'Пепперони',es:'Pepperoni',color:'#B03A2E',shape:'pep'},
+  {id:'sausage',en:'Sausage',ru:'Колбаски',es:'Salchicha',color:'#8B5A2B',shape:'saus'},
+  {id:'steak',en:'Steak',ru:'Стейк',es:'Bistec',color:'#6E4A2F',shape:'saus'},
+  {id:'bacon',en:'Bacon',ru:'Бекон',es:'Tocino',color:'#A93226',shape:'bacon'},
+  {id:'meatballs',en:'Meatballs',ru:'Митболы',es:'Albóndigas',color:'#7B3F00',shape:'saus'},
+  {id:'ham',en:'Ham',ru:'Ветчина',es:'Jamón',color:'#E58AA0',shape:'pep'},
+  {id:'salami',en:'Salami',ru:'Салями',es:'Salami',color:'#A93226',shape:'pep'},
+  {id:'capicola',en:'Capicola',ru:'Капикола',es:'Capicola',color:'#C0392B',shape:'pep'},
+  {id:'chicken',en:'Chicken',ru:'Курица',es:'Pollo',color:'#D9A441',shape:'saus'},
+  {id:'crab',en:'Crab Meat',ru:'Краб',es:'Cangrejo',color:'#E8A79E',shape:'dot'},
+  {id:'shrimp',en:'Shrimp',ru:'Креветки',es:'Camarones',color:'#F0A080',shape:'dot'},
+  {id:'gyro',en:'Gyro Meat',ru:'Мясо гиро',es:'Carne gyro',color:'#8B5A2B',shape:'saus'},
+  /* VEGGIES */
+  {id:'mushrooms',en:'Mushrooms',ru:'Грибы',es:'Champiñones',color:'#EAD9B8',shape:'mush'},
+  {id:'gpeppers',en:'Green Peppers',ru:'Зелёный перец',es:'Pimiento verde',color:'#27AE60',shape:'gpep'},
+  {id:'ronions',en:'Red Onions',ru:'Красный лук',es:'Cebolla roja',color:'#C080C0',shape:'onion'},
+  {id:'tomatoes',en:'Tomatoes',ru:'Томаты',es:'Tomate',color:'#C0392B',shape:'dot'},
+  {id:'blackolives',en:'Black Olives',ru:'Чёрные оливки',es:'Aceitunas negras',color:'#1A1A1A',shape:'olive'},
+  {id:'greenolives',en:'Green Olives',ru:'Зелёные оливки',es:'Aceitunas verdes',color:'#7ED321',shape:'olive'},
+  {id:'bpeppers',en:'Banana Peppers',ru:'Банановый перец',es:'Pimiento banana',color:'#F4D03F',shape:'gpep'},
+  {id:'jalapenos',en:'Jalapeños',ru:'Халапеньо',es:'Jalapeños',color:'#1E8449',shape:'gpep'},
+  {id:'spinach',en:'Spinach',ru:'Шпинат',es:'Espinaca',color:'#2E9E5B',shape:'dot'},
+  {id:'broccoli',en:'Broccoli',ru:'Брокколи',es:'Brócoli',color:'#27AE60',shape:'mush'},
+  {id:'pineapple',en:'Pineapple',ru:'Ананас',es:'Piña',color:'#F9DC5C',shape:'dot'},
+  {id:'artichokes',en:'Artichokes',ru:'Артишоки',es:'Alcachofas',color:'#7D8C5C',shape:'mush'},
+  {id:'rpeppers',en:'Roasted Red Peppers',ru:'Печёный перец',es:'Pimiento asado',color:'#C0392B',shape:'gpep'},
+  {id:'pickles',en:'Pickles',ru:'Огурчики',es:'Pepinillos',color:'#1E8449',shape:'dot'},
+  /* CHEESES */
+  {id:'xcheese',en:'Extra Cheese',ru:'Доп. сыр',es:'Queso extra',color:'#F7DC6F',shape:'xch'},
+  {id:'ricotta',en:'Ricotta',ru:'Рикотта',es:'Ricota',color:'#FFFDF5',shape:'xch'},
+  {id:'feta',en:'Feta',ru:'Фета',es:'Feta',color:'#FFFFFF',shape:'dot'},
+  {id:'parmesan',en:'Parmesan',ru:'Пармезан',es:'Parmesano',color:'#F5E6B8',shape:'dot'},
+  {id:'gorgonzola',en:'Gorgonzola',ru:'Горгонзола',es:'Gorgonzola',color:'#D6DBDF',shape:'dot'},
+  {id:'freshmozz',en:'Fresh Mozzarella',ru:'Свежая моцарелла',es:'Mozzarella fresca',color:'#FFFDF5',shape:'xch'},
+  {id:'cheddar',en:'Cheddar',ru:'Чеддер',es:'Cheddar',color:'#F5A623',shape:'xch'}
  ]
 };
+/* REAL topping prices: half / whole topping depends on pizza size (owner's menu). */
+const TOPPING_PRICE={s12:{half:99,whole:199},s14:{half:159,whole:299},s16:{half:199,whole:349},s18:{half:250,whole:399},sicilian:{half:250,whole:399},gf:{half:99,whole:199}};
+function builderSizeKey(){const c=BUILDER.crusts[B.crust];if(!c)return BUILDER.sizes[B.size].id;if(c.id==='sic')return 'sicilian';if(c.id==='gf'||c.id==='cauli')return 'gf';return BUILDER.sizes[B.size].id;}
+function toppingPrice(tp){const pr=TOPPING_PRICE[builderSizeKey()]||TOPPING_PRICE.s12;const st=B.tops[tp.id];return (st&&st.h!=='whole')?pr.half:pr.whole;}
 const tname=o=>o[LANG]||o.en;
 /* IRON RULE: the customer orders in EN/RU/ES, but the cashier/kitchen ALWAYS see English.
    Every cart line and order snapshot carries BOTH name_en (canonical) and name_localized (display). */
@@ -169,56 +205,75 @@ const CATS=[
  {id:'reorder',nameKey:'reorder_tab'},
 ];
 const SZ1=p=>[{id:'reg',label:'',price:p}]; // single-size item
+const SIG_SIZES=[{id:'s12',label:'12"',price:1599},{id:'s14',label:'14"',price:2199},{id:'s16',label:'16"',price:2599},{id:'s18',label:'18"',price:2999},{id:'sic',label:'Sicilian 16-cut',price:3299}];
+const SUB_SIZES=[{id:'half',label:'Half',price:899},{id:'whole',label:'Whole',price:1799}];
 const MENU={
 pizza:[
- {id:'pz-cheese',name:{en:'Cheese Pizza',ru:'Пицца «Сырная»',es:'Pizza de queso'},desc:{en:'Classic mozzarella, signature tomato sauce',ru:'Моцарелла, фирменный томатный соус',es:'Mozzarella, salsa de tomate de la casa'},art:'pizza',sizes:[{id:'s12',label:'12"',price:799},{id:'s16',label:'16"',price:1499}],preset:{},allergens:['milk','gluten']},
- {id:'pz-pep',name:{en:'Pepperoni Blast',ru:'Пепперони Бум',es:'Pepperoni total'},desc:{en:'Double pepperoni, mozzarella',ru:'Двойная пепперони, моцарелла',es:'Doble pepperoni, mozzarella'},art:'pizza',sizes:[{id:'s12',label:'12"',price:999},{id:'s16',label:'16"',price:1549}],preset:{pep:{p:'extra',h:'whole'}},allergens:['milk','gluten']},
- {id:'pz-veg',name:{en:'Garden Veggie',ru:'Огородная',es:'Jardín'},desc:{en:'Mushrooms, peppers, onions, olives',ru:'Грибы, перец, лук, оливки',es:'Champiñones, pimiento, cebolla, aceitunas'},art:'pizza',sizes:[{id:'s12',label:'12"',price:1049},{id:'s16',label:'16"',price:1599}],preset:{mush:{p:'normal',h:'whole'},gpep:{p:'normal',h:'whole'},onion:{p:'normal',h:'whole'},olive:{p:'normal',h:'whole'}},allergens:['milk','gluten']},
- {id:'pz-meat',name:{en:'Meat Lovers',ru:'Мясная',es:'Carnívora'},desc:{en:'Pepperoni, sausage, bacon',ru:'Пепперони, колбаски, бекон',es:'Pepperoni, salchicha, tocino'},art:'pizza',sizes:[{id:'s12',label:'12"',price:1149},{id:'s16',label:'16"',price:1699}],preset:{pep:{p:'normal',h:'whole'},saus:{p:'normal',h:'whole'},bacon:{p:'normal',h:'whole'}},allergens:['milk','gluten']},
- {id:'pz-buf',isNew:true,name:{en:'Buffalo Chicken',ru:'Баффало с курицей',es:'Buffalo con pollo'},desc:{en:'Spicy buffalo chicken, mozzarella, ranch drizzle',ru:'Острая курица баффало, моцарелла, ранч',es:'Pollo búfalo picante, mozzarella'},art:'pizza',sizes:[{id:'s12',label:'12"',price:1199},{id:'s16',label:'16"',price:1749}],preset:{saus:{p:'normal',h:'whole'},gpep:{p:'light',h:'whole'}},allergens:['milk','gluten']},
+ {id:'pz-cheese',name:{en:'Cheese Pizza',ru:'Пицца «Сырная»',es:'Pizza de queso'},desc:{en:'Classic mozzarella — customize it in the builder',ru:'Классическая моцарелла — собери свою в конструкторе',es:'Mozzarella clásica — ármala en el constructor'},art:'pizza',sizes:[{id:'s12',label:'12"',price:1399},{id:'s14',label:'14"',price:1599},{id:'s16',label:'16"',price:1799},{id:'s18',label:'18"',price:1999}],preset:{},allergens:['milk','gluten']},
+ {id:'pz-pittsburgh',name:{en:'Pittsburgh Pizza',ru:'Пицца «Питтсбург»',es:'Pizza Pittsburgh'},desc:{en:'Steak, red onion, green peppers, pickles, provolone and mozzarella cheese, white garlic sauce',ru:'Стейк, красный лук, зелёный перец, маринованные огурчики, проволоне и моцарелла, белый чесночный соус',es:'Bistec, cebolla roja, pimiento verde, pepinillos, provolone y mozzarella, salsa blanca de ajo'},art:'pizza',sizes:SIG_SIZES,allergens:['milk','gluten']},
+ {id:'pz-meatbomb',name:{en:'Meat Bomb',ru:'Мясная бомба',es:'Bomba de carne'},desc:{en:'Pepperoni, bacon, sausage, ham, provolone and mozzarella cheese, marinara sauce',ru:'Пепперони, бекон, колбаски, ветчина, проволоне и моцарелла, соус маринара',es:'Pepperoni, tocino, salchicha, jamón, provolone y mozzarella, salsa marinara'},art:'pizza',sizes:SIG_SIZES,allergens:['milk','gluten']},
+ {id:'pz-philly',name:{en:'Philly Steak Pizza',ru:'Пицца «Филли-стейк»',es:'Pizza Philly steak'},desc:{en:'Steak, mushrooms, red onion, green peppers, provolone and mozzarella cheese, white garlic sauce',ru:'Стейк, грибы, красный лук, зелёный перец, проволоне и моцарелла, белый чесночный соус',es:'Bistec, champiñones, cebolla roja, pimiento verde, provolone y mozzarella, salsa blanca de ajo'},art:'pizza',sizes:SIG_SIZES,allergens:['milk','gluten']},
+ {id:'pz-buffalo',name:{en:'Buffalo Chicken Ranch',ru:'Пицца «Баффало с курицей»',es:'Pizza búfalo con pollo'},desc:{en:'Grilled chicken, buffalo fries, cheddar cheese, provolone and mozzarella cheese, ranch sauce, hot sauce',ru:'Курица гриль, картофель баффало, чеддер, проволоне и моцарелла, соус ранч, острый соус',es:'Pollo a la parrilla, papas búfalo, cheddar, provolone y mozzarella, salsa ranch, salsa picante'},art:'pizza',sizes:SIG_SIZES,allergens:['milk','gluten','egg']},
+ {id:'pz-megapep',name:{en:'Mega Pepperoni',ru:'Мега-пепперони',es:'Mega pepperoni'},desc:{en:'Double pepperoni, provolone and mozzarella cheese, parmesan cheese, oregano, marinara sauce',ru:'Двойная пепперони, проволоне и моцарелла, пармезан, орегано, соус маринара',es:'Doble pepperoni, provolone y mozzarella, parmesano, orégano, salsa marinara'},art:'pizza',sizes:SIG_SIZES,allergens:['milk','gluten']},
+ {id:'pz-burger',name:{en:'Burger Pizza',ru:'Пицца «Бургер»',es:'Pizza hamburguesa'},desc:{en:'Burger meat, red onion, cheddar cheese, pickles, provolone and mozzarella cheese, special burger sauce',ru:'Котлета для бургера, красный лук, чеддер, огурчики, проволоне и моцарелла, фирменный бургер-соус',es:'Carne de hamburguesa, cebolla roja, cheddar, pepinillos, provolone y mozzarella, salsa especial'},art:'pizza',sizes:SIG_SIZES,allergens:['milk','gluten']},
+ {id:'pz-deluxe',name:{en:'Grand Deluxe',ru:'Гранд делюкс',es:'Gran deluxe'},desc:{en:'Pepperoni, sausage, bacon, green peppers, red onion, mushrooms, black olives, tomatoes, provolone and mozzarella cheese, marinara sauce',ru:'Пепперони, колбаски, бекон, зелёный перец, красный лук, грибы, чёрные оливки, томаты, проволоне и моцарелла, соус маринара',es:'Pepperoni, salchicha, tocino, pimiento verde, cebolla roja, champiñones, aceitunas negras, tomate, provolone y mozzarella, salsa marinara'},art:'pizza',sizes:SIG_SIZES,allergens:['milk','gluten']},
+ {id:'pz-aloha',name:{en:'Aloha Hawaiian',ru:'Пицца «Алоха»',es:'Pizza hawaiana Aloha'},desc:{en:'Ham, bacon, pineapples, provolone and mozzarella cheese, marinara sauce',ru:'Ветчина, бекон, ананасы, проволоне и моцарелла, соус маринара',es:'Jamón, tocino, piña, provolone y mozzarella, salsa marinara'},art:'pizza',sizes:SIG_SIZES,allergens:['milk','gluten']},
+ {id:'pz-margherita',name:{en:'Margherita Pizza',ru:'Пицца «Маргарита»',es:'Pizza margarita'},desc:{en:'Tomato, basil, fresh mozzarella, olive oil, marinara sauce',ru:'Томаты, базилик, свежая моцарелла, оливковое масло, соус маринара',es:'Tomate, albahaca, mozzarella fresca, aceite de oliva, salsa marinara'},art:'pizza',sizes:SIG_SIZES,allergens:['milk','gluten']},
+ {id:'pz-pear',name:{en:'Pear Gorgonzola',ru:'Пицца с грушей и горгонзолой',es:'Pizza de pera y gorgonzola'},desc:{en:'Gorgonzola, pear, honey, provolone and mozzarella cheese, white garlic sauce',ru:'Горгонзола, груша, мёд, проволоне и моцарелла, белый чесночный соус',es:'Gorgonzola, pera, miel, provolone y mozzarella, salsa blanca de ajo'},art:'pizza',sizes:SIG_SIZES,allergens:['milk','gluten']},
 ],
 appetizers:[
- {id:'ap-mozz',name:{en:'Mozzarella Sticks',ru:'Моцарелла-стики',es:'Palitos de mozzarella'},desc:{en:'6 pc, golden-fried, marinara dip',ru:'6 шт, с соусом маринара',es:'6 uds., con salsa marinara'},art:'appetizer',sizes:SZ1(799),allergens:['milk','gluten']},
- {id:'ap-garlic',name:{en:'Garlic Knots',ru:'Чесночные узелки',es:'Nudos de ajo'},desc:{en:'8 pc, garlic butter, parmesan',ru:'8 шт, чесночное масло, пармезан',es:'8 uds., mantequilla de ajo, parmesano'},art:'appetizer',sizes:SZ1(599),allergens:['gluten','milk']},
+ {id:'ap-mozz',name:{en:'Mozzarella Sticks',ru:'Моцарелла-стики',es:'Palitos de mozzarella'},desc:{en:'6 pc, golden-fried, marinara dip',ru:'6 шт, золотистые, соус маринара',es:'6 uds., dorados, salsa marinara'},art:'appetizer',sizes:SZ1(699),allergens:['milk','gluten']},
+ {id:'ap-poppers',name:{en:'Jalapeño Poppers',ru:'Халапеньо-попперсы',es:'Jalapeños rellenos'},desc:{en:'6 pc, crispy, creamy filling',ru:'6 шт, хрустящие, с нежной начинкой',es:'6 uds., crujientes, relleno cremoso'},art:'appetizer',sizes:SZ1(699),allergens:['milk','gluten']},
+ {id:'ap-rings',name:{en:'Onion Rings',ru:'Луковые кольца',es:'Aros de cebolla'},desc:{en:'10 pc, beer-battered crunch',ru:'10 шт, хрустящие',es:'10 uds., crujientes'},art:'appetizer',sizes:SZ1(699),allergens:['gluten']},
+ {id:'ap-fries',name:{en:'Fries',ru:'Картофель фри',es:'Papas fritas'},desc:{en:'Golden and crispy',ru:'Золотистый и хрустящий',es:'Doradas y crujientes'},art:'appetizer',sizes:SZ1(599)},
+ {id:'ap-sidefries',name:{en:'Side Fries',ru:'Фри маленькая порция',es:'Papas pequeñas'},desc:{en:'A smaller portion of our fries',ru:'Маленькая порция нашего фри',es:'Porción pequeña de papas'},art:'appetizer',sizes:SZ1(399)},
 ],
 wings:[
- {id:'wg-classic',name:{en:'Chicken Wings',ru:'Крылышки',es:'Alitas de pollo'},desc:{en:'Choose count & style',ru:'Выбери количество и вид',es:'Elige cantidad y estilo'},art:'wings',sizes:SZ1(799),builder:'wings'},
- {id:'wg-boneless',name:{en:'Boneless Wings',ru:'Крылышки без кости',es:'Alitas deshuesadas'},desc:{en:'Choose count & style',ru:'Выбери количество и вид',es:'Elige cantidad y estilo'},art:'wings',sizes:SZ1(899),builder:'wings',allergens:['gluten']},
+ {id:'wg-fresh',name:{en:'Fresh Wings',ru:'Крылышки',es:'Alitas'},desc:{en:'Choose count — fresh, never frozen',ru:'Выбери количество — всегда свежие',es:'Elige cantidad — siempre frescas'},art:'wings',sizes:SZ1(899),builder:'wings'},
 ],
 chicken:[
- {id:'ch-tenders',name:{en:'Chicken Tenders',ru:'Стрипсы',es:'Tiras de pollo'},desc:{en:'5 pc, crispy, honey-mustard dip',ru:'5 шт, хрустящие, медово-горчичный соус',es:'5 uds., crujientes, mostaza-miel'},art:'chicken',sizes:SZ1(899),allergens:['gluten']},
- {id:'ch-parm',name:{en:'Chicken Parmigiana',ru:'Курица пармезан',es:'Pollo parmesano'},desc:{en:'Breaded cutlet, marinara, melted mozzarella',ru:'Котлета в панировке, маринара, моцарелла',es:'Milanesa, marinara, mozzarella fundida'},art:'chicken',sizes:SZ1(1099),allergens:['milk','gluten']},
+ {id:'ch-popcorn',name:{en:'Popcorn Chicken',ru:'Куриный попкорн',es:'Palomitas de pollo'},desc:{en:'Bite-size crispy chicken',ru:'Хрустящие куриные кусочки',es:'Bocados crujientes de pollo'},art:'chicken',sizes:SZ1(999),allergens:['gluten']},
+ {id:'ch-tenders',name:{en:'Chicken Tenders',ru:'Куриные стрипсы',es:'Tiras de pollo'},desc:{en:'5 pc, crispy',ru:'5 шт, хрустящие',es:'5 uds., crujientes'},art:'chicken',sizes:SZ1(1099),allergens:['gluten']},
+ {id:'ch-nuggets',name:{en:'Chicken Nuggets',ru:'Наггетсы',es:'Nuggets de pollo'},desc:{en:'10 pc, kid-approved crunch',ru:'10 шт, хрустящие',es:'10 uds., crujientes'},art:'chicken',sizes:SZ1(899),allergens:['gluten']},
 ],
 stromboli:[
  {id:'st-pep',name:{en:'Pepperoni Stromboli',ru:'Стромболи с пепперони',es:'Stromboli de pepperoni'},desc:{en:'Rolled golden crust, pepperoni + mozzarella, marinara dip',ru:'Рулетик из теста, пепперони и моцарелла, маринара',es:'Rollo dorado, pepperoni y mozzarella, marinara'},art:'stromboli',sizes:SZ1(1099),allergens:['milk','gluten']},
  {id:'st-veg',name:{en:'Veggie Stromboli',ru:'Стромболи овощной',es:'Stromboli vegetal'},desc:{en:'Peppers, onions, mushrooms, mozzarella',ru:'Перец, лук, грибы, моцарелла',es:'Pimiento, cebolla, champiñones, mozzarella'},art:'stromboli',sizes:SZ1(1049),allergens:['milk','gluten']},
 ],
 rolls:[
- {id:'rl-pep',name:{en:'Pepperoni Rolls',ru:'Роллы с пепперони',es:'Rollos de pepperoni'},desc:{en:'6 pc, baked rolls with pepperoni & cheese',ru:'6 шт, запечённые роллы с пепперони и сыром',es:'6 uds., rollos horneados con pepperoni y queso'},art:'rolls',sizes:SZ1(999),allergens:['milk','gluten']},
+ {id:'rl-pep',name:{en:'Pepperoni Roll',ru:'Ролл с пепперони',es:'Rollo de pepperoni'},desc:{en:'Baked roll, pepperoni & cheese',ru:'Запечённый ролл с пепперони и сыром',es:'Rollo horneado con pepperoni y queso'},art:'rolls',sizes:SZ1(1499),allergens:['milk','gluten']},
+ {id:'rl-steak',name:{en:'Steak Roll',ru:'Ролл со стейком',es:'Rollo de bistec'},desc:{en:'Baked roll, steak & cheese',ru:'Запечённый ролл со стейком и сыром',es:'Rollo horneado con bistec y queso'},art:'rolls',sizes:SZ1(1499),allergens:['milk','gluten']},
+ {id:'rl-spinach',name:{en:'Spinach Feta Roll',ru:'Ролл со шпинатом и фетой',es:'Rollo de espinaca y feta'},desc:{en:'Baked roll, spinach & feta',ru:'Запечённый ролл со шпинатом и фетой',es:'Rollo horneado con espinaca y feta'},art:'rolls',sizes:SZ1(1499),allergens:['milk','gluten']},
+ {id:'rl-buffalo',name:{en:'Buffalo Chicken Roll',ru:'Ролл с курицей баффало',es:'Rollo de pollo búfalo'},desc:{en:'Baked roll, buffalo chicken & cheese',ru:'Запечённый ролл с курицей баффало и сыром',es:'Rollo horneado con pollo búfalo y queso'},art:'rolls',sizes:SZ1(1499),allergens:['milk','gluten']},
 ],
 breadsticks:[
- {id:'bs-garlic',name:{en:'Garlic Breadsticks',ru:'Чесночные палочки',es:'Palitos de ajo'},desc:{en:'6 pc, garlic butter, parmesan dust',ru:'6 шт, чесночное масло, пармезан',es:'6 uds., mantequilla de ajo, parmesano'},art:'breadsticks',sizes:SZ1(499),allergens:['gluten','milk']},
- {id:'bs-cheesy',name:{en:'Cheesy Breadsticks',ru:'Сырные палочки',es:'Palitos con queso'},desc:{en:'6 pc, loaded with mozzarella, marinara dip',ru:'6 шт, с моцареллой, соус маринара',es:'6 uds., con mozzarella, salsa marinara'},art:'breadsticks',sizes:SZ1(699),allergens:['milk','gluten']},
+ {id:'bs-garlic',name:{en:'Breadsticks',ru:'Хлебные палочки',es:'Palitos de pan'},desc:{en:'Garlic butter, parmesan dust',ru:'Чесночное масло, пармезан',es:'Mantequilla de ajo, parmesano'},art:'breadsticks',sizes:SZ1(799),allergens:['gluten','milk']},
+ {id:'bs-cheesy',name:{en:'Cheesy Breadsticks',ru:'Сырные палочки',es:'Palitos con queso'},desc:{en:'Loaded with mozzarella, marinara dip',ru:'С моцареллой, соус маринара',es:'Con mozzarella, salsa marinara'},art:'breadsticks',sizes:SZ1(1099),allergens:['milk','gluten']},
 ],
 salads:[
- {id:'sl-caesar',name:{en:'Caesar Salad',ru:'Цезарь',es:'Ensalada César'},desc:{en:'Build it: base, protein, toppings, dressing',ru:'Собери сам: основа, белок, топпинги, заправка',es:'Ármala: base, proteína, ingredientes, aderezo'},art:'salad',sizes:SZ1(749),builder:'salad',allergens:['milk','egg','gluten']},
- {id:'sl-greek',name:{en:'Greek Salad',ru:'Греческий',es:'Ensalada griega'},desc:{en:'Build it: base, protein, toppings, dressing',ru:'Собери сам: основа, белок, топпинги, заправка',es:'Ármala: base, proteína, ingredientes, aderezo'},art:'salad',sizes:SZ1(799),builder:'salad',allergens:['milk']},
+ {id:'sl-caesar',name:{en:'Caesar Salad',ru:'Салат «Цезарь»',es:'Ensalada César'},desc:{en:'Romaine, parmesan, croutons, Caesar dressing',ru:'Ромэн, пармезан, сухарики, соус цезарь',es:'Lechuga romana, parmesano, crutones, aderezo césar'},art:'salad',sizes:SZ1(1499),allergens:['milk','egg','gluten']},
+ {id:'sl-bufchick',name:{en:'Buffalo Chicken Salad',ru:'Салат с курицей баффало',es:'Ensalada de pollo búfalo'},desc:{en:'Greens, buffalo chicken, ranch dressing',ru:'Зелень, курица баффало, соус ранч',es:'Verdes, pollo búfalo, aderezo ranch'},art:'salad',sizes:SZ1(1499),allergens:['milk','egg']},
+ {id:'sl-steak',name:{en:'Steak Salad',ru:'Салат со стейком',es:'Ensalada de bistec'},desc:{en:'Greens, grilled steak, balsamic dressing',ru:'Зелень, стейк гриль, бальзамик',es:'Verdes, bistec a la parrilla, balsámico'},art:'salad',sizes:SZ1(1499)},
+ {id:'sl-garden',name:{en:'Classic Garden Salad',ru:'Классический садовый салат',es:'Ensalada clásica'},desc:{en:'Fresh garden greens, tomato, cucumber',ru:'Свежая зелень, томаты, огурец',es:'Verdes frescas, tomate, pepino'},art:'salad',sizes:SZ1(799)},
+ {id:'sl-build',name:{en:'Build Your Own Salad',ru:'Собери свой салат',es:'Arma tu ensalada'},desc:{en:'Pick base, protein, toppings, dressing',ru:'Выбери основу, белок, топпинги, заправку',es:'Elige base, proteína, ingredientes, aderezo'},art:'salad',sizes:SZ1(799),builder:'salad'},
 ],
 subs:[
- {id:'sub-ital',name:{en:'Italian Sub',ru:'Итальянский саб',es:'Sub italiano'},desc:{en:'Build it: bread, fillings, cheese, veggies, sauce',ru:'Собери сам: хлеб, начинка, сыр, овощи, соус',es:'Ármalo: pan, relleno, queso, verduras, salsa'},art:'sub',sizes:SZ1(999),builder:'sub',allergens:['gluten']},
- {id:'sub-meatball',name:{en:'Meatball Sub',ru:'Саб с митболами',es:'Sub de albóndigas'},desc:{en:'Build it: bread, fillings, cheese, veggies, sauce',ru:'Собери сам: хлеб, начинка, сыр, овощи, соус',es:'Ármalo: pan, relleno, queso, verduras, salsa'},art:'sub',sizes:SZ1(1049),builder:'sub',allergens:['gluten','milk']},
+ {id:'sub-philly',name:{en:'Philly Steak',ru:'Филли-стейк',es:'Philly steak'},desc:{en:'Steak, fried onion, cheese sauce',ru:'Стейк, жареный лук, сырный соус',es:'Bistec, cebolla frita, salsa de queso'},art:'sub',sizes:SUB_SIZES,allergens:['gluten','milk']},
+ {id:'sub-italian',name:{en:'Italian Sub',ru:'Итальянский саб',es:'Sub italiano'},desc:{en:'Ham, salami, capicola, provolone, lettuce, tomato, onion, Italian dressing',ru:'Ветчина, салями, капикола, проволоне, салат, томат, лук, итальянская заправка',es:'Jamón, salami, capicola, provolone, lechuga, tomate, cebolla, aderezo italiano'},art:'sub',sizes:SUB_SIZES,allergens:['gluten','milk']},
+ {id:'sub-steak',name:{en:'Steak Sub',ru:'Стейк-саб',es:'Sub de bistec'},desc:{en:'Steak, onion, mushrooms, provolone, mayo, lettuce, tomato',ru:'Стейк, лук, грибы, проволоне, майонез, салат, томат',es:'Bistec, cebolla, champiñones, provolone, mayonesa, lechuga, tomate'},art:'sub',sizes:SUB_SIZES,allergens:['gluten','milk','egg']},
+ {id:'sub-buffalo',name:{en:'Buffalo Chicken Sub',ru:'Саб с курицей баффало',es:'Sub de pollo búfalo'},desc:{en:'Breaded chicken, hot sauce, provolone, buffalo fries',ru:'Курица в панировке, острый соус, проволоне, картофель баффало',es:'Pollo empanado, salsa picante, provolone, papas búfalo'},art:'sub',sizes:SUB_SIZES,allergens:['gluten','milk']},
+ {id:'sub-build',name:{en:'Build Your Own Sub',ru:'Собери свой саб',es:'Arma tu sub'},desc:{en:'Pick bread, fillings, cheese, veggies, sauce',ru:'Выбери хлеб, начинку, сыр, овощи, соус',es:'Elige pan, relleno, queso, verduras, salsa'},art:'sub',sizes:SZ1(899),builder:'sub',allergens:['gluten']},
 ],
 drinks:[
- {id:'dr-soda',name:{en:'Soda',ru:'Газировка',es:'Refresco'},desc:{en:'Coke products — pick size & flavor',ru:'Выбери размер и вкус',es:'Elige tamaño y sabor'},art:'soda',sizes:SZ1(199),builder:'drink'},
- {id:'dr-shake',name:{en:'Milkshake',ru:'Милкшейк',es:'Batido'},desc:{en:'Thick & creamy — pick size & flavor',ru:'Густой и сливочный — выбери размер и вкус',es:'Cremoso — elige tamaño y sabor'},art:'shake',sizes:SZ1(499),builder:'drink',allergens:['milk'],outOfStock:true},
- {id:'dr-latte',isNew:true,name:{en:'Latte',ru:'Латте',es:'Latte'},desc:{en:'Espresso with steamed milk — SAMPLE',ru:'Эспрессо с молоком — ДЕМО',es:'Espresso con leche — EJEMPLO'},art:'coffee',sizes:[{id:'c12',label:'12 oz',price:349},{id:'c16',label:'16 oz',price:399}],allergens:['milk']},
- {id:'dr-capp',isNew:true,name:{en:'Cappuccino',ru:'Капучино',es:'Capuchino'},desc:{en:'Espresso, steamed milk, foam — SAMPLE',ru:'Эспрессо, молоко, пенка — ДЕМО',es:'Espresso, leche, espuma — EJEMPLO'},art:'coffee',sizes:[{id:'c12',label:'12 oz',price:349},{id:'c16',label:'16 oz',price:399}],allergens:['milk']},
- {id:'dr-espr',isNew:true,name:{en:'Espresso',ru:'Эспрессо',es:'Espresso'},desc:{en:'Double shot — SAMPLE',ru:'Двойной шот — ДЕМО',es:'Doble — EJEMPLO'},art:'coffee',sizes:[{id:'c2',label:'2 oz',price:249}]},
- {id:'dr-coffee',isNew:true,name:{en:'Fresh Coffee',ru:'Кофе',es:'Café'},desc:{en:'Freshly brewed — SAMPLE',ru:'Свежесваренный — ДЕМО',es:'Recién hecho — EJEMPLO'},art:'coffee',sizes:[{id:'c12',label:'12 oz',price:199},{id:'c16',label:'16 oz',price:249}]},
+ {id:'dr-can',name:{en:'Can Soda',ru:'Газировка в банке',es:'Refresco en lata'},desc:{en:'12 oz can — pick your flavor',ru:'Банка — выбери вкус',es:'Lata — elige sabor'},art:'soda',sizes:SZ1(105),builder:'drink',drinkSizes:[{id:'can',n:{en:'Can 12 oz',ru:'Банка',es:'Lata'},p:0}]},
+ {id:'dr-2l',name:{en:'2-Liter Soda',ru:'Газировка 2 литра',es:'Refresco 2 litros'},desc:{en:'2-liter bottle — pick your flavor',ru:'Бутылка 2 л — выбери вкус',es:'Botella 2 l — elige sabor'},art:'soda',sizes:SZ1(399),builder:'drink',drinkSizes:[{id:'twol',n:{en:'2-liter bottle',ru:'Бутылка 2 л',es:'Botella 2 l'},p:0}]},
+ {id:'dr-coffee',name:{en:'Filter Coffee',ru:'Фильтр-кофе',es:'Café de filtro'},desc:{en:'Freshly brewed, just like home',ru:'Свежесваренный, как дома',es:'Recién hecho, como en casa'},art:'coffee',sizes:[{id:'c12',label:'12 oz',price:249},{id:'c16',label:'16 oz',price:299}]},
+ {id:'dr-water',name:{en:'Water',ru:'Вода',es:'Agua'},desc:{en:'Bottled water',ru:'Вода в бутылке',es:'Agua embotellada'},art:'soda',sizes:SZ1(199)},
 ],
 desserts:[
- {id:'ds-cake',name:{en:'Chocolate Cake',ru:'Шоколадный торт',es:'Pastel de chocolate'},desc:{en:'Rich chocolate slice',ru:'Шоколадный слайс',es:'Rebanada de chocolate'},art:'cake',sizes:SZ1(449),allergens:['milk','gluten','egg','soy']},
- {id:'ds-cin',name:{en:'Cinnamon Sticks',ru:'Палочки с корицей',es:'Palitos de canela'},desc:{en:'8 pc, cinnamon sugar, sweet glaze dip',ru:'8 шт, корица и сахар, сладкая глазурь',es:'8 uds., azúcar y canela, glaseado dulce'},art:'dessert',sizes:SZ1(549),allergens:['milk','gluten']},
+ {id:'ds-tiramisu',name:{en:'Tiramisu',ru:'Тирамису',es:'Tiramisú'},desc:{en:'Classic Italian dessert',ru:'Классический итальянский десерт',es:'Clásico postre italiano'},art:'dessert',sizes:SZ1(699),allergens:['milk','gluten','egg']},
+ {id:'ds-oreo',name:{en:'Oreo Cheesecake',ru:'Чизкейк Oreo',es:'Cheesecake de Oreo'},desc:{en:'Cookies & cream cheesecake',ru:'Чизкейк с печеньем',es:'Cheesecake de galletas'},art:'dessert',sizes:SZ1(699),allergens:['milk','gluten','egg','soy']},
+ {id:'ds-strawberry',name:{en:'Strawberry Cheesecake',ru:'Клубничный чизкейк',es:'Cheesecake de fresa'},desc:{en:'Topped with strawberries',ru:'С клубникой',es:'Con fresas'},art:'dessert',sizes:SZ1(699),allergens:['milk','gluten','egg']},
 ],
 breakfast:[
  {id:'bk-pizza',name:{en:'Breakfast Pizza',ru:'Пицца «Завтрак»',es:'Pizza desayuno'},desc:{en:'Scrambled eggs, bacon, cheddar, breakfast sauce',ru:'Яйца, бекон, чеддер, утренний соус',es:'Huevos revueltos, tocino, cheddar'},art:'pizza',sizes:[{id:'s12',label:'12"',price:1099}],allergens:['milk','gluten','egg']},
@@ -226,8 +281,8 @@ breakfast:[
  {id:'bk-hash',name:{en:'Hash Browns',ru:'Хашбраун',es:'Papas hash'},desc:{en:'6 pc, golden & crispy',ru:'6 шт, золотистые',es:'6 uds., doradas y crujientes'},art:'appetizer',sizes:SZ1(399)},
 ],
 kids:[
- {id:'kd-pizza',name:{en:'Kids Cheese Pizza',ru:'Детская пицца с сыром',es:'Pizza de queso infantil'},desc:{en:'8" personal pizza, mozzarella',ru:'Пицца 8", моцарелла',es:'Pizza personal 8", mozzarella'},art:'kids',sizes:SZ1(599),allergens:['milk','gluten']},
- {id:'kd-nuggets',name:{en:'Chicken Nuggets',ru:'Наггетсы',es:'Nuggets de pollo'},desc:{en:'6 pc, kid-approved crunch',ru:'6 шт, хрустящие',es:'6 uds., crujientes'},art:'chicken',sizes:SZ1(549),allergens:['gluten']},
+ {id:'kd-nuggets',name:{en:'Kids Nuggets Meal',ru:'Детский набор с наггетсами',es:'Menú infantil de nuggets'},desc:{en:'5 nuggets + side fries + drink',ru:'5 наггетсов + фри + напиток',es:'5 nuggets + papas + bebida'},art:'kids',sizes:SZ1(799),allergens:['milk','gluten']},
+ {id:'kd-tenders',name:{en:'Kids Tenders Meal',ru:'Детский набор со стрипсами',es:'Menú infantil de tiras'},desc:{en:'2 tenders + side fries + drink',ru:'2 стрипса + фри + напиток',es:'2 tiras + papas + bebida'},art:'chicken',sizes:SZ1(799),allergens:['milk','gluten']},
 ],
 };
 /* DIPS: 1 FREE with every pizza (ranch default) + paid extra dips. Names: t('dip_'+id). */
@@ -238,12 +293,12 @@ const EXTRA_DIP_PRICE=149;
    WINGS: quantity + type choice only (no visual assembly — just an appetizing
    picture that reflects the count and glaze). Counts and types configurable. */
 const WINGDEF={
- counts:[{id:'w6',n:{en:'6 pc',ru:'6 шт',es:'6 uds.'},p:0},{id:'w12',n:{en:'12 pc',ru:'12 шт',es:'12 uds.'},p:599}],
- types:[{id:'plain',n:{en:'Plain',ru:'Классические',es:'Clásicas'},p:0},{id:'breaded',n:{en:'Breaded',ru:'В панировке',es:'Empanadas'},p:100},{id:'zing',n:{en:'Breaded Zing',ru:'Острые в панировке',es:'Picantes empanadas'},p:150}],
+ counts:[{id:'w6',n:{en:'6 pc',ru:'6 шт',es:'6 uds.'},p:0},{id:'w12',n:{en:'12 pc',ru:'12 шт',es:'12 uds.'},p:800},{id:'w24',n:{en:'24 pc',ru:'24 шт',es:'24 uds.'},p:2100}],
+ types:[{id:'plain',n:{en:'Plain',ru:'Классические',es:'Clásicas'},p:0}],
 };
 const SUBDEF={
  breads:[{id:'white',n:{en:'White',ru:'Белый',es:'Blanco'},p:0},{id:'wheat',n:{en:'Wheat',ru:'Цельнозерновой',es:'Integral'},p:0},{id:'garlic',n:{en:'Garlic & herb',ru:'Чесночный',es:'Ajo y hierbas'},p:50}],
- sizes:[{id:'s8',label:'8"',p:0},{id:'s12',label:'12"',p:250}],
+ sizes:[{id:'half',label:'Half',p:0},{id:'whole',label:'Whole',p:900}],
  fillings:[{id:'turkey',n:{en:'Turkey',ru:'Индейка',es:'Pavo'},p:0},{id:'ham',n:{en:'Ham',ru:'Ветчина',es:'Jamón'},p:0},{id:'meatball',n:{en:'Meatballs',ru:'Митболы',es:'Albóndigas'},p:100},{id:'veggie',n:{en:'Veggie',ru:'Овощной',es:'Vegetal'},p:0}],
  cheese:[{id:'none',n:{en:'No cheese',ru:'Без сыра',es:'Sin queso'},p:0},{id:'mozz',n:{en:'Mozzarella',ru:'Моцарелла',es:'Mozzarella'},p:0},{id:'prov',n:{en:'Provolone',ru:'Проволоне',es:'Provolone'},p:50}],
  veggies:[{id:'lettuce',n:{en:'Lettuce',ru:'Салат',es:'Lechuga'}},{id:'tomato',n:{en:'Tomato',ru:'Томат',es:'Tomate'}},{id:'onion',n:{en:'Onion',ru:'Лук',es:'Cebolla'}},{id:'peppers',n:{en:'Peppers',ru:'Перец',es:'Pimiento'}},{id:'pickles',n:{en:'Pickles',ru:'Огурчики',es:'Pepinillos'}}],
@@ -256,8 +311,8 @@ const SALADDEF={
  dressings:[{id:'ranch',n:{en:'Ranch',ru:'Ранч',es:'Ranch'}},{id:'caesar',n:{en:'Caesar',ru:'Цезарь',es:'César'}},{id:'italian',n:{en:'Italian',ru:'Итальянская',es:'Italiano'}},{id:'balsamic',n:{en:'Balsamic',ru:'Бальзамик',es:'Balsámico'}}],
 };
 const DRINKDEF={
- sizes:[{id:'can',n:{en:'Can 12 oz',ru:'Банка 0.33',es:'Lata 12 oz'},p:0},{id:'fountain',n:{en:'Fountain 20 oz',ru:'Стакан 0.6',es:'Vaso 20 oz'},p:50},{id:'twol',n:{en:'2-liter bottle',ru:'Бутылка 2 л',es:'Botella 2 l'},p:200}],
- flavors:[{id:'coke',n:{en:'Coke',ru:'Кола',es:'Coca'},c:'#C0392B'},{id:'diet',n:{en:'Diet Coke',ru:'Кола зеро',es:'Coca Zero'},c:'#5D6D7E'},{id:'sprite',n:{en:'Sprite',ru:'Спрайт',es:'Sprite'},c:'#7FBF3F'},{id:'fanta',n:{en:'Fanta Orange',ru:'Фанта',es:'Fanta'},c:'#E67E22'},{id:'lemonade',n:{en:'Lemonade',ru:'Лимонад',es:'Limonada'},c:'#F4D03F'},{id:'tea',n:{en:'Iced Tea',ru:'Холодный чай',es:'Té helado'},c:'#A67C3D'}],
+ sizes:[{id:'can',n:{en:'Can 12 oz',ru:'Банка',es:'Lata 12 oz'},p:0},{id:'twol',n:{en:'2-liter bottle',ru:'Бутылка 2 л',es:'Botella 2 l'},p:0}],
+ flavors:[{id:'pepsi',n:{en:'Pepsi',ru:'Пепси',es:'Pepsi'},c:'#004B93'},{id:'dietpepsi',n:{en:'Diet Pepsi',ru:'Пепси лайт',es:'Pepsi Light'},c:'#5D6D7E'},{id:'coke',n:{en:'Coca-Cola',ru:'Кока-Кола',es:'Coca-Cola'},c:'#C0392B'},{id:'cokezero',n:{en:'Coca-Cola Zero',ru:'Кола зеро',es:'Coca-Cola Zero'},c:'#2C2C2C'},{id:'dew',n:{en:'Mountain Dew',ru:'Маунтин Дью',es:'Mountain Dew'},c:'#7ED321'},{id:'orange',n:{en:'Orange',ru:'Апельсин',es:'Naranja'},c:'#E67E22'},{id:'gingerale',n:{en:'Ginger Ale',ru:'Джинджер-эль',es:'Ginger Ale'},c:'#D9B44A'},{id:'drpepper',n:{en:'Dr Pepper',ru:'Доктор Пеппер',es:'Dr Pepper'},c:'#7B241C'},{id:'rootbeer',n:{en:'Root Beer',ru:'Рутбир',es:'Root Beer'},c:'#5C3A12'},{id:'brisk',n:{en:'Brisk Iced Tea',ru:'Бриск айс-ти',es:'Brisk helado'},c:'#A67C3D'}],
 };
 /* ================= ART REGISTRY (replaceable visuals) =================
    Every menu-card illustration goes through artFor(item.art):
@@ -309,17 +364,18 @@ document.getElementById('cityBtn').onclick=()=>{renderCity();document.getElement
 document.getElementById('cityBack').onclick=()=>document.getElementById('citySheet').classList.remove('open');
 const fmt=c=>'$'+(c/100).toFixed(2);
 /* SAMPLE promos — each deal adds a bundle line to the cart (real deals: owner edits in admin) */
+/* REAL weekday specials (Mon–Thu) — owner's menu */
 const DEALS=[
- {t:'deal1t',d:'deal1d',alt:false,price:2499,contents:{en:'2× 16" Cheese Pizza',ru:'2× пицца «Сырная» 16"',es:'2× pizza de queso 16"'}},
- {t:'deal2t',d:'deal2d',alt:true,price:2999,contents:{en:'16" Cheese Pizza + Fries + 4 Sodas',ru:'Пицца «Сырная» 16" + фри + 4 газировки',es:'Pizza de queso 16" + papas + 4 refrescos'}},
- {t:'deal3t',d:'deal3d',alt:false,price:599,contents:{en:'Slice + Soda (weekdays)',ru:'Слайс + газировка (будни)',es:'Rebanada + refresco (semana)'}}
+ {t:'deal1t',d:'deal1d',alt:false,price:2999,contents:{en:'2× 16" Cheese Pizzas + 12 Wings (plain) + 2L Soda',ru:'2× сырные пиццы 16" + 12 крылышек + газировка 2 л',es:'2× pizzas de queso 16" + 12 alitas + refresco 2 l'}},
+ {t:'deal2t',d:'deal2d',alt:true,price:2999,contents:{en:'2× 16" Cheese Pizzas + One Whole Sub + 2L Soda',ru:'2× сырные пиццы 16" + целый саб + газировка 2 л',es:'2× pizzas de queso 16" + sub entero + refresco 2 l'}},
+ {t:'deal3t',d:'deal3d',alt:false,price:1199,contents:{en:'16" Cheese Pizza',ru:'Сырная пицца 16"',es:'Pizza de queso 16"'}}
 ];
 const dcontents=x=>x.contents[LANG]||x.contents.en;
 
 /* ================= Mix & Match (Domino's mechanic, our comic style) =================
    Pick any 2 items from the list — fixed SAMPLE price each. The owner edits the
    real price + item list; item ids must exist in MENU above. */
-const MIXMATCH={price:699,items:['pz-cheese','pz-pep','bs-garlic','wg-8','dr-soda','ds-cin']};
+const MIXMATCH={price:699,items:['ap-mozz','ap-poppers','ap-rings','ds-tiramisu','ds-oreo','ds-strawberry']};
 let mmSel=[];
 function renderMixMatch(){
   const box=document.getElementById('mmItems');if(!box)return;box.innerHTML='';
@@ -603,12 +659,12 @@ document.querySelectorAll('#lang button').forEach(b=>b.onclick=()=>{LANG=b.datas
 function renderDeals(){
   const d=document.getElementById('deals');d.innerHTML='';
   DEALS.forEach(x=>{const e=document.createElement('div');e.className='deal'+(x.alt?' alt':'');
-    e.innerHTML=`<span class="tag">SAMPLE</span><div class="burst">-20%</div><b>${t(x.t)}</b><p>${t(x.d)}</p><p><b>${fmt(x.price)}</b> <span style="font-size:11px">${t('tap_to_add')}</span></p>`;
+    e.innerHTML=`<span class="tag">${t('deal_tag')}</span><b>${t(x.t)}</b><p>${t(x.d)}</p><p><b>${fmt(x.price)}</b> <span style="font-size:11px">${t('tap_to_add')}</span></p>`;
     e.onclick=()=>addDeal(x,e);d.appendChild(e);});
 }
 function addDeal(x,fromEl){
   if(isPaused())return;
-  cart.push({name:t(x.t),name_en:T.en[x.t],desc:dcontents(x)+' (SAMPLE)',desc_en:x.contents.en+' (SAMPLE)',unit:x.price,qty:1,ill:'pizza'});
+  cart.push({name:t(x.t),name_en:T.en[x.t],desc:dcontents(x),desc_en:x.contents.en,unit:x.price,qty:1,ill:'pizza'});
   if(fromEl)flyToCart(fromEl);
   renderCart();
 }
@@ -629,8 +685,14 @@ function menuCard(it){
     const b=document.createElement('button');b.className='oosbtn';b.disabled=true;
     b.textContent=t('out_of_stock');row.appendChild(b);
   }else{
-    const b=document.createElement('button');b.textContent=t('add');
-    b.onclick=e=>{e.stopPropagation();quickAdd(it,b);};row.appendChild(b);
+    if(multi&&!it.builder&&!it.preset){
+      it.sizes.forEach((sz,idx)=>{const b=document.createElement('button');
+        b.innerHTML=`${sz.label} \u2014 ${fmt(sz.price)}`;
+        b.onclick=e=>{e.stopPropagation();quickAdd(it,b,idx);};row.appendChild(b);});
+    }else{
+      const b=document.createElement('button');b.textContent=t('add');
+      b.onclick=e=>{e.stopPropagation();quickAdd(it,b);};row.appendChild(b);
+    }
     const custom=it.builder&&it.builder!=='pizza'?()=>openGBuilder(it):(it.preset?()=>openBuilder(it):null);
     if(custom){
       const c2=document.createElement('button');c2.className='ghost';c2.textContent=t('customize');
@@ -669,9 +731,9 @@ function flyToCart(fromEl){
     setTimeout(()=>f.remove(),750);
   }catch(e){}
 }
-function quickAdd(it,fromEl){
+function quickAdd(it,fromEl,si){
   if(isPaused())return;
-  const s=it.sizes[0];
+  const s=it.sizes[si||0];
   const line={name:mname(it),name_en:it.name.en,desc:s.label,desc_en:s.label,qty:1,unit:s.price,ill:it.art};
   if(it.art==='pizza')line.freeDip=FREE_DIP_DEFAULT; // every pizza comes with 1 free sauce (ranch default)
   cart.push(line);
