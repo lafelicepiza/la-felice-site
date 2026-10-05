@@ -88,7 +88,7 @@
 <div class="sheet" id="citySheet"><div class="panel">
   <h2><span data-t="change_city">Choose your city</span></h2>
   <div id="cityList"></div>
-  <p class="note" data-t="city_note">SAMPLE — more cities coming. Each city will have its own menu, tax and delivery zones.</p>
+  <p class="note" data-t="city_note">More cities coming soon.</p>
   <button class="paybtn" id="cityBack" data-t="back">Back</button>
 </div></div>
 
@@ -109,7 +109,6 @@
     <div class="bsec" id="bs-dip"><h3><span data-t="free_sauce">Free sauce</span></h3><div class="seg" id="bDips"></div></div>
     <div class="bsec" id="bs-allergy"><h3><span data-t="allergy_label">Allergy note for the kitchen</span></h3>
       <input id="allergyNote" data-ph="allergy_ph" placeholder="e.g. nut allergy — the kitchen will be alerted" style="width:100%;border:3px solid var(--black);border-radius:10px;padding:10px;font-size:14px;font-family:Arial">
-      <div class="halfhint">TODO(server): allergy note must print on the kitchen ticket — packages/api tickets.ts</div>
     </div>
     <div class="bsec" id="bs-sum"><h3 data-t="your_pizza">Your pizza</h3><div id="bsummary"></div></div>
   </div>
@@ -164,13 +163,13 @@
     <p class="note" style="padding:2px 0 0" data-t="consent_note">Consents are saved to your customer profile for our future mailing list. You can withdraw anytime.</p>
   </div>
   <div class="warnbox" id="firstOrderPromo" style="display:none;font-size:13px"><span id="firstOrderPromoText"></span>
-    <!-- TODO: social signup (Facebook, Google, Apple) — later; phone signup only for now --></div>
+</div>
   <label class="optrow"><input type="checkbox" id="isTaxExempt"> <span data-t="taxexempt_check">I'm ordering for a tax-exempt organization</span></label>
   <div id="taxexStatus" class="small" style="font-family:Arial"></div>
   <div class="acctbox">
     <b><span data-t="my_points">My points</span></b>
     <div class="ptsnum">0</div>
-    <div class="note" style="padding:4px 0 0" data-t="points_soon">SAMPLE — the full loyalty program launches later. Points from your orders will be waiting.</div>
+    <div class="note" style="padding:4px 0 0" data-t="points_soon">Our loyalty program is coming soon — points from your orders will be waiting.</div>
   </div>
 
   <h2 style="margin-top:14px" class="logostyle"><span data-t="payment">Payment</span></h2>
@@ -191,23 +190,22 @@
   <p class="note" id="taxexSent" style="display:none"><span data-t="taxexempt_sent">Document uploaded — sent for review.</span></p>
   <button class="paybtn" id="taxexSim" data-t="taxexempt_simulate">Simulate approval (demo)</button>
   <button class="ghostbtn" id="taxexBack" data-t="back">Back</button>
-  <p class="note">STUB — production: POST /v1/org-documents, owner approves in one tap.</p>
 </div></div>
 
 <!-- NO-PAYMENT WARNING -->
 <div class="sheet" id="warnSheet"><div class="panel">
   <h2><span data-t="no_order_title">No order without payment</span></h2>
   <div class="warnbox" style="font-size:16px"><span data-t="no_payment_warning">We cannot accept an order without payment. Pay now, or come to the store and wait while we prepare your order.</span></div>
-  <p class="note" data-t="no_order_created">No order was created. Nothing was sent to the kitchen.</p>
+  <p class="note" data-t="no_order_created">No order was placed and nothing was charged.</p>
   <button class="paybtn" id="warnBack" data-t="ok_pay">OK — I'll pay now</button>
 </div></div>
 
-<!-- LOYALTY HINT (SAMPLE groundwork) -->
+<!-- LOYALTY HINT -->
 <div class="sheet" id="loyalSheet"><div class="panel">
   <div class="loyalburst"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="2"><rect x="3" y="8" width="18" height="4"/><path d="M5 12v8h14v-8M12 8v12M12 8S6 8 4 6s2-4 4-2 4 4 4 4zm0 0s6 0 8-2-2-4-4-2-4 4-4 4z"/></svg></div>
   <h2><span data-t="reward_hint_title">Almost there!</span></h2>
   <p style="font-family:Arial;font-size:15px" id="loyalText"></p>
-  <p class="note" data-t="loyal_sample">SAMPLE — the full points program launches later.</p>
+  <p class="note" data-t="loyal_sample">Our points program is coming soon.</p>
   <button class="paybtn" id="loyalBack" data-t="great">Great!</button>
 </div></div>
 
@@ -217,7 +215,7 @@
   <div class="timebanner" id="timeBanner" style="display:none">TIME ORDER — <span id="timeWhenOut"></span></div>
   <div id="doneLines" class="small"></div>
   <div class="line total"><span data-t="paid">Paid</span><span id="doneTotal"></span></div>
-  <p class="note"><span data-t="sms_note">We'll text you when your order is ready. (SMS stub — wire the SMS adapter.)</span></p>
+  <p class="note"><span data-t="sms_note">We'll text you when your order is ready.</span></p>
   <button class="paybtn" id="doneTrack" data-t="tracker_title" style="margin-bottom:8px">Track your order</button>
   <button class="paybtn" id="doneBack" data-t="back_to_menu">Back to menu</button>
 </div></div>
