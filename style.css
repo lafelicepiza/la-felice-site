@@ -19,8 +19,8 @@ header{background:linear-gradient(180deg,#FFD93B 0%,#FF9E1B 100%);color:var(--bl
 header{margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
 header h1{margin:0;font-size:32px;letter-spacing:1px}
 .brand{display:flex;align-items:center;gap:10px}
-/* header penguin: just the mascot itself, no circular frame */
-#logoPengy{height:64px;width:auto;border:none;border-radius:0;box-shadow:none;background:transparent;object-fit:contain}
+/* header penguin: tiny logo mark next to the wordmark, never prominent — the site is for customers, not the penguin */
+#logoPengy{height:30px;width:auto;border:none;border-radius:0;box-shadow:none;background:transparent;object-fit:contain;flex:none}
 /* header wordmark: single clean comic style like the owner's flyer — no doubled offset shadow */
 header .logostyle{text-shadow:none}
 header h1 .slice{display:inline-block;animation:wiggle 2.4s ease-in-out infinite}
