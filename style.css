@@ -1,12 +1,17 @@
 
-:root{--yellow:#FFC928;--black:#141414;--terra:#E07F2E;--blue:#2C6AC9;--paper:#FFFDF6;--red:#D23B2E;--green:#2E9E5B;--font-display:"Arial Rounded MT Bold","Helvetica Rounded","Arial Black",Arial,sans-serif;
+:root{--yellow:#FFC928;--black:#141414;--terra:#E07F2E;--blue:#2C6AC9;--paper:#FFFDF6;--red:#D23B2E;--green:#2E9E5B;--font-display:"Titan One","Arial Black","Arial Bold",Arial,sans-serif;
+--font-script:"Caveat","Segoe Script",cursive;
 --font-body:Arial,Helvetica,sans-serif}
-/* FONTS: every font on the site comes from --font-display / --font-body above.
+/* FONTS: every font on the site comes from --font-display / --font-script / --font-body above.
+   --font-display: Titan One — heavy slanted comic type, exact mockup style (Latin only, per owner: no Cyrillic needed).
+   --font-script: Caveat — handwritten accents like "Build Your Own Combo!".
    The owner will send real font files later — swap them in here, in one place. */
 /* ART: display font — swap --font-display with the real La Felice font file when the owner provides it */
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 /* OWNER RULE: no text shadows anywhere — comic style comes from bold display type,
-   solid colors and clean outlines only. Readability first. */
+   solid colors and clean outlines only. Readability first.
+   Single exception: the header wordmark below, replicated exactly from the approved
+   mockup (yellow fill, black outline, red offset shadow). */
 *,*::before,*::after{text-shadow:none!important}
 html{scroll-behavior:smooth}
 body{margin:0 auto;max-width:640px;min-height:100vh;background:var(--paper);color:var(--black);
@@ -21,11 +26,18 @@ header h1{margin:0;font-size:32px;letter-spacing:1px}
 .brand{display:flex;align-items:center;gap:10px}
 /* header penguin: tiny logo mark next to the wordmark, never prominent — the site is for customers, not the penguin */
 #logoPengy{height:30px;width:auto;border:none;border-radius:0;box-shadow:none;background:transparent;object-fit:contain;flex:none}
-/* header wordmark: single clean comic style like the owner's flyer — no doubled offset shadow */
-header .logostyle{text-shadow:none}
+/* header wordmark: exact replica of the approved mockup logo —
+   yellow fill, thick black outline, red offset shadow, slight tilt */
+header h1.logostyle{font-family:"Titan One","Arial Black",sans-serif;font-style:italic;color:#FFD93B;
+  background:none;
+  -webkit-text-stroke:2px var(--black);paint-order:stroke fill;
+  text-shadow:3px 3px 0 var(--red)!important;transform:rotate(-2deg);letter-spacing:2px}
+/* mockup typography: display type is slanted comic (like the mockup's PICKUP / 2 PIZZAS+ WINGS DEAL / Mix & Match).
+   Prices stay upright and readable. */
+.toggle button,.deal .dtitle,.mmtitle,h2.logostyle{font-style:italic}
 header h1 .slice{display:inline-block;animation:wiggle 2.4s ease-in-out infinite}
 @keyframes wiggle{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
-header .sub{font-family:var(--font-body);font-size:11px;color:#6b4a00;font-weight:bold;letter-spacing:3px}
+header .sub{font-family:var(--font-display);font-size:13px;color:var(--black);letter-spacing:2px}
 .hctl{display:flex;align-items:center}
 .hcontact{background:var(--black);color:#FFD93B;font-family:var(--font-body);font-size:11px;font-weight:bold;
   padding:7px 14px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;align-items:center}
@@ -59,7 +71,8 @@ header .sub{font-family:var(--font-body);font-size:11px;color:#6b4a00;font-weigh
 .deal .tag{font-size:11px;font-weight:bold;background:var(--black);color:var(--yellow);border-radius:8px;padding:3px 10px;display:inline-block;margin-bottom:8px}
 .deal .dtitle{font-family:var(--font-display);font-size:26px;line-height:1.1;margin-bottom:6px}
 .deal p{font-family:Arial;font-size:13px;margin:0 0 8px}
-.deal .dprice{font-family:var(--font-display);font-size:38px;color:var(--red);margin:2px 0 10px}
+.deal .dprice{font-family:var(--font-display);font-size:38px;color:var(--red);margin:2px 0 10px;
+  -webkit-text-stroke:1px #fff;paint-order:stroke fill}
 .deal.alt .dprice{color:#fff}
 .deal .dadd{background:var(--red);color:#fff;border:3px solid var(--black);border-radius:12px;padding:12px 20px;
   font-size:16px;font-family:var(--font-display);cursor:pointer;box-shadow:4px 4px 0 var(--black)}
@@ -70,7 +83,7 @@ header .sub{font-family:var(--font-body);font-size:11px;color:#6b4a00;font-weigh
 #mixmatch{margin:4px 14px 14px;background:#fff;border:4px solid var(--black);border-radius:18px;padding:14px;box-shadow:6px 6px 0 var(--black)}
 .mmhead{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .mmtitle{font-family:var(--font-display);font-size:27px;color:var(--black);line-height:1.05}
-.mmsub{font-family:var(--font-body);font-weight:bold;font-size:15px;color:var(--red);margin-top:2px}
+.mmsub{font-family:var(--font-script);font-weight:700;font-size:26px;color:var(--black);margin-top:2px;line-height:1}
 .mmburst{width:96px;height:96px;flex-shrink:0;background:var(--yellow);display:flex;flex-direction:column;align-items:center;justify-content:center;
   transform:rotate(8deg);filter:drop-shadow(3px 3px 0 rgba(20,20,20,.9));
   clip-path:polygon(50% 0%,60% 11%,73% 5%,77% 19%,91% 19%,88% 33%,99% 41%,90% 51%,95% 65%,81% 66%,79% 81%,65% 77%,57% 91%,47% 79%,33% 83%,33% 68%,18% 67%,22% 53%,10% 46%,20% 37%,16% 22%,31% 24%,35% 10%,47% 16%)}
