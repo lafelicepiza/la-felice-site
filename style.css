@@ -24,8 +24,6 @@ header{background:linear-gradient(180deg,#FFD93B 0%,#FF9E1B 100%);color:var(--bl
 header{margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw)}
 header h1{margin:0;font-size:32px;letter-spacing:1px}
 .brand{display:flex;align-items:center;gap:10px}
-/* header penguin: tiny logo mark next to the wordmark, never prominent — the site is for customers, not the penguin */
-#logoPengy{height:30px;width:auto;border:none;border-radius:0;box-shadow:none;background:transparent;object-fit:contain;flex:none}
 /* header wordmark: exact replica of the approved mockup logo —
    yellow fill, thick black outline, red offset shadow, slight tilt */
 header h1.logostyle{font-family:"Titan One","Arial Black",sans-serif;font-style:italic;color:#FFD93B;
