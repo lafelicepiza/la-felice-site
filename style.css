@@ -33,6 +33,9 @@ header h1.logostyle{font-family:"Titan One","Arial Black",sans-serif;font-style:
 /* mockup typography: display type is slanted comic (like the mockup's PICKUP / 2 PIZZAS+ WINGS DEAL / Mix & Match).
    Prices stay upright and readable. */
 .toggle button,.deal .dtitle,.mmtitle,h2.logostyle{font-style:italic}
+/* mockup shouts in ALL CAPS: PICKUP / DELIVERY / 2 PIZZAS + WINGS DEAL / MIX & MATCH */
+.toggle button span{text-transform:uppercase;letter-spacing:1px}
+.mmtitle{text-transform:uppercase}
 header h1 .slice{display:inline-block;animation:wiggle 2.4s ease-in-out infinite}
 @keyframes wiggle{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
 header .sub{font-family:var(--font-display);font-size:13px;color:var(--black);letter-spacing:2px}
@@ -67,7 +70,10 @@ header .sub{font-family:var(--font-display);font-size:13px;color:var(--black);le
 .deal:active{transform:scale(.985)}
 .deal.alt{background-color:var(--terra);background-image:radial-gradient(rgba(255,255,255,.14) 1.6px,transparent 1.7px);color:#fff}
 .deal .tag{font-size:11px;font-weight:bold;background:var(--black);color:var(--yellow);border-radius:8px;padding:3px 10px;display:inline-block;margin-bottom:8px}
-.deal .dtitle{font-family:var(--font-display);font-size:26px;line-height:1.1;margin-bottom:6px}
+.deal .dtitle{font-family:var(--font-display);font-size:27px;line-height:1.05;margin-bottom:6px;
+  text-transform:uppercase;background:linear-gradient(180deg,#FFFFFF 25%,#FFD93B 55%,#FF8A00 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  -webkit-text-stroke:1.5px var(--black);paint-order:stroke fill}
 .deal p{font-family:Arial;font-size:13px;margin:0 0 8px}
 .deal .dprice{font-family:var(--font-display);font-size:38px;color:var(--red);margin:2px 0 10px;
   -webkit-text-stroke:1px #fff;paint-order:stroke fill}
