@@ -425,7 +425,7 @@ document.getElementById('loyalBack').onclick=()=>document.getElementById('loyalS
 /* ================= cart ================= */
 /* FIRST-ORDER DISCOUNT — SAMPLE 5%, owner edits the real value later. Applies when the guest
    registers at checkout (checkbox + phone). TODO: social signup (Facebook, Google, Apple) — later. */
-const FIRST_ORDER_DISCOUNT_PCT=5;
+const {FIRST_ORDER_DISCOUNT_PCT} = window.LF_MENU_DATA; /* value lives in menu-data.js — single source */
 function isRegistered(){
   const cb=document.getElementById('mkAccount'),ph=document.getElementById('cPhone');
   return !!(cb&&cb.checked&&ph&&ph.value.trim().length>3);
@@ -598,7 +598,7 @@ function editCartLine(i){
    The penguin waddles in from the left edge when exactly one order-relevant
    condition holds, and waddles away when it resolves. Max 1 hint per order
    (resets when the cart is emptied). Never blocks checkout. */
-const HINTS={giftThreshold:4000 /* $40 → SAMPLE free garlic sticks; owner edits the real gift rule later */};
+const {HINTS} = window.LF_MENU_DATA; /* gift rule lives in menu-data.js — single source */
 const hintSt={done:false,shownId:null,muted:false,visible:false,arrived:false};
 try{hintSt.muted=localStorage.getItem('lf_hints_muted')==='1';}catch(e){}
 const pengEl=document.getElementById('pengy');

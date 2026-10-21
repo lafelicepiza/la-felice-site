@@ -244,7 +244,59 @@
 <script src="photos-3.js"></script>
 <script src="photos-4.js"></script>
 <script src="photos-5.js"></script>
-<script src="app.js"></script>
-<script src="app2.js"></script>
+<script src="menu-data.js"></script>
+<script>
+/* La Felice data loader — menu, prices AND photos have ONE source on the
+   program host. The local copies above (menu-data.js, photos-1..5.js) are the
+   fallback shipped with the site; they have already set window.LF_MENU_DATA
+   and PHOTO_DATA. Before starting the app we try to swap in the FRESH copies
+   from the program host: if its version check answers, we load its
+   photos-1..5.js in order FIRST (they re-assign the same PHOTO_DATA keys)
+   and THEN its menu-data.js (it overwrites window.LF_MENU_DATA) — photos
+   must land first because menu entries (deals) read PHOTO_DATA at load
+   time. So prices and photos the owner edits in the program appear here
+   automatically. On ANY failure or timeout we simply start with the local
+   copies — the site works as before. */
+(function(){
+  var HOST='https://la-felice-pos.web.app';
+  function load(src){
+    return new Promise(function(resolve,reject){
+      var s=document.createElement('script');
+      s.src=src;
+      s.onload=function(){resolve();};
+      s.onerror=function(){reject(new Error('load failed: '+src));};
+      document.head.appendChild(s);
+    });
+  }
+  function start(){
+    load('app.js').then(function(){return load('app2.js');}).catch(function(){});
+  }
+  function freshData(){
+    var ctrl=('AbortController' in window)?new AbortController():null;
+    var timedOut=new Promise(function(resolve){setTimeout(function(){if(ctrl)ctrl.abort();resolve(null);},2500);});
+    var got=fetch(HOST+'/launcher/version.json?ts='+Date.now(),{cache:'no-store',signal:ctrl?ctrl.signal:undefined})
+      .then(function(r){return r.ok?r.json():null;})
+      .catch(function(){return null;});
+    return Promise.race([got,timedOut]).then(function(j){
+      var v=j&&j.version?String(j.version):null;
+      if(!v)return false;
+      var q='?v='+encodeURIComponent(v);
+      return load(HOST+'/data/photos-1.js'+q)
+        .then(function(){return load(HOST+'/data/photos-2.js'+q);})
+        .then(function(){return load(HOST+'/data/photos-3.js'+q);})
+        .then(function(){return load(HOST+'/data/photos-4.js'+q);})
+        .then(function(){return load(HOST+'/data/photos-5.js'+q);})
+        .then(function(){return load(HOST+'/data/menu-data.js'+q);})
+        .then(function(){return true;},function(){return false;});
+    });
+  }
+  freshData().then(start,start);
+})();
+</script>
+
+<!-- LA FELICE UPDATE BUTTON (shared by all screens; version source: ../launcher/version.json) -->
+<style>#lfUpd{position:fixed;right:12px;bottom:12px;z-index:9999;font-family:"Arial Black",Arial,sans-serif;font-size:13px;background:#141414;color:#FFC928;border:3px solid #FFC928;border-radius:12px;padding:8px 13px;cursor:pointer;box-shadow:4px 4px 0 rgba(0,0,0,.35)}#lfUpd:active{transform:translate(2px,2px);box-shadow:2px 2px 0 rgba(0,0,0,.35)}#lfUpd.new{background:#2E9E5B;color:#fff;border-color:#141414}</style>
+<button id="lfUpd" type="button" title="Update / Obnovit'">&#8635; UPDATE</button>
+<script>(function(){var KEY='la-felice.version';var btn=document.getElementById('lfUpd');function live(){return fetch('../launcher/version.json?ts='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){return j&&j.version?String(j.version):null}).catch(function(){return null})}live().then(function(v){var seen=localStorage.getItem(KEY);if(v&&seen&&seen!==v){btn.classList.add('new');btn.innerHTML='&#11014; UPDATE &mdash; NEW!';}});btn.addEventListener('click',function(){live().then(function(v2){if(v2)localStorage.setItem(KEY,v2);function go(){var u=new URL(location.href);if(v2)u.searchParams.set('v',v2);location.replace(u.toString());}if('caches' in window){caches.keys().then(function(ks){return Promise.all(ks.map(function(k){return caches.delete(k)}))}).then(go).catch(go);}else{go();}});});})();</script>
 </body>
 </html>
