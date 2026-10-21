@@ -16,6 +16,12 @@
    ============================================================================ */
 
 /* ================= sample data (SAMPLE — owner loads real menu) ================= */
+/* SCOPE NOTE: everything below lives inside ONE block { ... } so the only
+   thing this file exports to the page is window.LF_MENU_DATA (set at the
+   bottom). The data consts must NOT be top-level: app.js / app2.js declare
+   the same names from window.LF_MENU_DATA, and duplicate top-level const
+   declarations are a SyntaxError that kills the whole app. */
+{
 /* SIZES: real inches — the visual radius scales with inches (Small visibly smaller).
    CRUSTS: gluten-free / cauliflower pin their own size via sizeIn (configurable).
    SHAPES: round + sicilian square today; add more shapes here later. */
@@ -240,3 +246,4 @@ const HINTS={giftThreshold:4000 /* $40 → SAMPLE free garlic sticks; owner edit
 /* The one export: the whole menu/prices data set. Sites and apps
    read window.LF_MENU_DATA; nothing else in this file is global. */
 window.LF_MENU_DATA = {BUILDER: BUILDER, TOPPING_PRICE: TOPPING_PRICE, CATS: CATS, SIG_SIZES: SIG_SIZES, SUB_SIZES: SUB_SIZES, MENU: MENU, SZ1: SZ1, DIPS: DIPS, FREE_DIP_DEFAULT: FREE_DIP_DEFAULT, EXTRA_DIP_PRICE: EXTRA_DIP_PRICE, WINGDEF: WINGDEF, SUBDEF: SUBDEF, SALADDEF: SALADDEF, DRINKDEF: DRINKDEF, TAX_BPS: TAX_BPS, DELIVERY_FEE: DELIVERY_FEE, MIN_DELIVERY_TOTAL: MIN_DELIVERY_TOTAL, DEALS: DEALS, MIXMATCH: MIXMATCH, PROMOS: PROMOS, FIRST_ORDER_DISCOUNT_PCT: FIRST_ORDER_DISCOUNT_PCT, HINTS: HINTS};
+} /* end of the data block — only window.LF_MENU_DATA is global */

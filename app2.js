@@ -5,6 +5,7 @@ function openBuilder(presetItem,edit){
     B.size=c.size;B.crust=c.crust;B.sauce=c.sauce;B.cheese=c.cheese;B.shape=c.shape||'round';
     B.freeDip=c.freeDip;B.xdips=[...c.xdips];B.tops=JSON.parse(JSON.stringify(c.tops));
     B.editIdx=edit.idx;
+    B.qty=cart[edit.idx]?cart[edit.idx].qty:1;
   }else{
     B.size=0;B.crust=0;B.sauce=0;B.cheese='normal';B.shape='round';B.qty=1;B.freeDip=FREE_DIP_DEFAULT;B.xdips=[];
     B.tops=presetItem&&presetItem.preset?JSON.parse(JSON.stringify(presetItem.preset)):{};
@@ -12,7 +13,8 @@ function openBuilder(presetItem,edit){
     B.editIdx=null;
   }
   buildBuilderUI();updateBuilder();
-  document.getElementById('allergyNote').value='';
+  /* restore the line's allergy note when editing — never silently drop it */
+  document.getElementById('allergyNote').value=(edit&&edit.idx!=null&&cart[edit.idx]&&cart[edit.idx].allergy)||'';
   document.getElementById('bSheet').classList.add('open');
   document.getElementById('bBody').scrollTop=0;
 }
@@ -103,18 +105,29 @@ function updateBuilder(){
   renderPizzaSVG();
   document.getElementById('bsummary').innerHTML='<b>'+pizzaSummary()+'</b>';
   const p=builderPrice();
-  document.getElementById('bAdd').textContent=`${B.editIdx!=null?t('save_item'):t('add_to_cart')} — ${fmt(p)}`;
+  /* quantity stepper (created once, lives next to the Add button) */
+  let qc=document.getElementById('bQtyCtl');
+  if(!qc){
+    qc=document.createElement('div');qc.id='bQtyCtl';qc.className='qtyctl';
+    qc.innerHTML='<button type="button" data-qdec aria-label="−">−</button><span class="qv"></span><button type="button" data-qinc aria-label="+">+</button>';
+    const cta=document.getElementById('bCTA');
+    cta.insertBefore(qc,document.getElementById('bAdd'));
+    qc.querySelector('[data-qdec]').onclick=()=>{if(B.qty>1)B.qty--;updateBuilder();};
+    qc.querySelector('[data-qinc]').onclick=()=>{if(B.qty<20)B.qty++;updateBuilder();};
+  }
+  qc.querySelector('.qv').textContent=t('qty')+': '+B.qty;
+  document.getElementById('bAdd').textContent=`${B.editIdx!=null?t('save_item'):t('add_to_cart')} — ${fmt(p*B.qty)}`;
 }
 document.getElementById('bAdd').onclick=()=>{
   if(isPaused())return;
   const p=builderPrice();
   const an=document.getElementById('allergyNote').value.trim();
   const line={name:t('build_title'),name_en:T.en.build_title,
-    desc:pizzaSummary(),desc_en:withLang('en',pizzaSummary),unit:p,qty:1,ill:'pizza',xcheese:(B.cheese==='extra'),
+    desc:pizzaSummary(),desc_en:withLang('en',pizzaSummary),unit:p,qty:B.qty,ill:'pizza',xcheese:(B.cheese==='extra'),
     freeDip:B.freeDip,xdips:[...B.xdips],allergy:an||null,
     cfg:{kind:'pizza',size:B.size,crust:B.crust,sauce:B.sauce,cheese:B.cheese,shape:B.shape,
       tops:JSON.parse(JSON.stringify(B.tops)),freeDip:B.freeDip,xdips:[...B.xdips]}};
-  if(B.editIdx!=null){line.qty=cart[B.editIdx].qty;cart[B.editIdx]=line;B.editIdx=null;}  // "Edit" → replace, don't duplicate
+  if(B.editIdx!=null){cart[B.editIdx]=line;B.editIdx=null;}  // "Edit" → replace, don't duplicate
   else cart.push(line);
   // TODO(server): allergy note must print on the kitchen ticket — packages/api lib/tickets.ts
   flyToCart(document.getElementById('bAdd'));
@@ -128,7 +141,7 @@ document.getElementById('bAdd').onclick=()=>{
 const GB={item:null,kind:null,sel:null,qty:1,editIdx:null};
 function openGBuilder(it,edit){
   GB.item=it;GB.kind=it.builder;GB.qty=1;
-  if(edit&&edit.cfg){GB.sel=JSON.parse(JSON.stringify(edit.cfg.sel));GB.editIdx=edit.idx;}  // "Edit" from cart
+  if(edit&&edit.cfg){GB.sel=JSON.parse(JSON.stringify(edit.cfg.sel));GB.editIdx=edit.idx;GB.qty=cart[edit.idx]?cart[edit.idx].qty:1;}  // "Edit" from cart
   else{
     if(it.builder==='sub')GB.sel={size:'half',bread:'white',fillings:['turkey'],cheese:'mozz',veggies:['lettuce','tomato'],sauce:'mayo'};
     else if(it.builder==='salad')GB.sel={base:'romaine',protein:'none',ingredients:['croutons','parmesan'],dressing:'ranch'};
@@ -292,7 +305,7 @@ function gSummary(){
       s.ingredients.map(i=>one(D.ingredients,i)).join(', '),one(D.dressings,s.dressing));
   }else if(GB.kind==='wings'){const D=WINGDEF,one=(l,id)=>nm(l.find(x=>x.id===id));
     parts.push(one(D.counts,s.count),one(D.types,s.wtype));
-  }else{const D=DRINKDEF,SZ=it.drinkSizes||D.sizes,one=(l,id)=>nm(l.find(x=>x.id===id));
+  }else{const D=DRINKDEF,SZ=GB.item.drinkSizes||D.sizes,one=(l,id)=>nm(l.find(x=>x.id===id));
     parts.push(one(SZ,s.size),one(D.flavors,s.flavor));}
   return parts.join(' • ');
 }
@@ -324,14 +337,25 @@ function renderG(){
     body.appendChild(gSec(t('sec_flavor'),gSeg(D.flavors,s.flavor,id=>{s.flavor=id;})));
   }
   const sum=document.createElement('div');sum.id='bsummary';sum.innerHTML='<b>'+gSummary()+'</b>';body.appendChild(sum);
-  document.getElementById('gAdd').textContent=`${GB.editIdx!=null?t('save_item'):t('add_to_cart')} — ${fmt(gPrice())}`;
+  /* quantity stepper (created once, lives next to the Add button) */
+  let qc=document.getElementById('gQtyCtl');
+  if(!qc){
+    qc=document.createElement('div');qc.id='gQtyCtl';qc.className='qtyctl';
+    qc.innerHTML='<button type="button" data-qdec aria-label="−">−</button><span class="qv"></span><button type="button" data-qinc aria-label="+">+</button>';
+    const gAddBtn=document.getElementById('gAdd');
+    gAddBtn.parentNode.insertBefore(qc,gAddBtn);
+    qc.querySelector('[data-qdec]').onclick=()=>{if(GB.qty>1)GB.qty--;renderG();};
+    qc.querySelector('[data-qinc]').onclick=()=>{if(GB.qty<20)GB.qty++;renderG();};
+  }
+  qc.querySelector('.qv').textContent=t('qty')+': '+GB.qty;
+  document.getElementById('gAdd').textContent=`${GB.editIdx!=null?t('save_item'):t('add_to_cart')} — ${fmt(gPrice()*GB.qty)}`;
 }
 document.getElementById('gAdd').onclick=()=>{
   if(isPaused())return;
   const it=GB.item,p=gPrice();
-  const line={name:mname(it),name_en:it.name.en,desc:gSummary(),desc_en:withLang('en',gSummary),unit:p,qty:1,ill:it.art,
+  const line={name:mname(it),name_en:it.name.en,desc:gSummary(),desc_en:withLang('en',gSummary),unit:p,qty:GB.qty,ill:it.art,
     cfg:{kind:GB.kind,itemId:it.id,sel:JSON.parse(JSON.stringify(GB.sel))}};
-  if(GB.editIdx!=null){line.qty=cart[GB.editIdx].qty;cart[GB.editIdx]=line;GB.editIdx=null;}
+  if(GB.editIdx!=null){cart[GB.editIdx]=line;GB.editIdx=null;}
   else cart.push(line);
   flyToCart(document.getElementById('gAdd'));
   document.getElementById('gSheet').classList.remove('open');
@@ -432,7 +456,12 @@ function isRegistered(){
 }
 function totals(){
   const sub=cart.reduce((s,l)=>s+l.unit*l.qty,0);
-  const fee=(orderType==='delivery'&&zoneOk)?DELIVERY_FEE:0;
+  /* delivery fee applies once delivery is chosen AND the zone is confirmed —
+     or an address is typed in (checking the zone stays a stub, but a typed
+     address must never silently mean a $0 delivery fee) */
+  const addrEl=document.getElementById('addr');
+  const hasAddr=!!(addrEl&&addrEl.value.trim().length>5);
+  const fee=(orderType==='delivery'&&(zoneOk||hasAddr))?DELIVERY_FEE:0;
   const discount=((isRegistered()&&sub>0)?Math.round(sub*FIRST_ORDER_DISCOUNT_PCT/100):0)
     +((promo&&sub>0)?Math.round(sub*promo.pct/100):0);
   return computeTotals(sub,tipPct,fee,TAX_BPS,taxEx.approved,discount);
@@ -449,9 +478,11 @@ function renderCart(){
   applyPausedBanner();
   const L=document.getElementById('lines');L.innerHTML='';
   cart.forEach((l,i)=>{const d=document.createElement('div');d.className='line small';
-    d.innerHTML=`<span class="thumb">${artFor(l.ill||'pizza')}</span><span>${l.qty}× ${l.name}<br><span style="color:#666">${l.desc||''}</span>${l.freeDip?'<br><span style="color:var(--green)">'+t('free_sauce')+': '+t('dip_'+l.freeDip)+'</span>':''}${l.xdips&&l.xdips.length?'<br><span style="color:#666">'+t('extra_dip_name')+': '+l.xdips.map(x=>t('dip_'+x)).join(', ')+'</span>':''}${l.allergy?'<br><b style="color:var(--red)">'+t('allergy_tag')+': '+l.allergy+'</b>':''}</span><span>${fmt(l.unit*l.qty)} ${l.cfg?`<a href="#" data-e="${i}" title="${t('edit_item')}" style="color:var(--blue)">✎</a> `:''}<a href="#" data-i="${i}" style="color:var(--red)">✕</a></span>`;
+    d.innerHTML=`<span class="thumb">${artFor(l.ill||'pizza')}</span><span><a href="#" data-dec="${i}" title="−" style="color:var(--blue);font-weight:bold;padding:0 5px">−</a>${l.qty}×<a href="#" data-inc="${i}" title="+" style="color:var(--blue);font-weight:bold;padding:0 5px">+</a> ${l.name}<br><span style="color:#666">${l.desc||''}</span>${l.freeDip?'<br><span style="color:var(--green)">'+t('free_sauce')+': '+t('dip_'+l.freeDip)+'</span>':''}${l.xdips&&l.xdips.length?'<br><span style="color:#666">'+t('extra_dip_name')+': '+l.xdips.map(x=>t('dip_'+x)).join(', ')+'</span>':''}${l.allergy?'<br><b style="color:var(--red)">'+t('allergy_tag')+': '+l.allergy+'</b>':''}</span><span>${fmt(l.unit*l.qty)} ${l.cfg?`<a href="#" data-e="${i}" title="${t('edit_item')}" style="color:var(--blue)">✎</a> `:''}<a href="#" data-i="${i}" style="color:var(--red)">✕</a></span>`;
     L.appendChild(d);});
   L.querySelectorAll('a[data-i]').forEach(a=>a.onclick=e=>{e.preventDefault();cart.splice(+a.dataset.i,1);renderCart();});
+  L.querySelectorAll('a[data-inc]').forEach(a=>a.onclick=e=>{e.preventDefault();cart[+a.dataset.inc].qty++;renderCart();});
+  L.querySelectorAll('a[data-dec]').forEach(a=>a.onclick=e=>{e.preventDefault();const i=+a.dataset.dec;if(cart[i].qty>1)cart[i].qty--;else cart.splice(i,1);renderCart();});
   L.querySelectorAll('a[data-e]').forEach(a=>a.onclick=e=>{e.preventDefault();editCartLine(+a.dataset.e);});
   document.getElementById('lSub').textContent=fmt(tt.sub);
   document.getElementById('lTax').textContent=fmt(tt.tax);
@@ -501,6 +532,44 @@ payGoogle.onclick=()=>stripeStubPay('google_pay',payGoogle);
 document.getElementById('noPay').onclick=()=>document.getElementById('warnSheet').classList.add('open');
 document.getElementById('warnBack').onclick=()=>document.getElementById('warnSheet').classList.remove('open');
 
+/* Kitchen ticket → the KDS outbox (apps/kitchen contract: key
+   'la-felice.kitchen.outbox.v1', JSON array, allergy items FIRST, English
+   names only, NO prices). The kitchen screen on the same device polls this
+   key and renders the ticket; written here so a site order shows up in the
+   kitchen exactly like a register order. */
+function lfKitchenTicket(num,isTime,when){
+  try{
+    const dipName=id=>({ranch:'Ranch',marinara:'Marinara',garlic:'Garlic Butter',bbq:'BBQ'})[id]||id;
+    const stationFor=l=>l.ill==='pizza'?'pizza':l.ill==='wings'?'fry'
+      :(l.ill==='soda'||l.ill==='shake'||l.ill==='coffee')?'drink':l.ill==='salad'?'other':'oven';
+    const items=cart.map(l=>{
+      const mods=[];
+      let sizeLabel='';
+      const descEn=l.desc_en||l.desc||'';
+      if(l.cfg){ if(descEn)mods.push(descEn); }            // builder lines: full build in modifiers
+      else if(descEn&&descEn.length<=8)sizeLabel=descEn;  // simple lines: desc IS the size label
+      else if(descEn)mods.push(descEn);                   // deals etc.: long text → modifier line
+      if(l.freeDip)mods.push('1 FREE sauce: '+dipName(l.freeDip));
+      if(l.xdips&&l.xdips.length)l.xdips.forEach(d=>mods.push('Extra sauce: '+dipName(d)));
+      const it={name:l.name_en||l.name,sizeLabel,modifiers:mods,
+        allergyAlert:!!l.allergy,station:stationFor(l),quantity:l.qty};
+      if(l.allergy)it.notes='ALLERGY: '+l.allergy;
+      return it;
+    });
+    items.sort((a,b)=>(b.allergyAlert?1:0)-(a.allergyAlert?1:0)); // allergy first (KDS contract)
+    const ticket={id:'ticket-'+num,orderId:num,channel:'site',type:orderType,items,
+      createdAtUtc:new Date().toISOString(),
+      customer:(document.getElementById('cName').value||'').trim(),
+      phone:(document.getElementById('cPhone').value||'').trim(),
+      address:orderType==='delivery'?(document.getElementById('addr').value||'').trim():''};
+    if(isTime&&when){const d=new Date(when);if(!isNaN(d))ticket.scheduledForUtc=d.toISOString();}
+    const key='la-felice.kitchen.outbox.v1';
+    const arr=JSON.parse(localStorage.getItem(key)||'[]');
+    arr.push(ticket);
+    localStorage.setItem(key,JSON.stringify(arr));
+  }catch(e){}
+}
+
 function placeOrder(method){
   if(!paid){document.getElementById('warnSheet').classList.add('open');return;}
   const tt=totals();
@@ -509,6 +578,7 @@ function placeOrder(method){
   const num='LF-'+Math.floor(100000+Math.random()*900000);
   lfSaveOrder({num,ts:Date.now(),mode:orderType,total:tt.total,
     lines:cart.map(l=>({qty:l.qty,name:l.name,name_en:l.name_en||l.name,unit:l.unit,ill:l.ill||'pizza'}))});
+  lfKitchenTicket(num,isTime,when); // → kitchen display outbox (same-device KDS)
   // IRON RULE: the customer orders in EN/RU/ES, but the cashier screen and kitchen ticket are ALWAYS English.
   // The snapshot sent to the API carries BOTH name_en (canonical) and name_localized (customer display).
   // TODO(server): POST /v1/orders with lines below — packages/api/lib/tickets.ts renders ONLY name_en.

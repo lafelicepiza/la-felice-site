@@ -207,6 +207,10 @@ header .sub{font-family:var(--font-display);font-size:13px;color:var(--black);le
 .bsec h3{margin:0 0 10px;font-size:16px}
 .seg{display:flex;gap:8px;flex-wrap:wrap}
 .seg button{border:3px solid var(--black);border-radius:12px;padding:10px 14px;background:#fff;cursor:pointer;font-size:13px;box-shadow:3px 3px 0 var(--black)}
+.qtyctl{display:inline-flex;align-items:center;gap:8px;margin:0 10px 10px 0;vertical-align:middle}
+.qtyctl button{border:3px solid var(--black);border-radius:12px;width:42px;height:42px;background:#fff;font-size:20px;font-family:inherit;cursor:pointer;box-shadow:3px 3px 0 var(--black);line-height:1}
+.qtyctl button:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--black)}
+.qtyctl .qv{font-family:Arial,sans-serif;font-weight:bold;font-size:15px;min-width:56px;text-align:center}
 .seg button.on{background:var(--yellow)}
 .seg button .p{color:var(--terra);font-size:12px}
 .toprow{border:3px solid var(--black);border-radius:12px;margin-bottom:10px;background:#fff;overflow:hidden}
