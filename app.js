@@ -8,9 +8,10 @@ delivery_fee:"Delivery fee",tip:"Tip",total:"Total",time_order:"Order for later 
 phone:"Phone",phone_ph:"+1 (___) ___-____",create_account:"Create an account with this phone",payment:"Payment",card:"Card",
 cant_pay:"I can't pay right now",no_payment_warning:"We cannot accept an order without payment. Pay now, or come to the store and wait while we prepare your order.",
 no_order_title:"No order without payment",no_order_created:"No order was placed and nothing was charged.",ok_pay:"OK — I'll pay now",
+pay_at_store:"Pay at the store",pay_at_store_note:"Please pay when you pick up your order.",to_pay:"To pay",
 order_confirmed:"Order confirmed!",paid:"Paid",sms_note:"We'll text you when your order is ready.",
 back_to_menu:"Back to menu",sample_note:"Demo data — the real menu, prices and photos are coming soon.",sample_note2:"demo",
-stripe_note:"Payments are processed securely by Stripe. We never see or store your card number.",processing:"Processing…",
+stripe_note:"Payments are processed securely by Stripe. We never see or store your card number.",card_soon:"Card payment — coming soon. Please pay at pickup.",card_ready_note:"Card form ready — online card charging turns on when the store finishes connecting Stripe.",processing:"Processing…",
 pickup_eta:"Ready in ~25 min",delivery_eta:"Arriving in ~{eta} min",deals:"Hot deals",
 build_title:"Build your pizza",size:"1. Size",crust:"2. Crust",sauce:"3. Sauce",cheese:"4. Cheese",toppings:"5. Toppings",
 your_pizza:"Your pizza",add_to_cart:"Add to cart",half_hint:"Tap a topping, then choose Light / Normal / Extra and Left / Whole / Right half.",
@@ -28,6 +29,7 @@ taxexempt_text:"If you are a non-profit organization and don't want to pay sales
 taxexempt_upload:"Upload document",taxexempt_sent:"Document uploaded — sent for review.",
 taxexempt_simulate:"Simulate approval (demo)",taxexempt_approved:"Approved! No sales tax on this order.",taxexempt_line:"TAX-EXEMPT ✓",
 allergy_label:"Allergy note for the kitchen",allergy_ph:"e.g. nut allergy — the kitchen will be alerted",
+allergy_have:"I have a food allergy",allergy_what:"What are you allergic to?",allergy_what_ph:"e.g. tomatoes, cheese, nuts…",allergy_need:"Please tell us what you're allergic to — the kitchen needs to know, so your food is prepared safely.",
 alg_milk:"milk",alg_gluten:"gluten",alg_nuts:"nuts",alg_egg:"egg",alg_soy:"soy",
 paused_title:"Online ordering is temporarily paused",paused_text:"Call us or visit the store — we'll happily take your order.",
 out_of_stock:"Out of stock",tap_to_add:"Tap to add to cart",
@@ -37,7 +39,7 @@ hint_deals:"Check our weekly specials!",hints_off:"don't show hints",hints_on:"s
 first_order_promo:"Sign up and get {p}% off your first order!",first_order_disc:"First-order signup discount",
 acct_save:"With an account this order would cost {x} less ({p}% off)",
 sms_consent:"I agree to receive SMS marketing messages",email_consent:"I agree to receive email marketing messages",
-consent_note:"Consents are saved to your customer profile for our future mailing list. You can withdraw anytime.",menu_subs:"Subs",menu_appetizers:"Appetizers",menu_wings:"Wings",menu_chicken:"Chicken",menu_stromboli:"Stromboli",menu_rolls:"Rolls",menu_breadsticks:"Breadsticks",menu_kids:"Kids Menu",menu_breakfast:"Breakfast",min_delivery_warn:"Delivery minimum is {m} — add {x} more for delivery (pickup has no minimum).",hint_mindel:"Delivery starts at {m} — add {x} more!",tips:"Tips",tips_note:"Tips are optional — no pressure. Our crew appreciates every bit!",tip_custom:"Custom",tip_custom_ph:"Amount, e.g. 3.50",no_tip:"No tip",menu_extra:"Extras",build_sub:"Build your sub",kids_title:"Fun food for little champions!",kids_desc:"Small portions, big smiles.",build_salad:"Build your salad",build_drink:"Pick your drink",sec_bread:"2. Bread",sec_fillings:"3. Fillings",sec_base:"1. Base",sec_flavor:"2. Flavor",sec_dsize:"1. Size",your_build:"Your build",free_sauce:"Free sauce",free:"free",hint_sauce:"Want to add an extra sauce?",dip_ranch:"Ranch",dip_marinara:"Marinara",dip_garlic:"Garlic Butter",dip_bbq:"BBQ",extra_dip_name:"Extra Dipping Sauce",extra_dip_desc:"2 oz cup — ranch, marinara, garlic butter or BBQ",allergy_tag:"Allergy",reorder_tab:"Order again",reorder_empty:"No past orders yet — your history will show up here.",reorder_repeat:"Repeat",mixmatch_title:"Mix & Match — build your own combo",mixmatch_desc:"Pick any 2 from the list — {p} each.",mixmatch_pick:"Pick 2",mixmatch_add:"Add combo",mixmatch_need:"Pick 2 items to add the combo",tracker_title:"Track your order",tracker_ph:"Order number, e.g. LF-123456",tracker_btn:"Track",tracker_notfound:"Order not found — check the number on your receipt.",tr_prep:"Preparing",tr_oven:"In the oven",tr_way:"On the way",tr_ready:"Ready for pickup",tr_eta:"~{n} min",sec_size:"1. Size",sec_cheese:"4. Cheese",sec_veggies:"5. Veggies",sec_protein:"2. Protein",sec_ingr:"3. Ingredients",sec_dressing:"4. Dressing",multi_hint:"tap to toggle",style:"Style",build_wings:"Build your wings",sec_count:"1. Count",sec_wtype:"2. Style",p_none:"no",cheese_none:"No cheese",edit_item:"Edit",save_item:"Save",promo_ph:"Promo code",promo_apply:"Apply",promo_ok:"Promo applied: -{p}%",promo_bad:"That code didn't work",promo_disc:"Promo discount",upsell_title:"Add to your order?",tagline:"PIZZA • WINGS • SUBS",mixmatch_sub:"Build Your Own Combo",mixmatch_each:"each",trust_d1:"5 Mile Delivery",trust_d2:"$3.99 delivery fee",trust_f1:"Fresh Ingredients",trust_f2:"Great taste, every day",trust_l1:"Local & Independent",trust_l2:"Proudly serving Pittsburgh"},
+consent_note:"Consents are saved to your customer profile for our future mailing list. You can withdraw anytime.",menu_subs:"Subs",menu_appetizers:"Appetizers",menu_wings:"Wings",menu_chicken:"Chicken",menu_stromboli:"Stromboli",menu_rolls:"Rolls",menu_breadsticks:"Breadsticks",menu_kids:"Kids Menu",menu_breakfast:"Breakfast",min_delivery_warn:"Delivery minimum is {m} — add {x} more for delivery (pickup has no minimum).",hint_mindel:"Delivery starts at {m} — add {x} more!",tips:"Add a tip?",tips_note:"Thank the crew — tips are totally optional, no pressure at all.",tip_custom:"Custom",tip_custom_ph:"Amount, e.g. 3.50",no_tip:"No tip",menu_extra:"Extras",build_sub:"Build your sub",kids_title:"Fun food for little champions!",kids_desc:"Small portions, big smiles.",build_salad:"Build your salad",build_drink:"Pick your drink",sec_bread:"2. Bread",sec_fillings:"3. Fillings",sec_base:"1. Base",sec_flavor:"2. Flavor",sec_dsize:"1. Size",your_build:"Your build",free_sauce:"Free sauce",free:"free",hint_sauce:"Want to add an extra sauce?",dip_ranch:"Ranch",dip_marinara:"Marinara",dip_garlic:"Garlic Sauce",dip_hot:"Hot Sauce",dip_bbq:"BBQ",extra_dip_name:"Extra Dipping Sauce",extra_dip_desc:"2 oz cup — marinara, ranch, BBQ, hot sauce or garlic sauce",allergy_tag:"Allergy",reorder_tab:"Order again",reorder_empty:"No past orders yet — your history will show up here.",reorder_repeat:"Repeat",mixmatch_title:"Mix & Match — build your own combo",mixmatch_desc:"Pick any 2 from the list — {p} each.",mixmatch_pick:"Pick 2",mixmatch_add:"Add combo",mixmatch_need:"Pick 2 items to add the combo",tracker_title:"Track your order",tracker_ph:"Order number, e.g. LF-123456",tracker_btn:"Track",tracker_notfound:"Order not found — check the number on your receipt.",tr_prep:"Preparing",tr_oven:"In the oven",tr_way:"On the way",tr_ready:"Ready for pickup",tr_eta:"~{n} min",sec_size:"1. Size",sec_cheese:"4. Cheese",sec_veggies:"5. Veggies",sec_protein:"2. Protein",sec_ingr:"3. Ingredients",sec_dressing:"4. Dressing",multi_hint:"tap to toggle",style:"Style",build_wings:"Build your wings",sec_count:"1. Count",sec_wtype:"2. Style",p_none:"no",cheese_none:"No cheese",edit_item:"Edit",save_item:"Save",promo_ph:"Promo code",promo_apply:"Apply",promo_ok:"Promo applied: -{p}%",promo_bad:"That code didn't work",promo_disc:"Promo discount",upsell_title:"Add to your order?",tagline:"PIZZA • WINGS • SUBS",mixmatch_sub:"Build Your Own Combo",mixmatch_each:"each",trust_d1:"5 Mile Delivery",trust_d2:"$3.99 delivery fee",trust_f1:"Fresh Ingredients",trust_f2:"Great taste, every day",trust_l1:"Local & Independent",trust_l2:"Proudly serving Pittsburgh"},
 ru:{pickup:"Самовывоз",delivery:"Доставка",address_ph:"Адрес доставки — улица, квартира",check_zone:"Проверить мою зону",
 zone_ok:"Доставим! Стоимость {fee}, ~{eta} мин.",menu_builder:"Конструктор пиццы",menu_pizza:"Пиццы",menu_salads:"Салаты",menu_drinks:"Напитки",menu_desserts:"Десерты",
 add:"Добавить",customize:"Собрать",back:"Назад",checkout:"Оформить",your_order:"Ваш заказ",subtotal:"Сумма",tax:"Налог",
@@ -45,9 +47,10 @@ delivery_fee:"Доставка",tip:"Чаевые",total:"Итого",time_order
 phone:"Телефон",phone_ph:"+1 (___) ___-____",create_account:"Создать аккаунт на этот телефон",payment:"Оплата",card:"Карта",
 cant_pay:"Не могу оплатить сейчас",no_payment_warning:"Мы не можем принять заказ без оплаты. Оплатите сейчас или приезжайте в магазин и подождите, пока мы приготовим ваш заказ.",
 no_order_title:"Нет заказа без оплаты",no_order_created:"Заказ не оформлен, оплата не списана.",ok_pay:"Хорошо — оплачу сейчас",
+pay_at_store:"Оплата в магазине",pay_at_store_note:"Пожалуйста, оплатите при получении заказа.",to_pay:"К оплате",
 order_confirmed:"Заказ принят!",paid:"Оплачено",sms_note:"Мы пришлём SMS, когда заказ будет готов.",
 back_to_menu:"Вернуться в меню",sample_note:"Демо-данные — настоящее меню, цены и фото скоро появятся.",sample_note2:"демо",
-stripe_note:"Оплата безопасно обрабатывается Stripe. Мы не видим и не храним номер вашей карты.",processing:"Обработка…",
+stripe_note:"Оплата безопасно обрабатывается Stripe. Мы не видим и не храним номер вашей карты.",card_soon:"Оплата картой — скоро. Пожалуйста, оплатите при получении.",card_ready_note:"Форма карты готова — онлайн-оплата включится, когда магазин завершит подключение Stripe.",processing:"Обработка…",
 pickup_eta:"Будет готово ~через 25 мин",delivery_eta:"Привезём ~через {eta} мин",deals:"Горячие предложения",
 build_title:"Соберите пиццу",size:"1. Размер",crust:"2. Тесто",sauce:"3. Соус",cheese:"4. Сыр",toppings:"5. Начинки",
 your_pizza:"Ваша пицца",add_to_cart:"В корзину",half_hint:"Нажмите на начинку, затем выберите Мало / Норма / Много и Левая / Вся / Правая половина.",
@@ -65,6 +68,7 @@ taxexempt_text:"Если вы некоммерческая организаци�
 taxexempt_upload:"Загрузить документ",taxexempt_sent:"Документ загружен — отправлен на проверку.",
 taxexempt_simulate:"Симулировать подтверждение (демо)",taxexempt_approved:"Подтверждено! Налог с продаж за этот заказ не взимается.",taxexempt_line:"БЕЗ НАЛОГА ✓",
 allergy_label:"Примечание об аллергии для кухни",allergy_ph:"напр. аллергия на орехи — кухня будет предупреждена",
+allergy_have:"У меня пищевая аллергия",allergy_what:"На что у вас аллергия?",allergy_what_ph:"например: томаты, сыр, орехи…",allergy_need:"Пожалуйста, укажите, на что у вас аллергия, — кухня должна знать, чтобы приготовить безопасно.",
 alg_milk:"молоко",alg_gluten:"глютен",alg_nuts:"орехи",alg_egg:"яйцо",alg_soy:"соя",
 paused_title:"Онлайн-заказы временно приостановлены",paused_text:"Позвоните нам или приходите в магазин — с радостью примем заказ.",
 out_of_stock:"Нет в наличии",tap_to_add:"Нажмите, чтобы добавить в корзину",
@@ -74,7 +78,7 @@ hint_deals:"Глянь наши спешалы недели!",hints_off:"не п
 first_order_promo:"Зарегистрируйся и получи скидку {p}% на первый заказ!",first_order_disc:"Скидка за регистрацию",
 acct_save:"С аккаунтом этот заказ стоил бы на {x} меньше (скидка {p}%)",
 sms_consent:"Согласен получать SMS-рассылки",email_consent:"Согласен получать email-рассылки",
-consent_note:"Согласия сохраняются в ваш профиль клиента для будущей базы рассылок. Можно отозвать в любой момент.",menu_subs:"Сабы",menu_appetizers:"Закуски",menu_wings:"Крылышки",menu_chicken:"Курица",menu_stromboli:"Стромболи",menu_rolls:"Роллы",menu_breadsticks:"Хлебные палочки",menu_kids:"Детское меню",menu_breakfast:"Завтраки",min_delivery_warn:"Минимальный заказ для доставки — {m}. Добавь ещё на {x} (для самовывоза минимума нет).",hint_mindel:"Доставка от {m} — добавь ещё на {x}!",tips:"Чаевые",tips_note:"Чаевые необязательны — только по желанию. Команда будет благодарна!",tip_custom:"Своя сумма",tip_custom_ph:"Сумма, напр. 3.50",no_tip:"Без чаевых",kids_title:"Весёлая еда для маленьких чемпионов!",kids_desc:"Маленькие порции — большие улыбки.",menu_extra:"Дополнительно",build_sub:"Собери саб",build_salad:"Собери салат",build_drink:"Выбери напиток",sec_bread:"2. Хлеб",sec_fillings:"3. Начинка",sec_base:"1. Основа",sec_flavor:"2. Вкус",sec_dsize:"1. Размер",your_build:"Ваш набор",free_sauce:"Соус в подарок",free:"в подарок",hint_sauce:"Соус не хочешь добавить?",dip_ranch:"Ранч",dip_marinara:"Маринара",dip_garlic:"Чесночное масло",dip_bbq:"Барбекю",extra_dip_name:"Доп. соус",extra_dip_desc:"Соусник 60 мл — ранч, маринара, чесночный или барбекю",allergy_tag:"Аллергия",reorder_tab:"Закажи снова",reorder_empty:"Прошлых заказов пока нет — история появится здесь.",reorder_repeat:"Повторить",mixmatch_title:"Комбо «Собери сам»",mixmatch_desc:"Выбери любые 2 позиции из списка — {p} за каждую.",mixmatch_pick:"Выбери 2",mixmatch_add:"В корзину",mixmatch_need:"Выбери 2 позиции, чтобы добавить комбо",tracker_title:"Где моя пицца",tracker_ph:"Номер заказа, напр. LF-123456",tracker_btn:"Найти",tracker_notfound:"Заказ не найден — проверь номер в чеке.",tr_prep:"Готовим",tr_oven:"В печи",tr_way:"В пути",tr_ready:"Готов к выдаче",tr_eta:"~{n} мин",sec_size:"1. Размер",sec_cheese:"4. Сыр",sec_veggies:"5. Овощи",sec_protein:"2. Белок",sec_ingr:"3. Ингредиенты",sec_dressing:"4. Заправка",multi_hint:"нажми, чтобы выбрать",style:"Стиль",build_wings:"Собери крылышки",sec_count:"1. Количество",sec_wtype:"2. Вид",p_none:"без",cheese_none:"Без сыра",edit_item:"Изменить",save_item:"Сохранить",promo_ph:"Промокод",promo_apply:"Применить",promo_ok:"Промокод применён: -{p}%",promo_bad:"Такой код не найден",promo_disc:"Скидка по промокоду",upsell_title:"Добавить к заказу?",tagline:"PIZZA • WINGS • SUBS",mixmatch_sub:"Собери своё комбо",mixmatch_each:"за штуку",trust_d1:"Доставка 5 миль",trust_d2:"Доставка $3.99",trust_f1:"Свежие продукты",trust_f2:"Вкусно каждый день",trust_l1:"Местные и независимые",trust_l2:"С гордостью служим Питтсбургу"},
+consent_note:"Согласия сохраняются в ваш профиль клиента для будущей базы рассылок. Можно отозвать в любой момент.",menu_subs:"Сабы",menu_appetizers:"Закуски",menu_wings:"Крылышки",menu_chicken:"Курица",menu_stromboli:"Стромболи",menu_rolls:"Роллы",menu_breadsticks:"Хлебные палочки",menu_kids:"Детское меню",menu_breakfast:"Завтраки",min_delivery_warn:"Минимальный заказ для доставки — {m}. Добавь ещё на {x} (для самовывоза минимума нет).",hint_mindel:"Доставка от {m} — добавь ещё на {x}!",tips:"Добавить чаевые?",tips_note:"Поблагодарить людей — чаевые необязательны, только по желанию.",tip_custom:"Своя сумма",tip_custom_ph:"Сумма, напр. 3.50",no_tip:"Без чаевых",kids_title:"Весёлая еда для маленьких чемпионов!",kids_desc:"Маленькие порции — большие улыбки.",menu_extra:"Дополнительно",build_sub:"Собери саб",build_salad:"Собери салат",build_drink:"Выбери напиток",sec_bread:"2. Хлеб",sec_fillings:"3. Начинка",sec_base:"1. Основа",sec_flavor:"2. Вкус",sec_dsize:"1. Размер",your_build:"Ваш набор",free_sauce:"Соус в подарок",free:"в подарок",hint_sauce:"Соус не хочешь добавить?",dip_ranch:"Ранч",dip_marinara:"Маринара",dip_garlic:"Чесночный соус",dip_hot:"Острый",dip_bbq:"Барбекю",extra_dip_name:"Доп. соус",extra_dip_desc:"Соусник 60 мл — маринара, ранч, барбекю, острый или чесночный соус",allergy_tag:"Аллергия",reorder_tab:"Закажи снова",reorder_empty:"Прошлых заказов пока нет — история появится здесь.",reorder_repeat:"Повторить",mixmatch_title:"Комбо «Собери сам»",mixmatch_desc:"Выбери любые 2 позиции из списка — {p} за каждую.",mixmatch_pick:"Выбери 2",mixmatch_add:"В корзину",mixmatch_need:"Выбери 2 позиции, чтобы добавить комбо",tracker_title:"Где моя пицца",tracker_ph:"Номер заказа, напр. LF-123456",tracker_btn:"Найти",tracker_notfound:"Заказ не найден — проверь номер в чеке.",tr_prep:"Готовим",tr_oven:"В печи",tr_way:"В пути",tr_ready:"Готов к выдаче",tr_eta:"~{n} мин",sec_size:"1. Размер",sec_cheese:"4. Сыр",sec_veggies:"5. Овощи",sec_protein:"2. Белок",sec_ingr:"3. Ингредиенты",sec_dressing:"4. Заправка",multi_hint:"нажми, чтобы выбрать",style:"Стиль",build_wings:"Собери крылышки",sec_count:"1. Количество",sec_wtype:"2. Вид",p_none:"без",cheese_none:"Без сыра",edit_item:"Изменить",save_item:"Сохранить",promo_ph:"Промокод",promo_apply:"Применить",promo_ok:"Промокод применён: -{p}%",promo_bad:"Такой код не найден",promo_disc:"Скидка по промокоду",upsell_title:"Добавить к заказу?",tagline:"PIZZA • WINGS • SUBS",mixmatch_sub:"Собери своё комбо",mixmatch_each:"за штуку",trust_d1:"Доставка 5 миль",trust_d2:"Доставка $3.99",trust_f1:"Свежие продукты",trust_f2:"Вкусно каждый день",trust_l1:"Местные и независимые",trust_l2:"С гордостью служим Питтсбургу"},
 es:{pickup:"Recoger",delivery:"Entrega",address_ph:"Dirección de entrega",check_zone:"Verificar mi zona",
 zone_ok:"¡Entregamos! Tarifa {fee}, ~{eta} min.",menu_builder:"Arma tu pizza",menu_pizza:"Pizzas",menu_salads:"Ensaladas",menu_drinks:"Bebidas",menu_desserts:"Postres",
 add:"Añadir",customize:"Personalizar",back:"Atrás",checkout:"Pagar",your_order:"Su pedido",subtotal:"Subtotal",tax:"Impuesto",
@@ -82,9 +86,10 @@ delivery_fee:"Entrega",tip:"Propina",total:"Total",time_order:"Pedido programado
 phone:"Teléfono",phone_ph:"+1 (___) ___-____",create_account:"Crear una cuenta con este teléfono",payment:"Pago",card:"Tarjeta",
 cant_pay:"No puedo pagar ahora",no_payment_warning:"No podemos aceptar un pedido sin pago. Pague ahora o venga a la tienda y espere.",
 no_order_title:"Sin pago no hay pedido",no_order_created:"No se hizo ningún pedido ni se cobró nada.",ok_pay:"OK — pagaré ahora",
+pay_at_store:"Pagar en la tienda",pay_at_store_note:"Por favor pague al recoger su pedido.",to_pay:"A pagar",
 order_confirmed:"¡Pedido confirmado!",paid:"Pagado",sms_note:"Le avisaremos por SMS cuando esté listo.",
 back_to_menu:"Volver al menú",sample_note:"Datos de demostración: el menú real llegará pronto.",sample_note2:"demo",
-stripe_note:"Pagos procesados por Stripe.",processing:"Procesando…",
+stripe_note:"Pagos procesados por Stripe.",card_soon:"El pago con tarjeta llegará pronto. Por favor pague al recoger.",card_ready_note:"El formulario de tarjeta está listo — el cobro en línea se activará cuando la tienda termine de conectar Stripe.",processing:"Procesando…",
 pickup_eta:"Listo en ~25 min",delivery_eta:"Llega en ~{eta} min",deals:"Ofertas",
 build_title:"Arma tu pizza",size:"1. Tamaño",crust:"2. Masa",sauce:"3. Salsa",cheese:"4. Queso",toppings:"5. Ingredientes",
 your_pizza:"Tu pizza",add_to_cart:"Añadir",half_hint:"Toca un ingrediente y elige Poco / Normal / Extra y mitad Izquierda / Entera / Derecha.",
@@ -102,6 +107,7 @@ taxexempt_text:"Si es una organización sin fines de lucro y no quiere pagar el 
 taxexempt_upload:"Subir documento",taxexempt_sent:"Documento subido — enviado para revisión.",
 taxexempt_simulate:"Simular aprobación (demo)",taxexempt_approved:"¡Aprobado! Sin impuesto sobre las ventas en este pedido.",taxexempt_line:"EXENTO ✓",
 allergy_label:"Nota de alergia para la cocina",allergy_ph:"ej. alergia a frutos secos — se avisará a la cocina",
+allergy_have:"Tengo una alergia alimentaria",allergy_what:"¿A qué eres alérgico?",allergy_what_ph:"ej. tomates, queso, frutos secos…",allergy_need:"Cuéntanos a qué eres alérgico: la cocina lo necesita para preparar tu comida de forma segura.",
 alg_milk:"leche",alg_gluten:"gluten",alg_nuts:"frutos secos",alg_egg:"huevo",alg_soy:"soja",
 paused_title:"Pedidos en línea en pausa temporal",paused_text:"Llámenos o visite la tienda — con gusto tomamos su pedido.",
 out_of_stock:"Agotado",tap_to_add:"Toque para añadir",
@@ -111,7 +117,7 @@ hint_deals:"¡Mira nuestras ofertas de la semana!",hints_off:"no mostrar consejo
 first_order_promo:"¡Regístrate y obtén {p}% de descuento en tu primer pedido!",first_order_disc:"Descuento por registro",
 acct_save:"Con una cuenta este pedido costaría {x} menos ({p}% de descuento)",
 sms_consent:"Acepto recibir mensajes SMS promocionales",email_consent:"Acepto recibir correos promocionales",
-consent_note:"Los consentimientos se guardan en tu perfil de cliente para nuestra futura lista de correo. Puedes retirarlos cuando quieras.",menu_subs:"Subs",menu_appetizers:"Aperitivos",menu_wings:"Alitas",menu_chicken:"Pollo",menu_stromboli:"Stromboli",menu_rolls:"Rollos",menu_breadsticks:"Palitos de pan",menu_kids:"Menú infantil",menu_breakfast:"Desayuno",min_delivery_warn:"El pedido mínimo para entrega es {m} — añade {x} más (recoger no tiene mínimo).",hint_mindel:"La entrega es desde {m} — ¡añade {x} más!",tips:"Propina",tips_note:"La propina es opcional — sin presión. ¡Nuestro equipo la agradece!",tip_custom:"Otra",tip_custom_ph:"Cantidad, ej. 3.50",no_tip:"Sin propina",menu_extra:"Extras",build_sub:"Arma tu sub",kids_title:"¡Comida divertida para pequeños campeones!",kids_desc:"Porciones pequeñas, grandes sonrisas.",build_salad:"Arma tu ensalada",build_drink:"Elige tu bebida",sec_bread:"2. Pan",sec_fillings:"3. Relleno",sec_base:"1. Base",sec_flavor:"2. Sabor",sec_dsize:"1. Tamaño",your_build:"Tu creación",free_sauce:"Salsa gratis",free:"gratis",hint_sauce:"¿Quieres añadir una salsa extra?",dip_ranch:"Ranch",dip_marinara:"Marinara",dip_garlic:"Mantequilla de ajo",dip_bbq:"BBQ",extra_dip_name:"Salsa extra",extra_dip_desc:"Vaso 2 oz — ranch, marinara, ajo o BBQ",allergy_tag:"Alergia",reorder_tab:"Pedir de nuevo",reorder_empty:"Aún no hay pedidos anteriores — tu historial aparecerá aquí.",reorder_repeat:"Repetir",mixmatch_title:"Combo «Arma el tuyo»",mixmatch_desc:"Elige 2 de la lista — {p} cada uno.",mixmatch_pick:"Elige 2",mixmatch_add:"Añadir combo",mixmatch_need:"Elige 2 artículos para añadir el combo",tracker_title:"¿Dónde está mi pizza?",tracker_ph:"Número de pedido, ej. LF-123456",tracker_btn:"Rastrear",tracker_notfound:"Pedido no encontrado — revisa el número del recibo.",tr_prep:"Preparando",tr_oven:"En el horno",tr_way:"En camino",tr_ready:"Lista para recoger",tr_eta:"~{n} min",sec_size:"1. Tamaño",sec_cheese:"4. Queso",sec_veggies:"5. Verduras",sec_protein:"2. Proteína",sec_ingr:"3. Ingredientes",sec_dressing:"4. Aderezo",multi_hint:"toca para elegir",style:"Estilo",build_wings:"Arma tus alitas",sec_count:"1. Cantidad",sec_wtype:"2. Estilo",p_none:"sin",cheese_none:"Sin queso",edit_item:"Editar",save_item:"Guardar",promo_ph:"Código promo",promo_apply:"Aplicar",promo_ok:"Promo aplicado: -{p}%",promo_bad:"Ese código no funciona",promo_disc:"Descuento promo",upsell_title:"¿Añadir a tu pedido?",tagline:"PIZZA • WINGS • SUBS",mixmatch_sub:"Arma tu propio combo",mixmatch_each:"c/u",trust_d1:"Entrega 5 millas",trust_d2:"Entrega $3.99",trust_f1:"Ingredientes frescos",trust_f2:"Gran sabor, cada día",trust_l1:"Local e independiente",trust_l2:"Sirviendo a Pittsburgh con orgullo"}
+consent_note:"Los consentimientos se guardan en tu perfil de cliente para nuestra futura lista de correo. Puedes retirarlos cuando quieras.",menu_subs:"Subs",menu_appetizers:"Aperitivos",menu_wings:"Alitas",menu_chicken:"Pollo",menu_stromboli:"Stromboli",menu_rolls:"Rollos",menu_breadsticks:"Palitos de pan",menu_kids:"Menú infantil",menu_breakfast:"Desayuno",min_delivery_warn:"El pedido mínimo para entrega es {m} — añade {x} más (recoger no tiene mínimo).",hint_mindel:"La entrega es desde {m} — ¡añade {x} más!",tips:"¿Añadir una propina?",tips_note:"Agradece al equipo — la propina es opcional, sin ninguna presión.",tip_custom:"Otra",tip_custom_ph:"Cantidad, ej. 3.50",no_tip:"Sin propina",menu_extra:"Extras",build_sub:"Arma tu sub",kids_title:"¡Comida divertida para pequeños campeones!",kids_desc:"Porciones pequeñas, grandes sonrisas.",build_salad:"Arma tu ensalada",build_drink:"Elige tu bebida",sec_bread:"2. Pan",sec_fillings:"3. Relleno",sec_base:"1. Base",sec_flavor:"2. Sabor",sec_dsize:"1. Tamaño",your_build:"Tu creación",free_sauce:"Salsa gratis",free:"gratis",hint_sauce:"¿Quieres añadir una salsa extra?",dip_ranch:"Ranch",dip_marinara:"Marinara",dip_garlic:"Salsa de ajo",dip_hot:"Picante",dip_bbq:"BBQ",extra_dip_name:"Salsa extra",extra_dip_desc:"Vaso 2 oz — marinara, ranch, BBQ, picante o salsa de ajo",allergy_tag:"Alergia",reorder_tab:"Pedir de nuevo",reorder_empty:"Aún no hay pedidos anteriores — tu historial aparecerá aquí.",reorder_repeat:"Repetir",mixmatch_title:"Combo «Arma el tuyo»",mixmatch_desc:"Elige 2 de la lista — {p} cada uno.",mixmatch_pick:"Elige 2",mixmatch_add:"Añadir combo",mixmatch_need:"Elige 2 artículos para añadir el combo",tracker_title:"¿Dónde está mi pizza?",tracker_ph:"Número de pedido, ej. LF-123456",tracker_btn:"Rastrear",tracker_notfound:"Pedido no encontrado — revisa el número del recibo.",tr_prep:"Preparando",tr_oven:"En el horno",tr_way:"En camino",tr_ready:"Lista para recoger",tr_eta:"~{n} min",sec_size:"1. Tamaño",sec_cheese:"4. Queso",sec_veggies:"5. Verduras",sec_protein:"2. Proteína",sec_ingr:"3. Ingredientes",sec_dressing:"4. Aderezo",multi_hint:"toca para elegir",style:"Estilo",build_wings:"Arma tus alitas",sec_count:"1. Cantidad",sec_wtype:"2. Estilo",p_none:"sin",cheese_none:"Sin queso",edit_item:"Editar",save_item:"Guardar",promo_ph:"Código promo",promo_apply:"Aplicar",promo_ok:"Promo aplicado: -{p}%",promo_bad:"Ese código no funciona",promo_disc:"Descuento promo",upsell_title:"¿Añadir a tu pedido?",tagline:"PIZZA • WINGS • SUBS",mixmatch_sub:"Arma tu propio combo",mixmatch_each:"c/u",trust_d1:"Entrega 5 millas",trust_d2:"Entrega $3.99",trust_f1:"Ingredientes frescos",trust_f2:"Gran sabor, cada día",trust_l1:"Local e independiente",trust_l2:"Sirviendo a Pittsburgh con orgullo"}
 };
 let LANG='en';
 const t=k=>(T[LANG]&&T[LANG][k])||T.en[k]||k;
@@ -166,6 +172,16 @@ function artForItem(it){
 }
 const findItem=id=>{for(const c of CATS){const it=(MENU[c.id]||[]).find(x=>x.id===id);if(it)return{cat:c.id,it};}return null;};
 const basePrice=it=>Math.min(...it.sizes.map(x=>x.price));
+/* Calories — from the `cal` fields in menu-data.js ONLY (owner fills them
+   once there; see the CALORIES convention in that file). Sized item → cal
+   on the size object; single-price item → cal on the item. Absent (null)
+   everywhere = calories are never shown, summed or printed. */
+const itemCal=(it,sz)=>{
+  if(sz&&typeof sz.cal==='number')return sz.cal;
+  if(typeof it.cal==='number')return it.cal;
+  if(!sz&&it.sizes&&it.sizes.length===1&&typeof it.sizes[0].cal==='number')return it.sizes[0].cal;
+  return null;
+};
 /* TAX_BPS / DELIVERY_FEE / MIN_DELIVERY_TOTAL live in menu-data.js (single source). */
 /* ===== editable store constants (owner-editable later via admin) ===== */
 const STORE={phone:'(412) 358-9770',addrShort:'3324 Babcock Blvd, Pittsburgh',addrFull:'3324 Babcock Blvd, Pittsburgh, PA 15237'};
@@ -270,7 +286,7 @@ function renderReorderTab(g){
     info.innerHTML=`<b>#${o.num}</b> <span style="color:#666">&bull; ${dt} &bull; ${fmt(o.total)}</span><br>${o.lines.map(l=>l.qty+'&times; '+l.name).join(', ')}`;
     const b=document.createElement('button');b.textContent=t('reorder_repeat');b.style.cssText='margin-top:8px';
     b.onclick=()=>{o.lines.forEach(l=>cart.push({name:l.name,name_en:l.name_en||l.name,desc:'',desc_en:'',
-      unit:l.unit,qty:l.qty,ill:l.ill||'pizza'}));renderCart();activeCat='pizza';renderChips();renderMenu();};
+      unit:l.unit,qty:l.qty,ill:l.ill||'pizza',...(typeof l.cal==='number'?{cal:l.cal}:{})}));renderCart();activeCat='pizza';renderChips();renderMenu();};
     d.appendChild(info);d.appendChild(b);g.appendChild(d);});
 }
 
@@ -468,17 +484,23 @@ function illSVG(kind){
 
 /* ================= menu / deals / reorder ================= */
 const cart=[]; // {name,desc,unit,qty,ill,allergy,cfg}
+/* ONE order-level allergy state (§10.8.4): ticked in the pizza builder
+   (top, above the toppings) or at checkout — the SAME shared state in
+   both places, applying to EVERY line of the order. A line's own
+   `allergy` note (the legacy per-item path) is preserved and merged
+   with it at order time, never clobbered. */
+const orderAllergy={on:false,text:''};
 /* PROMOS (promo codes + discount %) live in menu-data.js (single source). */
 let promo=null; // {code,pct} once applied
 let upsTab='sauces';
 let taxEx={uploaded:false,approved:false}; // tax-exempt org flow (STUB: production verifies via /v1/org-documents)
-let orderType='pickup', zoneOk=false, tipPct=15, tipFixed=null, activeCat='pizza'; /* tipFixed: custom tip in cents; null = use tipPct */
+let orderType='pickup', zoneOk=false, tipPct=0, tipFixed=null, activeCat='pizza'; /* tip: NOTHING pre-selected (§10.4 — gentle window, the customer chooses; tipFixed: custom tip in cents; null = use tipPct) */
 const mname=o=>o.name[LANG]||o.name.en, mdesc=o=>o.desc[LANG]||o.desc.en;
 
 function applyLang(){
   document.querySelectorAll('[data-t]').forEach(el=>el.textContent=t(el.dataset.t));
   document.querySelectorAll('[data-ph]').forEach(el=>el.placeholder=t(el.dataset.ph));
-  document.querySelectorAll('#lang button').forEach(b=>b.classList.toggle('on',b.dataset.l===LANG));
+  document.querySelectorAll('#langMenu button').forEach(b=>b.classList.toggle('on',b.dataset.l===LANG));
   renderDeals();renderMixMatch();renderChips();renderMenu();updateBuilder();renderCart();renderReorder();renderCity();
   document.getElementById('fAddr').textContent=t('f_addr');
   document.getElementById('fPhone').textContent=STORE.phone;
@@ -486,7 +508,16 @@ function applyLang(){
   const hp=document.getElementById('hPhone');if(hp)hp.textContent=STORE.phone;
   applyPausedBanner();
 }
-document.querySelectorAll('#lang button').forEach(b=>b.onclick=()=>{LANG=b.dataset.l;applyLang();});
+/* Languages dropdown: one "Languages" button; the menu lists English / Русский / Español,
+   the active language is highlighted; outside click or Escape closes it without changing anything. */
+const langBtn=document.getElementById('langBtn'),langMenu=document.getElementById('langMenu');
+function closeLangMenu(){if(!langMenu)return;langMenu.hidden=true;if(langBtn)langBtn.setAttribute('aria-expanded','false');}
+if(langBtn&&langMenu){
+  langBtn.onclick=e=>{e.stopPropagation();const open=langMenu.hidden;langMenu.hidden=!open;langBtn.setAttribute('aria-expanded',String(open));};
+  langMenu.querySelectorAll('button').forEach(b=>b.onclick=e=>{e.stopPropagation();LANG=b.dataset.l;applyLang();closeLangMenu();});
+  document.addEventListener('click',e=>{if(!e.target.closest('#langWrap'))closeLangMenu();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLangMenu();});
+}
 
 function renderDeals(){
   const d=document.getElementById('deals');d.innerHTML='';
@@ -511,7 +542,10 @@ function menuCard(it){
   const d=document.createElement('div');d.className='card'+(it.outOfStock?' oos':'');
   const from=basePrice(it),multi=it.sizes.length>1;
   const alg=(it.allergens||[]).map(a=>`<span>${t('alg_'+a)}</span>`).join('');
-  d.innerHTML=`${artForItem(it)}<div class="info"><div class="name">${mname(it)}${it.isNew?`<span class="newbadge">${t('new_badge')}</span>`:''}</div><div class="desc">${mdesc(it)}${multi?' • '+it.sizes.map(x=>x.label).join(' / '):''}</div><div class="allg">${alg}</div><div class="price">${fmt(from)}+</div><div class="row"></div></div>`;
+  const sizeSeg=multi
+    ?' • '+it.sizes.map(x=>{const c=itemCal(it,x);return x.label+(c!=null?' '+c+' cal':'');}).join(' / ')
+    :(()=>{const c=itemCal(it,it.sizes[0]);return c!=null?' • '+c+' cal':'';})();
+  d.innerHTML=`${artForItem(it)}<div class="info"><div class="name">${mname(it)}${it.isNew?`<span class="newbadge">${t('new_badge')}</span>`:''}</div><div class="desc">${mdesc(it)}${sizeSeg}</div><div class="allg">${alg}</div><div class="price">${fmt(from)}+</div><div class="row"></div></div>`;
   const row=d.querySelector('.row');
   if(it.outOfStock){
     const b=document.createElement('button');b.className='oosbtn';b.disabled=true;
@@ -519,7 +553,8 @@ function menuCard(it){
   }else{
     if(multi&&!it.builder&&!it.preset){
       it.sizes.forEach((sz,idx)=>{const b=document.createElement('button');
-        b.innerHTML=`${sz.label} \u2014 ${fmt(sz.price)}`;
+        const c=itemCal(it,sz);
+        b.innerHTML=`${sz.label} \u2014 ${fmt(sz.price)}`+(c!=null?` \u00b7 ${c} cal`:'');
         b.onclick=e=>{e.stopPropagation();quickAdd(it,b,idx);};row.appendChild(b);});
     }else{
       const b=document.createElement('button');b.textContent=t('add');
@@ -567,6 +602,7 @@ function quickAdd(it,fromEl,si){
   if(isPaused())return;
   const s=it.sizes[si||0];
   const line={name:mname(it),name_en:it.name.en,desc:s.label,desc_en:s.label,qty:1,unit:s.price,ill:it.art};
+  const qc=itemCal(it,s);if(qc!=null)line.cal=qc; // calories ride the cart line (order + kitchen ticket) when known
   if(it.art==='pizza')line.freeDip=FREE_DIP_DEFAULT; // every pizza comes with 1 free sauce (ranch default)
   cart.push(line);
   renderCart();  /* shows the bar now that the cart is non-empty — before we measure it */

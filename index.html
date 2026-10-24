@@ -19,7 +19,7 @@
   </div>
   <div class="hctl">
     <button id="cityBtn"><span id="cityName">Pittsburgh</span></button>
-    <div id="lang"><button data-l="en" class="on">EN</button><button data-l="ru">RU</button><button data-l="es">ES</button></div>
+    <div id="langWrap"><button id="langBtn" type="button" aria-haspopup="menu" aria-expanded="false">Languages ▾</button><div id="langMenu" role="menu" hidden><button type="button" role="menuitem" data-l="en" class="on">English</button><button type="button" role="menuitem" data-l="ru">Русский</button><button type="button" role="menuitem" data-l="es">Español</button></div></div>
   </div>
 </header>
 <div class="hcontact"><span data-t="f_addr">3324 Babcock Blvd, Pittsburgh, PA 15237</span><span class="cdot">•</span><a id="hPhone" href="tel:+14123589770">(412) 358-9770</a><span class="cdot">•</span><span data-t="f_hours">Tue–Sat 8:00 AM – 10:00 PM, Sun 10:00 AM – 9:00 PM, Mon closed</span></div>
@@ -87,7 +87,7 @@
 </div>
 
 <!-- GENERIC BUILDER (subs / salads / drinks) -->
-<div class="sheet" id="gSheet"><div class="panel">
+<div class="sheet" id="gSheet"><button type="button" class="fixedback" id="gBackFixed">&#8592; <span data-t="back">Back</span></button><div class="panel">
   <div id="gHead"><h2 class="logostyle" id="gTitle"></h2><button id="gClose">✕</button></div>
   <div id="gBody"></div>
   <button id="gAdd"></button>
@@ -111,7 +111,7 @@
 </div></div>
 
 <!-- PIZZA BUILDER -->
-<div class="sheet" id="bSheet"><div class="panel">
+<div class="sheet" id="bSheet"><button type="button" class="fixedback" id="bBackFixed">&#8592; <span data-t="back">Back</span></button><div class="panel">
   <div id="bHead"><h2 class="logostyle"><span data-t="build_title">Build your pizza</span></h2><button id="bClose">✕</button></div>
   <div id="bBody">
     <div id="pizzaStage"><svg id="pizzaSvg" viewBox="0 0 200 200" aria-label="pizza preview"></svg></div>
@@ -146,7 +146,7 @@
     <b class="logostyle" data-t="tips">Tips</b>
     <p class="note" data-t="tips_note">Tips are optional — no pressure.</p>
     <div class="tipr" id="tips">
-      <button data-tip="10">10%</button><button data-tip="15" class="on">15%</button><button data-tip="20">20%</button>
+      <button data-tip="10">10%</button><button data-tip="15">15%</button><button data-tip="20">20%</button>
       <button id="tipCustomBtn" data-t="tip_custom">Custom</button>
       <button id="tipNo" data-t="no_tip">No tip</button>
     </div>
@@ -192,6 +192,14 @@
 
   <h2 style="margin-top:14px" class="logostyle"><span data-t="payment">Payment</span></h2>
   <button class="paybtn" id="payCard"><span data-t="card">Card</span></button>
+  <!-- Stage C1 card area: with no publishable key configured this shows
+       the plain "coming soon" note; with a key, Stripe.js Elements mount
+       into #cardElement (card data goes straight to Stripe, never here). -->
+  <div id="cardBox" style="display:none;margin:8px 0">
+    <p class="note" id="cardSoon" style="display:none;font-size:14px"><span data-t="card_soon">Card payment — coming soon. Please pay at pickup.</span></p>
+    <div id="cardElement" style="display:none;border:3px solid var(--black);border-radius:10px;padding:12px;background:#fff"></div>
+    <p class="note" id="cardReadyNote" style="display:none"><span data-t="card_ready_note">Card form ready — online card charging turns on when the store finishes connecting Stripe.</span></p>
+  </div>
   <button class="paybtn" id="payApple">Apple Pay</button>
   <button class="paybtn" id="payGoogle">Google Pay</button>
   <button class="ghostbtn" id="noPay" data-t="cant_pay">I can't pay right now</button>
@@ -245,6 +253,7 @@
 <script src="photos-4.js"></script>
 <script src="photos-5.js"></script>
 <script src="menu-data.js"></script>
+<script src="stripe-config.js"></script>
 <script>
 /* La Felice data loader — menu, prices AND photos have ONE source on the
    program host. The local copies above (menu-data.js, photos-1..5.js) are the
@@ -294,9 +303,5 @@
 })();
 </script>
 
-<!-- LA FELICE UPDATE BUTTON (shared by all screens; version source: ../launcher/version.json) -->
-<style>#lfUpd{position:fixed;right:12px;bottom:12px;z-index:9999;font-family:"Arial Black",Arial,sans-serif;font-size:13px;background:#141414;color:#FFC928;border:3px solid #FFC928;border-radius:12px;padding:8px 13px;cursor:pointer;box-shadow:4px 4px 0 rgba(0,0,0,.35)}#lfUpd:active{transform:translate(2px,2px);box-shadow:2px 2px 0 rgba(0,0,0,.35)}#lfUpd.new{background:#2E9E5B;color:#fff;border-color:#141414}</style>
-<button id="lfUpd" type="button" title="Update / Obnovit'">&#8635; UPDATE</button>
-<script>(function(){var KEY='la-felice.version';var btn=document.getElementById('lfUpd');function live(){return fetch('../launcher/version.json?ts='+Date.now(),{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){return j&&j.version?String(j.version):null}).catch(function(){return null})}live().then(function(v){var seen=localStorage.getItem(KEY);if(v&&seen&&seen!==v){btn.classList.add('new');btn.innerHTML='&#11014; UPDATE &mdash; NEW!';}});btn.addEventListener('click',function(){live().then(function(v2){if(v2)localStorage.setItem(KEY,v2);function go(){var u=new URL(location.href);if(v2)u.searchParams.set('v',v2);location.replace(u.toString());}if('caches' in window){caches.keys().then(function(ks){return Promise.all(ks.map(function(k){return caches.delete(k)}))}).then(go).catch(go);}else{go();}});});})();</script>
 </body>
 </html>

@@ -1,24 +1,134 @@
+/* ================= ALLERGY — ONE order-level block (§10.8.4) =================
+   Allergy is NOT a topping tweak and NOT a buried comment field: ONE
+   block for the whole order — a checkbox "I have a food allergy" and a
+   text field that appears when it is ticked. The block sits at the TOP
+   of the pizza builder (above the toppings — the builder's old bottom
+   note section is rebuilt as this block and moved up) and again at the
+   TOP of the checkout form, before payment. Both blocks edit the SAME
+   shared state (orderAllergy, app.js): fill it in the builder and it
+   shows filled at checkout, editable in both places. Unticked = the
+   customer just skips the block, nothing blocks the order. Ticked but
+   empty = checkout stops with a gentle prompt to name the allergen.
+   At order time the state feeds the EXISTING kitchen-ticket contract:
+   EVERY item carries allergyAlert + the 'ALLERGY: <text>' note — a
+   line's own per-item allergy note is merged in, never clobbered. */
+let allergyNudged=false; // a submit was blocked → the gentle prompt shows
+function allergyText(){return orderAllergy.on?orderAllergy.text.trim():'';}
+function effAllergy(l){
+  const oa=allergyText(),own=((l&&l.allergy)||'').trim();
+  if(oa&&own&&own!==oa)return oa+' + '+own;
+  return oa||own||null;
+}
+function allergyValid(){return !orderAllergy.on||!!allergyText();}
+function allergyBlock(ids){
+  const wrap=document.createElement('div');
+  wrap.className='algbox';if(ids.box)wrap.id=ids.box;
+  const row=document.createElement('label');row.className='algrow';
+  const chk=document.createElement('input');chk.type='checkbox';chk.id=ids.chk;
+  const warn=document.createElement('span');warn.className='algwarn';warn.textContent='⚠';
+  const bold=document.createElement('b');bold.setAttribute('data-t','allergy_have');bold.textContent=t('allergy_have');
+  row.appendChild(chk);row.appendChild(warn);row.appendChild(bold);
+  const field=document.createElement('div');field.className='algfield';field.id=ids.field;field.hidden=true;
+  const lab=document.createElement('label');lab.setAttribute('data-t','allergy_what');lab.textContent=t('allergy_what');lab.htmlFor=ids.note;
+  const note=document.createElement('input');note.id=ids.note;note.type='text';note.setAttribute('autocomplete','off');
+  note.setAttribute('data-ph','allergy_what_ph');note.placeholder=t('allergy_what_ph');
+  field.appendChild(lab);field.appendChild(note);
+  const msg=document.createElement('div');msg.className='algmsg';msg.id=ids.msg;msg.hidden=true;
+  msg.setAttribute('data-t','allergy_need');msg.textContent=t('allergy_need');
+  wrap.appendChild(row);wrap.appendChild(field);wrap.appendChild(msg);
+  return wrap;
+}
+function syncAllergyUI(){
+  [['allergyChk','allergyNote','allergyField','allergyMsg'],
+   ['coAllergyChk','coAllergyNote','coAllergyField','coAllergyMsg']].forEach(function(ids){
+    const chk=document.getElementById(ids[0]),note=document.getElementById(ids[1]),
+          fld=document.getElementById(ids[2]),msg=document.getElementById(ids[3]);
+    if(!chk)return;
+    chk.checked=orderAllergy.on;
+    if(note&&document.activeElement!==note)note.value=orderAllergy.text;
+    if(fld)fld.hidden=!orderAllergy.on;
+    if(msg)msg.hidden=!(allergyNudged&&orderAllergy.on&&!orderAllergy.text.trim());
+  });
+}
+function wireAllergy(chkId,noteId){
+  const chk=document.getElementById(chkId),note=document.getElementById(noteId);
+  if(chk)chk.addEventListener('change',function(){
+    orderAllergy.on=chk.checked;syncAllergyUI();renderCart();
+    if(chk.checked&&note)note.focus();
+  });
+  if(note)note.addEventListener('input',function(){
+    orderAllergy.text=note.value;syncAllergyUI();renderCart();
+  });
+}
+function allergyGate(){
+  if(allergyValid())return true;
+  allergyNudged=true;syncAllergyUI();
+  const box=document.getElementById('coAlgBox');
+  if(box&&box.scrollIntoView)box.scrollIntoView({behavior:'smooth',block:'center'});
+  const note=document.getElementById('coAllergyNote');if(note)note.focus();
+  return false;
+}
+(function initAllergyUI(){
+  /* Builder: rebuild the old bottom note section as the shared block
+     and move it to the very top of the builder — first thing seen,
+     above size and above the toppings. The text input keeps its
+     #allergyNote id (the builder already reads/writes that id). */
+  const sec=document.getElementById('bs-allergy');
+  if(sec){
+    sec.innerHTML='';
+    sec.appendChild(allergyBlock({chk:'allergyChk',field:'allergyField',note:'allergyNote',msg:'allergyMsg'}));
+    const body=document.getElementById('bBody');
+    if(body)body.insertBefore(sec,body.firstChild);
+  }
+  /* Checkout: the same block at the top of the form, before Name/payment. */
+  const nameInput=document.getElementById('cName');
+  const nameField=nameInput&&nameInput.closest('.field');
+  if(nameField&&nameField.parentNode)
+    nameField.parentNode.insertBefore(
+      allergyBlock({box:'coAlgBox',chk:'coAllergyChk',field:'coAllergyField',note:'coAllergyNote',msg:'coAllergyMsg'}),
+      nameField);
+  /* Cart summary: the visible "⚠ Allergy: …" line under the cart lines. */
+  const linesEl=document.getElementById('lines');
+  if(linesEl&&linesEl.parentNode){
+    const line=document.createElement('div');
+    line.id='cartAllergyLine';line.className='algline';line.hidden=true;
+    linesEl.parentNode.insertBefore(line,linesEl.nextSibling);
+  }
+  wireAllergy('allergyChk','allergyNote');
+  wireAllergy('coAllergyChk','coAllergyNote');
+  syncAllergyUI();
+})();
+
 /* ================= PIZZA BUILDER ================= */
-const B={size:0,crust:0,sauce:0,cheese:'normal',shape:'round',tops:{},qty:1,freeDip:'ranch',xdips:[],editIdx:null};
+/* Extra-dip QUANTITIES (owner requirement 2026-10-24): xdips is a map
+   id -> qty (0 = not ordered). normXdips accepts the old array form
+   (each entry = 1) so saved/edited lines keep working. */
+function normXdips(x){ if(!x) return {}; if(Array.isArray(x)){ const m={}; x.forEach(d=>{m[d]=(m[d]||0)+1;}); return m; } const m={}; Object.keys(x).forEach(d=>{ if(x[d]>0) m[d]=x[d]; }); return m; }
+function xdipEntries(x){ const m=normXdips(x); return Object.keys(m).map(d=>({id:d,qty:m[d]})); }
+function xdipTotal(x){ return xdipEntries(x).reduce((a,e)=>a+e.qty,0); }
+const B={size:0,crust:0,sauce:0,cheese:'normal',shape:'round',tops:{},qty:1,freeDip:'ranch',xdips:{},editIdx:null};
 function openBuilder(presetItem,edit){
   if(edit&&edit.cfg){const c=edit.cfg;  // "Edit" from cart: reopen with the saved configuration
     B.size=c.size;B.crust=c.crust;B.sauce=c.sauce;B.cheese=c.cheese;B.shape=c.shape||'round';
-    B.freeDip=c.freeDip;B.xdips=[...c.xdips];B.tops=JSON.parse(JSON.stringify(c.tops));
+    B.freeDip=c.freeDip;B.xdips=normXdips(c.xdips);B.tops=JSON.parse(JSON.stringify(c.tops));
     B.editIdx=edit.idx;
     B.qty=cart[edit.idx]?cart[edit.idx].qty:1;
   }else{
-    B.size=0;B.crust=0;B.sauce=0;B.cheese='normal';B.shape='round';B.qty=1;B.freeDip=FREE_DIP_DEFAULT;B.xdips=[];
+    B.size=0;B.crust=0;B.sauce=0;B.cheese='normal';B.shape='round';B.qty=1;B.freeDip=FREE_DIP_DEFAULT;B.xdips={};
     B.tops=presetItem&&presetItem.preset?JSON.parse(JSON.stringify(presetItem.preset)):{};
     if(presetItem&&presetItem.sizes.length>1){/* keep default size */}
     B.editIdx=null;
   }
   buildBuilderUI();updateBuilder();
-  /* restore the line's allergy note when editing — never silently drop it */
-  document.getElementById('allergyNote').value=(edit&&edit.idx!=null&&cart[edit.idx]&&cart[edit.idx].allergy)||'';
+  /* The builder block shows the ORDER-level allergy state (§10.8.4),
+     shared with checkout. A line's own per-item note is never restored
+     into it (and never dropped either — bAdd preserves it on save). */
+  syncAllergyUI();
   document.getElementById('bSheet').classList.add('open');
   document.getElementById('bBody').scrollTop=0;
 }
 document.getElementById('bClose').onclick=()=>document.getElementById('bSheet').classList.remove('open');
+document.getElementById('bBackFixed').onclick=()=>document.getElementById('bSheet').classList.remove('open');
 
 function segBtn(label,price,on,fn,next){
   const b=document.createElement('button');if(on)b.classList.add('on');
@@ -48,16 +158,34 @@ function buildBuilderUI(){
     lbl.id='bXDipsLbl';document.getElementById('bs-dip').appendChild(lbl);document.getElementById('bs-dip').appendChild(xd);}
   document.getElementById('bXDipsLbl').textContent=t('extra_dip_name')+' (+'+fmt(EXTRA_DIP_PRICE)+')';
   xd.innerHTML='';
-  DIPS.forEach(d=>{const b=document.createElement('button');if(B.xdips.includes(d.id))b.classList.add('on');
-    b.innerHTML=t('dip_'+d.id)+` <span class="p">+${fmt(EXTRA_DIP_PRICE)}</span>`;
-    b.onclick=()=>{const i=B.xdips.indexOf(d.id);if(i>=0)B.xdips.splice(i,1);else B.xdips.push(d.id);buildBuilderUI();updateBuilder();};
-    xd.appendChild(b);});
+  DIPS.forEach(d=>{
+    const q=B.xdips[d.id]||0;
+    const row=document.createElement('div');
+    row.style.cssText='display:flex;align-items:center;gap:8px;width:100%;padding:6px 0';
+    const nm=document.createElement('span');nm.style.flex='1';nm.textContent=t('dip_'+d.id)+` (+${fmt(EXTRA_DIP_PRICE)})`;
+    const minus=document.createElement('button');minus.textContent='\u2212';
+    minus.style.cssText='border:3px solid var(--black);border-radius:8px;background:#fff;width:32px;height:32px;font-size:18px;font-weight:bold;cursor:pointer';
+    minus.onclick=()=>{const v=(B.xdips[d.id]||0)-1;if(v<=0)delete B.xdips[d.id];else B.xdips[d.id]=v;buildBuilderUI();updateBuilder();};
+    const val=document.createElement('span');val.style.cssText='min-width:24px;text-align:center;font-weight:bold';val.textContent=q;
+    const plus=document.createElement('button');plus.textContent='+';
+    plus.style.cssText='border:3px solid var(--black);border-radius:8px;background:var(--yellow);width:32px;height:32px;font-size:18px;font-weight:bold;cursor:pointer';
+    plus.onclick=()=>{B.xdips[d.id]=(B.xdips[d.id]||0)+1;buildBuilderUI();updateBuilder();};
+    row.appendChild(nm);row.appendChild(minus);row.appendChild(val);row.appendChild(plus);
+    xd.appendChild(row);});
+  /* Topping price is the SAME for all toppings — it only varies by pizza
+     size (owner requirement 2026-10-24). Price lives ONCE here, in the
+     section header, and follows size/crust changes because buildBuilderUI
+     re-runs on every such change. Rows and half buttons stay plain. */
+  let tp2=document.getElementById('bTopsPrice');
+  if(!tp2){tp2=document.createElement('div');tp2.id='bTopsPrice';tp2.style.cssText='font-family:Arial;font-size:12px;margin:2px 0 6px';
+    document.getElementById('bs-tops').insertBefore(tp2,document.getElementById('bTops'));}
+  tp2.textContent='\u2022 \u00bd +'+fmt(TOPPING_PRICE[builderSizeKey()].half)+' / '+t('h_whole')+' +'+fmt(TOPPING_PRICE[builderSizeKey()].whole);
   const tw=document.getElementById('bTops');tw.innerHTML='';
   BUILDER.tops.forEach(tp=>{
     const st=B.tops[tp.id],on=!!st;
     const row=document.createElement('div');row.className='toprow'+(on?' on':'');
     row.innerHTML=`<div class="tophead"><span class="tdot" style="background:${tp.color}"></span>
-      <span class="tname">${tname(tp)}</span><span class="tprice">+${fmt(TOPPING_PRICE[builderSizeKey()].half)}/${fmt(TOPPING_PRICE[builderSizeKey()].whole)}</span>
+      <span class="tname">${tname(tp)}</span>
       <button class="tcheck">${on?'✓':''}</button></div><div class="topopts"></div>`;
     const opts=row.querySelector('.topopts');
     if(on){
@@ -85,8 +213,26 @@ function builderPrice(){
   let p=(csz.base||BUILDER.sizes[B.size].price)+csz.price+BUILDER.sauces[B.sauce].price;
   const ch=BUILDER.cheese.find(c=>c.id===B.cheese);p+=ch.price;
   Object.keys(B.tops).forEach(tid=>{const tp=BUILDER.tops.find(x=>x.id===tid);if(tp)p+=toppingPrice(tp);});
-  p+=B.xdips.length*EXTRA_DIP_PRICE;
+  p+=xdipTotal(B.xdips)*EXTRA_DIP_PRICE;
   return p;
+}
+/* Calories in the builder (menu-data.js `cal` fields only — see the
+   CALORIES convention there): base = BUILDER.sizes[size].cal (crust +
+   sauce + cheese for that size); each topping adds its cal — a number
+   (whole normal portion) or an object keyed like TOPPING_PRICE. Base
+   unknown → null → the calorie line is hidden entirely. */
+function toppingCal(tp){
+  if(!tp||tp.cal==null)return null;
+  if(typeof tp.cal==='number')return tp.cal;
+  const v=tp.cal[builderSizeKey()];
+  return typeof v==='number'?v:null;
+}
+function builderCalories(){
+  const sz=BUILDER.sizes[B.size];
+  if(!sz||typeof sz.cal!=='number')return null;
+  let total=sz.cal;
+  Object.keys(B.tops).forEach(tid=>{const c=toppingCal(BUILDER.tops.find(x=>x.id===tid));if(c!=null)total+=c;});
+  return total;
 }
 function pizzaSummary(){
   const csz=BUILDER.crusts[B.crust];
@@ -97,13 +243,15 @@ function pizzaSummary(){
   tn.forEach(tid=>{const tp=BUILDER.tops.find(x=>x.id===tid),st=B.tops[tid];
     parts.push(`${tname(tp)} (${t('p_'+st.p)}, ${t('h_'+st.h)})`);});
   parts.push(t('free_sauce')+': '+t('dip_'+B.freeDip));
-  if(B.xdips.length)parts.push(t('extra_dip_name')+': '+B.xdips.map(d=>t('dip_'+d)).join(', '));
+  const xe0=xdipEntries(B.xdips);if(xe0.length)parts.push(t('extra_dip_name')+': '+xe0.map(e=>t('dip_'+e.id)+(e.qty>1?' \u00d7'+e.qty:'')).join(', '));
   if(B.shape!=='round')parts.push(tname(BUILDER.shapes.find(x=>x.id===B.shape)));
   return parts.join(' • ');
 }
 function updateBuilder(){
   renderPizzaSVG();
-  document.getElementById('bsummary').innerHTML='<b>'+pizzaSummary()+'</b>';
+  const bc=builderCalories();
+  document.getElementById('bsummary').innerHTML='<b>'+pizzaSummary()+'</b>'
+    +(bc!=null?`<div class="cal-line">${bc} cal</div>`:'');
   const p=builderPrice();
   /* quantity stepper (created once, lives next to the Add button) */
   let qc=document.getElementById('bQtyCtl');
@@ -121,12 +269,20 @@ function updateBuilder(){
 document.getElementById('bAdd').onclick=()=>{
   if(isPaused())return;
   const p=builderPrice();
-  const an=document.getElementById('allergyNote').value.trim();
+  /* Pull the builder block straight into the shared order state (belt &
+     braces on top of the live input handlers). The pizza line itself
+     carries NO order allergy — orderAllergy covers the whole order at
+     ticket time; only a pre-existing per-item note on an edited line is
+     preserved, so editing can never silently drop it. */
+  const bChk=document.getElementById('allergyChk'),bNote=document.getElementById('allergyNote');
+  if(bChk&&bNote){orderAllergy.on=bChk.checked;orderAllergy.text=bNote.value;syncAllergyUI();}
+  const prevAlg=B.editIdx!=null&&cart[B.editIdx]?cart[B.editIdx].allergy||null:null;
   const line={name:t('build_title'),name_en:T.en.build_title,
     desc:pizzaSummary(),desc_en:withLang('en',pizzaSummary),unit:p,qty:B.qty,ill:'pizza',xcheese:(B.cheese==='extra'),
-    freeDip:B.freeDip,xdips:[...B.xdips],allergy:an||null,
+    freeDip:B.freeDip,xdips:Object.assign({},B.xdips),allergy:prevAlg,
     cfg:{kind:'pizza',size:B.size,crust:B.crust,sauce:B.sauce,cheese:B.cheese,shape:B.shape,
-      tops:JSON.parse(JSON.stringify(B.tops)),freeDip:B.freeDip,xdips:[...B.xdips]}};
+      tops:JSON.parse(JSON.stringify(B.tops)),freeDip:B.freeDip,xdips:Object.assign({},B.xdips)}};
+  const bc=builderCalories();if(bc!=null)line.cal=bc; // per-pizza total (base + toppings), rides into order + ticket
   if(B.editIdx!=null){cart[B.editIdx]=line;B.editIdx=null;}  // "Edit" → replace, don't duplicate
   else cart.push(line);
   // TODO(server): allergy note must print on the kitchen ticket — packages/api lib/tickets.ts
@@ -153,6 +309,7 @@ function openGBuilder(it,edit){
   document.getElementById('gSheet').classList.add('open');
 }
 document.getElementById('gClose').onclick=()=>document.getElementById('gSheet').classList.remove('open');
+document.getElementById('gBackFixed').onclick=()=>document.getElementById('gSheet').classList.remove('open');
 
 function gSeg(opts,cur,fn,multi){
   const d=document.createElement('div');d.className='seg';
@@ -355,6 +512,7 @@ document.getElementById('gAdd').onclick=()=>{
   const it=GB.item,p=gPrice();
   const line={name:mname(it),name_en:it.name.en,desc:gSummary(),desc_en:withLang('en',gSummary),unit:p,qty:GB.qty,ill:it.art,
     cfg:{kind:GB.kind,itemId:it.id,sel:JSON.parse(JSON.stringify(GB.sel))}};
+  const gc=itemCal(it,it.sizes[0]);if(gc!=null)line.cal=gc;
   if(GB.editIdx!=null){cart[GB.editIdx]=line;GB.editIdx=null;}
   else cart.push(line);
   flyToCart(document.getElementById('gAdd'));
@@ -478,12 +636,16 @@ function renderCart(){
   applyPausedBanner();
   const L=document.getElementById('lines');L.innerHTML='';
   cart.forEach((l,i)=>{const d=document.createElement('div');d.className='line small';
-    d.innerHTML=`<span class="thumb">${artFor(l.ill||'pizza')}</span><span><a href="#" data-dec="${i}" title="−" style="color:var(--blue);font-weight:bold;padding:0 5px">−</a>${l.qty}×<a href="#" data-inc="${i}" title="+" style="color:var(--blue);font-weight:bold;padding:0 5px">+</a> ${l.name}<br><span style="color:#666">${l.desc||''}</span>${l.freeDip?'<br><span style="color:var(--green)">'+t('free_sauce')+': '+t('dip_'+l.freeDip)+'</span>':''}${l.xdips&&l.xdips.length?'<br><span style="color:#666">'+t('extra_dip_name')+': '+l.xdips.map(x=>t('dip_'+x)).join(', ')+'</span>':''}${l.allergy?'<br><b style="color:var(--red)">'+t('allergy_tag')+': '+l.allergy+'</b>':''}</span><span>${fmt(l.unit*l.qty)} ${l.cfg?`<a href="#" data-e="${i}" title="${t('edit_item')}" style="color:var(--blue)">✎</a> `:''}<a href="#" data-i="${i}" style="color:var(--red)">✕</a></span>`;
+    d.innerHTML=`<span class="thumb">${artFor(l.ill||'pizza')}</span><span><a href="#" data-dec="${i}" title="−" style="color:var(--blue);font-weight:bold;padding:0 5px">−</a>${l.qty}×<a href="#" data-inc="${i}" title="+" style="color:var(--blue);font-weight:bold;padding:0 5px">+</a> ${l.name}<br><span style="color:#666">${l.desc||''}</span>${l.freeDip?'<br><span style="color:var(--green)">'+t('free_sauce')+': '+t('dip_'+l.freeDip)+'</span>':''}${(()=>{const xe=xdipEntries(l.xdips);return xe.length?'<br><span style="color:#666">'+t('extra_dip_name')+': '+xe.map(e=>t('dip_'+e.id)+(e.qty>1?' \u00d7'+e.qty:'')).join(', ')+'</span>':'';})()}${l.allergy?'<br><b style="color:var(--red)">'+t('allergy_tag')+': '+l.allergy+'</b>':''}</span><span>${fmt(l.unit*l.qty)} ${l.cfg?`<a href="#" data-e="${i}" title="${t('edit_item')}" style="color:var(--blue)">✎</a> `:''}<a href="#" data-i="${i}" style="color:var(--red)">✕</a></span>`;
     L.appendChild(d);});
   L.querySelectorAll('a[data-i]').forEach(a=>a.onclick=e=>{e.preventDefault();cart.splice(+a.dataset.i,1);renderCart();});
   L.querySelectorAll('a[data-inc]').forEach(a=>a.onclick=e=>{e.preventDefault();cart[+a.dataset.inc].qty++;renderCart();});
   L.querySelectorAll('a[data-dec]').forEach(a=>a.onclick=e=>{e.preventDefault();const i=+a.dataset.dec;if(cart[i].qty>1)cart[i].qty--;else cart.splice(i,1);renderCart();});
   L.querySelectorAll('a[data-e]').forEach(a=>a.onclick=e=>{e.preventDefault();editCartLine(+a.dataset.e);});
+  /* order-level allergy (§10.8.4): ONE visible ⚠ line for the whole order */
+  const calEl=document.getElementById('cartAllergyLine');
+  if(calEl){const at=allergyText();calEl.hidden=!at;
+    if(at)calEl.textContent='⚠ '+t('allergy_tag')+': '+at;}
   document.getElementById('lSub').textContent=fmt(tt.sub);
   document.getElementById('lTax').textContent=fmt(tt.tax);
   document.getElementById('lTip').textContent=fmt(tt.tip);
@@ -512,6 +674,7 @@ function renderCart(){
   document.getElementById('acctSaveText').textContent=t('acct_save').replace('{x}',fmt(saveAmt)).replace('{p}',FIRST_ORDER_DISCOUNT_PCT);
   renderTaxEx();
   checkLoyalHint();
+  renderPayLater();
   penguinTick();
 }
 document.getElementById('checkoutBtn').onclick=()=>{if(cart.length)document.getElementById('cartSheet').classList.add('open');};
@@ -520,26 +683,119 @@ document.getElementById('cartBack').onclick=()=>document.getElementById('cartShe
 /* ================= checkout: the iron rule ================= */
 let paid=false;
 function stripeStubPay(method,btn){
+  if(!allergyGate())return; // allergy ticked but not named → gentle prompt, no charge (§10.8.4)
   const btns=[payCard,payApple,payGoogle];btns.forEach(b=>b.disabled=true);
   const label=btn.querySelector('span')||btn,orig=label.innerHTML;
   label.innerHTML='<span class="spin"></span> '+t('processing');
   setTimeout(()=>{btns.forEach(b=>b.disabled=false);label.innerHTML=orig;paid=true;placeOrder(method);},1200);
 }
 const payCard=document.getElementById('payCard'),payApple=document.getElementById('payApple'),payGoogle=document.getElementById('payGoogle');
-payCard.onclick=()=>stripeStubPay('card',payCard);
+
+/* ================= Stripe card (Stage C1, config-gated) =================
+   Elements mount ONLY when a publishable key is configured
+   (stripe-config.js → window.LF_STRIPE_PUBLISHABLE_KEY). No key: the
+   card area shows the plain "coming soon — pay at pickup" note and the
+   Card button never charges. With a key: Stripe.js loads and a card
+   Element mounts into #cardElement (card data goes straight to
+   Stripe — it never touches our servers). Confirming against a
+   PaymentIntent activates with the API order flow (C1 next increment);
+   until then the button shows the mounted form + readiness note
+   instead of faking a charge. window.LF_CARD exposes state for
+   diagnostics and the click-through tests. */
+const LF_CARD={pk:'',mounted:false,stripe:null,cardEl:null};
+window.LF_CARD=LF_CARD;
+function lfCardShow(which){
+  const box=document.getElementById('cardBox');if(!box)return;
+  box.style.display='block';
+  document.getElementById('cardSoon').style.display=which==='soon'?'block':'none';
+  document.getElementById('cardElement').style.display=which==='form'?'block':'none';
+  document.getElementById('cardReadyNote').style.display=which==='form'?'block':'none';
+}
+function lfMountStripe(pk){
+  const doMount=()=>{
+    try{
+      LF_CARD.stripe=window.Stripe(pk);
+      const elements=LF_CARD.stripe.elements();
+      LF_CARD.cardEl=elements.create('card',{hidePostalCode:true});
+      LF_CARD.cardEl.mount('#cardElement');
+      LF_CARD.mounted=true;
+      lfCardShow('form');
+    }catch(e){lfCardShow('soon');}
+  };
+  if(window.Stripe){doMount();return;}
+  const s=document.createElement('script');
+  s.src='https://js.stripe.com/v3/';
+  s.onload=doMount;
+  s.onerror=()=>lfCardShow('soon');
+  document.head.appendChild(s);
+}
+(function initLfCard(){
+  LF_CARD.pk=(window.LF_STRIPE_PUBLISHABLE_KEY||'').trim();
+  if(!LF_CARD.pk){lfCardShow('soon');return;}
+  lfMountStripe(LF_CARD.pk);
+})();
+payCard.onclick=()=>{
+  lfCardShow(LF_CARD.mounted?'form':'soon');
+  const box=document.getElementById('cardBox');
+  if(box&&box.scrollIntoView)box.scrollIntoView({behavior:'smooth',block:'center'});
+};
 payApple.onclick=()=>stripeStubPay('apple_pay',payApple);
 payGoogle.onclick=()=>stripeStubPay('google_pay',payGoogle);
 document.getElementById('noPay').onclick=()=>document.getElementById('warnSheet').classList.add('open');
 document.getElementById('warnBack').onclick=()=>document.getElementById('warnSheet').classList.remove('open');
+
+/* ================= pay at the store — the owner's safety valve (§10.9) =================
+   The "Pay at the store" choice EXISTS only while the owner's
+   allowPayLater toggle is ON. The checkout reads the shared program
+   settings key ('la-felice.settings.v1' — the same key her owner
+   screen writes) dynamically: at load and on every cart render, so
+   flipping her ONE owner switch shows/hides the button with no
+   rebuild and no other control anywhere. Default / absent /
+   unreadable = OFF: the button is never created, no text mentions
+   it, and checkout behaves exactly as it always has — every order
+   prepaid 100%. */
+function payLaterAllowed(){
+  try{
+    const s=JSON.parse(localStorage.getItem('la-felice.settings.v1')||'{}');
+    return !!(s&&s.allowPayLater===true);
+  }catch(e){return false;}
+}
+function renderPayLater(){
+  const anchor=document.getElementById('payGoogle');
+  if(!anchor)return;
+  const on=payLaterAllowed();
+  let btn=document.getElementById('payAtStore');
+  if(on&&!btn){
+    btn=document.createElement('button');
+    btn.className='paybtn';btn.id='payAtStore';
+    btn.onclick=payAtStoreNow;
+    anchor.parentNode.insertBefore(btn,anchor.nextSibling);
+  }
+  if(btn){
+    btn.textContent=t('pay_at_store');
+    btn.style.display=on?'':'none';
+    btn.disabled=orderType==='delivery'&&totals().sub>0&&totals().sub<MIN_DELIVERY_TOTAL;
+  }
+  /* while the option is ON, the static "we cannot accept an order
+     without payment" box under the buttons would contradict it */
+  const wb=document.querySelector('#noPay + .warnbox');
+  if(wb)wb.style.display=on?'none':'';
+}
+function payAtStoreNow(){
+  if(!payLaterAllowed())return; // her toggle rules — never place while off
+  if(!allergyGate())return;      // same allergy gate as card payment (§10.8.4)
+  paid=true;placeOrder('pay_at_store');
+}
+renderPayLater();
 
 /* Kitchen ticket → the KDS outbox (apps/kitchen contract: key
    'la-felice.kitchen.outbox.v1', JSON array, allergy items FIRST, English
    names only, NO prices). The kitchen screen on the same device polls this
    key and renders the ticket; written here so a site order shows up in the
    kitchen exactly like a register order. */
-function lfKitchenTicket(num,isTime,when){
+function lfKitchenTicket(num,isTime,when,tipMinor,payLater){
   try{
-    const dipName=id=>({ranch:'Ranch',marinara:'Marinara',garlic:'Garlic Butter',bbq:'BBQ'})[id]||id;
+    const dipName=id=>({ranch:'Ranch',marinara:'Marinara',garlic:'Garlic Sauce',bbq:'BBQ',hot:'Hot Sauce'})[id]||id;
     const stationFor=l=>l.ill==='pizza'?'pizza':l.ill==='wings'?'fry'
       :(l.ill==='soda'||l.ill==='shake'||l.ill==='coffee')?'drink':l.ill==='salad'?'other':'oven';
     const items=cart.map(l=>{
@@ -550,18 +806,24 @@ function lfKitchenTicket(num,isTime,when){
       else if(descEn&&descEn.length<=8)sizeLabel=descEn;  // simple lines: desc IS the size label
       else if(descEn)mods.push(descEn);                   // deals etc.: long text → modifier line
       if(l.freeDip)mods.push('1 FREE sauce: '+dipName(l.freeDip));
-      if(l.xdips&&l.xdips.length)l.xdips.forEach(d=>mods.push('Extra sauce: '+dipName(d)));
+      xdipEntries(l.xdips).forEach(e=>mods.push('Extra sauce: '+dipName(e.id)+(e.qty>1?' \u00d7'+e.qty:'')));
+      const eff=effAllergy(l); // order-level state merged with the line's own note (§10.8.4)
       const it={name:l.name_en||l.name,sizeLabel,modifiers:mods,
-        allergyAlert:!!l.allergy,station:stationFor(l),quantity:l.qty};
-      if(l.allergy)it.notes='ALLERGY: '+l.allergy;
+        allergyAlert:!!eff,station:stationFor(l),quantity:l.qty};
+      if(typeof l.cal==='number')it.cal=l.cal; // per-line calories, only when known (additive — shape unchanged otherwise)
+      if(eff)it.notes='ALLERGY: '+eff;
       return it;
     });
     items.sort((a,b)=>(b.allergyAlert?1:0)-(a.allergyAlert?1:0)); // allergy first (KDS contract)
     const ticket={id:'ticket-'+num,orderId:num,channel:'site',type:orderType,items,
+      tipMinor:tipMinor||0, /* C1: the tip chosen in the gentle tip window rides the ticket contract */
       createdAtUtc:new Date().toISOString(),
       customer:(document.getElementById('cName').value||'').trim(),
       phone:(document.getElementById('cPhone').value||'').trim(),
       address:orderType==='delivery'?(document.getElementById('addr').value||'').trim():''};
+    /* pay-later (§10.9): additive marking — the kitchen sees this order
+       is NOT PAID and must be settled at the store */
+    if(payLater){ticket.paymentTerms='pay_at_store';ticket.unpaid=true;}
     if(isTime&&when){const d=new Date(when);if(!isNaN(d))ticket.scheduledForUtc=d.toISOString();}
     const key='la-felice.kitchen.outbox.v1';
     const arr=JSON.parse(localStorage.getItem(key)||'[]');
@@ -572,35 +834,45 @@ function lfKitchenTicket(num,isTime,when){
 
 function placeOrder(method){
   if(!paid){document.getElementById('warnSheet').classList.add('open');return;}
+  if(!allergyGate())return; // backstop: ticked-but-unnamed allergy never places (§10.8.4)
   const tt=totals();
   const isTime=document.getElementById('isTimeOrder').checked;
   const when=document.getElementById('timeWhen').value;
   const num='LF-'+Math.floor(100000+Math.random()*900000);
-  lfSaveOrder({num,ts:Date.now(),mode:orderType,total:tt.total,
-    lines:cart.map(l=>({qty:l.qty,name:l.name,name_en:l.name_en||l.name,unit:l.unit,ill:l.ill||'pizza'}))});
-  lfKitchenTicket(num,isTime,when); // → kitchen display outbox (same-device KDS)
+  lfSaveOrder({num,ts:Date.now(),mode:orderType,total:tt.total,tipMinor:tt.tip,
+    ...(method==='pay_at_store'?{paymentTerms:'pay_at_store'}:{}),
+    lines:cart.map(l=>({qty:l.qty,name:l.name,name_en:l.name_en||l.name,unit:l.unit,ill:l.ill||'pizza',
+      ...(typeof l.cal==='number'?{cal:l.cal}:{})}))});
+  lfKitchenTicket(num,isTime,when,tt.tip,method==='pay_at_store'); // → kitchen display outbox (same-device KDS)
   // IRON RULE: the customer orders in EN/RU/ES, but the cashier screen and kitchen ticket are ALWAYS English.
   // The snapshot sent to the API carries BOTH name_en (canonical) and name_localized (customer display).
   // TODO(server): POST /v1/orders with lines below — packages/api/lib/tickets.ts renders ONLY name_en.
   const orderSnapshot=cart.map(l=>({name_en:l.name_en||l.name,name_localized:l.name,
-    desc_en:l.desc_en||l.desc,desc_localized:l.desc,unit:l.unit,qty:l.qty,allergy:l.allergy||null}));
+    desc_en:l.desc_en||l.desc,desc_localized:l.desc,unit:l.unit,qty:l.qty,allergy:effAllergy(l),
+    ...(typeof l.cal==='number'?{cal:l.cal}:{})}));
   document.getElementById('ordNum').textContent='#'+num;
   const tb=document.getElementById('timeBanner');
   if(isTime&&when){tb.style.display='block';document.getElementById('timeWhenOut').textContent=new Date(when).toLocaleString();}
   else tb.style.display='none';
   const dl=document.getElementById('doneLines');dl.innerHTML='';
-  cart.forEach(l=>{const d=document.createElement('div');d.className='line';
-    d.innerHTML=`<span>${l.qty}× ${l.name}${l.desc?'<br><span style="color:#666">'+l.desc+'</span>':''}${l.allergy?'<br><b style="color:var(--red)">'+t('allergy_tag')+': '+l.allergy+'</b> <span style="color:#666">(→ kitchen ticket)</span>':''}</span><span>${fmt(l.unit*l.qty)}</span>`;dl.appendChild(d);});
+  cart.forEach(l=>{const d=document.createElement('div');d.className='line';const eff=effAllergy(l);
+    d.innerHTML=`<span>${l.qty}× ${l.name}${l.desc?'<br><span style="color:#666">'+l.desc+'</span>':''}${eff?'<br><b style="color:var(--red)">'+t('allergy_tag')+': '+eff+'</b> <span style="color:#666">(→ kitchen ticket)</span>':''}</span><span>${fmt(l.unit*l.qty)}</span>`;dl.appendChild(d);});
   const meta=document.createElement('div');meta.className='line small';
-  meta.innerHTML=`<span>${orderType==='pickup'?t('pickup'):t('delivery')} • ${t('paid')}: ${method}${taxEx.approved?'<br>'+t('taxexempt_line'):''}</span><span>${orderType==='pickup'?t('pickup_eta'):t('delivery_eta').replace('{eta}','45')}</span>`;
+  const payLabel=method==='pay_at_store'
+    ? t('pay_at_store')+' — '+t('pay_at_store_note')
+    : t('paid')+': '+method;
+  meta.innerHTML=`<span>${orderType==='pickup'?t('pickup'):t('delivery')} • ${payLabel}${taxEx.approved?'<br>'+t('taxexempt_line'):''}</span><span>${orderType==='pickup'?t('pickup_eta'):t('delivery_eta').replace('{eta}','45')}</span>`;
   dl.appendChild(meta);
   document.getElementById('doneTotal').textContent=fmt(tt.total);
-  try{localStorage.setItem('lf_last',JSON.stringify(cart.map(l=>({name:l.name,name_en:l.name_en,desc:l.desc,desc_en:l.desc_en,unit:l.unit,qty:l.qty,ill:l.ill}))));}catch(e){}
-  console.log('[order] created after payment:',{num,method,total:tt.total,tax:tt.tax,discount:tt.discount,taxExempt:taxEx.approved,
+  const dtl=document.querySelector('#doneSheet .line.total span');
+  if(dtl)dtl.textContent=method==='pay_at_store'?t('to_pay'):t('paid');
+  try{localStorage.setItem('lf_last',JSON.stringify(cart.map(l=>({name:l.name,name_en:l.name_en,desc:l.desc,desc_en:l.desc_en,unit:l.unit,qty:l.qty,ill:l.ill,...(typeof l.cal==='number'?{cal:l.cal}:{})}))));}catch(e){}
+  console.log('[order] created after payment:',{num,method,total:tt.total,tax:tt.tax,tipMinor:tt.tip,discount:tt.discount,taxExempt:taxEx.approved,
     consents:{sms:document.getElementById('consentSms').checked,email:document.getElementById('consentEmail').checked},
     // TODO(server): save consents to the customer profile (POST /v1/customers) — future mailing database
-    timeOrder:isTime?when:null,allergies:cart.map(l=>l.allergy).filter(Boolean),lines:orderSnapshot});
+    timeOrder:isTime?when:null,allergies:[...new Set(cart.map(l=>effAllergy(l)).filter(Boolean))],lines:orderSnapshot});
   cart.length=0;paid=false;
+  orderAllergy.on=false;orderAllergy.text='';allergyNudged=false;syncAllergyUI(); // allergy belongs to THAT order — the next one starts clean
   document.getElementById('cartSheet').classList.remove('open');
   document.getElementById('doneSheet').classList.add('open');
   renderCart();renderReorder();
@@ -617,7 +889,7 @@ function renderReorder(){
   if(last&&last.length){
     box.classList.add('show');
     document.getElementById('reorderDesc').textContent=last.map(l=>l.qty+'× '+l.name).join(', ');
-    document.getElementById('reorderBtn').onclick=()=>{last.forEach(l=>cart.push({name:l.name,name_en:l.name_en||l.name,desc:l.desc,desc_en:l.desc_en||l.desc,unit:l.unit,qty:l.qty,ill:l.ill}));renderCart();};
+    document.getElementById('reorderBtn').onclick=()=>{last.forEach(l=>cart.push({name:l.name,name_en:l.name_en||l.name,desc:l.desc,desc_en:l.desc_en||l.desc,unit:l.unit,qty:l.qty,ill:l.ill,...(typeof l.cal==='number'?{cal:l.cal}:{})}));renderCart();};
   }else box.classList.remove('show');
 }
 
@@ -686,7 +958,7 @@ function penguinCondition(){
   const hasDessert=cart.some(l=>['cake','shake'].includes(l.ill));
   if(hasSavory&&!hasDessert)
     return{id:'dessert',html:t('hint_dessert')};
-  if(cart.length>0&&!cart.some(l=>l.xdips&&l.xdips.length)&&document.getElementById('cartSheet').classList.contains('open'))
+  if(cart.length>0&&!cart.some(l=>xdipTotal(l.xdips)>0)&&document.getElementById('cartSheet').classList.contains('open'))
     return{id:'sauce',html:t('hint_sauce')};  // end of order: offer an extra dipping sauce
   return null;
 }

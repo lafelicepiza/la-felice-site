@@ -15,6 +15,38 @@
        nobody ever edits the site by hand.
    ============================================================================ */
 
+/* ================= CALORIES — convention (owner fills values ONCE) =================
+   RU: Калории — поле `cal` (целое число, ккал). Код значения НЕ выдумывает:
+       пока поля нет — калории нигде не показываются, не считаются и не
+       печатаются. Хозяйка вписывает значения ОДИН раз, посчитав их по своим
+       продуктам, — и они сами загораются везде: карточка на сайте,
+       конструктор пиццы, касса и клиентский чек. Куда вписывать:
+       • Позиция С РАЗМЕРАМИ (пиццы и т.п.) — `cal` в КАЖДЫЙ объект размера:
+           sizes:[{id:'s12',label:'12"',price:1399,cal:850},
+                  {id:'s16',label:'16"',price:1799,cal:1200}, ...]
+         Для пиццы из конструктора размер берётся из BUILDER.sizes — там
+         `cal` = калории ОСНОВЫ этого размера (тесто + соус + сыр).
+       • Позиция С ОДНОЙ ценой — `cal` прямо в объект позиции:
+           {id:'ap-fries', ..., cal:450}
+       • Топпинги (BUILDER.tops) — по желанию: `cal:<число>` = калории целой
+         нормальной порции топпинга на всю пиццу, ИЛИ по размерам объектом
+         с теми же ключами, что у TOPPING_PRICE:
+           {id:'pepperoni', ..., cal:{s12:120,s14:160,s16:210,s18:260}}
+       Итог в конструкторе = cal размера (основа) + cal выбранных топпингов.
+   EN: Calories live in the `cal` field (integer kcal). Code NEVER invents
+       values: no field = nothing shown, summed or printed anywhere. The
+       owner fills the values ONCE, calculated from her products, and they
+       light up everywhere at once — site cards, the pizza builder, the
+       register and the customer receipt. Where to write them:
+       • Sized items: `cal` on EACH size object (builder pizzas read the
+         size from BUILDER.sizes — there `cal` is the BASE for that size:
+         crust + sauce + cheese).
+       • Single-price items: `cal` on the item object itself.
+       • Toppings (BUILDER.tops), optional: `cal:<number>` for a whole
+         normal portion, or `cal:{s12:..,s14:..,s16:..,s18:..,sicilian:..,
+         gf:..}` keyed like TOPPING_PRICE.
+       Builder total = size (base) cal + selected topping cals. */
+
 /* ================= sample data (SAMPLE — owner loads real menu) ================= */
 /* SCOPE NOTE: everything below lives inside ONE block { ... } so the only
    thing this file exports to the page is window.LF_MENU_DATA (set at the
@@ -33,7 +65,7 @@ const BUILDER={
   {id:'cauli',en:'Cauliflower 10"',ru:'Из цветной капусты 10"',es:'Coliflor 10"',price:0,base:1599,sizeIn:10},
   {id:'sic',en:'Sicilian 16-cut',ru:'Сицилийская (16 кусков)',es:'Siciliana (16 cortes)',price:0,base:2399,sizeIn:16,shape:'sicilian'}],
  shapes:[{id:'round',en:'Classic Round',ru:'Классическая круглая',es:'Redonda clásica'},{id:'sicilian',en:'Sicilian Square',ru:'Сицилийская квадратная',es:'Siciliana cuadrada'}],
- sauces:[{id:'tomato',en:'Tomato',ru:'Томатный',es:'Tomate',color:'#C0392B',price:0},{id:'white',en:'White Garlic',ru:'Чесночный',es:'Ajo',color:'#F3E9D2',price:0},{id:'bbq',en:'BBQ',ru:'Барбекю',es:'BBQ',color:'#7B3F00',price:50},{id:'none',en:'No sauce',ru:'Без соуса',es:'Sin salsa',color:null,price:0}],
+ sauces:[{id:'tomato',en:'Tomato',ru:'Томатный',es:'Tomate',color:'#C0392B',price:0},{id:'white',en:'White Garlic',ru:'Чесночный',es:'Ajo',color:'#F3E9D2',price:0},{id:'bbq',en:'BBQ',ru:'Барбекю',es:'BBQ',color:'#7B3F00',price:0},{id:'hot',en:'Hot Sauce',ru:'Острый',es:'Picante',color:'#A93226',price:0},{id:'mild',en:'Mild Sauce',ru:'Мягкий',es:'Suave',color:'#E67E22',price:0},{id:'ranch',en:'Ranch',ru:'Ранч',es:'Ranch',color:'#F5EFE0',price:0},{id:'none',en:'No sauce',ru:'Без соуса',es:'Sin salsa',color:null,price:0}],
  cheese:[{id:'light',price:0},{id:'normal',price:0},{id:'extra',price:175},{id:'none',price:0}],
  tops:[
   /* MEATS */
@@ -161,10 +193,11 @@ subs:[
  {id:'sub-build',name:{en:'Build Your Own Sub',ru:'Собери свой саб',es:'Arma tu sub'},desc:{en:'Pick bread, fillings, cheese, veggies, sauce',ru:'Выбери хлеб, начинку, сыр, овощи, соус',es:'Elige pan, relleno, queso, verduras, salsa'},art:'sub',sizes:SZ1(899),builder:'sub',allergens:['gluten']},
 ],
 drinks:[
- {id:'dr-can',name:{en:'Can Soda',ru:'Газировка в банке',es:'Refresco en lata'},desc:{en:'12 oz can — pick your flavor',ru:'Банка — выбери вкус',es:'Lata — elige sabor'},art:'soda',sizes:SZ1(105),builder:'drink',drinkSizes:[{id:'can',n:{en:'Can 12 oz',ru:'Банка',es:'Lata'},p:0}]},
- {id:'dr-2l',name:{en:'2-Liter Soda',ru:'Газировка 2 литра',es:'Refresco 2 litros'},desc:{en:'2-liter bottle — pick your flavor',ru:'Бутылка 2 л — выбери вкус',es:'Botella 2 l — elige sabor'},art:'soda',sizes:SZ1(399),builder:'drink',drinkSizes:[{id:'twol',n:{en:'2-liter bottle',ru:'Бутылка 2 л',es:'Botella 2 l'},p:0}]},
+ {id:'dr-can',name:{en:'Can Soda',ru:'Газировка в банке',es:'Refresco en lata'},desc:{en:'12 oz can — pick your flavor',ru:'Банка — выбери вкус',es:'Lata — elige sabor'},art:'soda',sizes:SZ1(120),builder:'drink',drinkSizes:[{id:'can',n:{en:'Can 12 oz',ru:'Банка',es:'Lata'},p:0}]},
+ {id:'dr-2l',name:{en:'2-Liter Soda',ru:'Газировка 2 литра',es:'Refresco 2 litros'},desc:{en:'2-liter bottle — pick your flavor',ru:'Бутылка 2 л — выбери вкус',es:'Botella 2 l — elige sabor'},art:'soda',sizes:SZ1(400),builder:'drink',drinkSizes:[{id:'twol',n:{en:'2-liter bottle',ru:'Бутылка 2 л',es:'Botella 2 l'},p:0}]},
  {id:'dr-coffee',name:{en:'Filter Coffee',ru:'Фильтр-кофе',es:'Café de filtro'},desc:{en:'Freshly brewed, just like home',ru:'Свежесваренный, как дома',es:'Recién hecho, como en casa'},art:'coffee',sizes:[{id:'c12',label:'12 oz',price:249},{id:'c16',label:'16 oz',price:299}]},
- {id:'dr-water',name:{en:'Water',ru:'Вода',es:'Agua'},desc:{en:'Bottled water',ru:'Вода в бутылке',es:'Agua embotellada'},art:'soda',sizes:SZ1(199)},
+ {id:'dr-water',name:{en:'Water',ru:'Вода',es:'Agua'},desc:{en:'Bottled water 500ml',ru:'Вода в бутылке 500 мл',es:'Agua embotellada 500 ml'},art:'soda',sizes:SZ1(200)},
+ {id:'dr-kids',name:{en:'Kids Drink',ru:'Детский напиток',es:'Bebida infantil'},desc:{en:'Kids drink with cup',ru:'Детский напиток со стаканчиком',es:'Bebida infantil con vaso'},art:'soda',sizes:SZ1(250)},
 ],
 desserts:[
  {id:'ds-tiramisu',photo:'photo-tiramisu-placeholder.jpg',name:{en:'Tiramisu',ru:'Тирамису',es:'Tiramisú'},desc:{en:'Classic Italian dessert',ru:'Классический итальянский десерт',es:'Clásico postre italiano'},art:'dessert',sizes:SZ1(699),allergens:['milk','gluten','egg']},
@@ -188,10 +221,10 @@ kids:[
    first-order discount and the free-gift threshold — all of it is menu /
    offer data. It lives ONLY here, like the rest of the menu. */
 
-/* DIPS: 1 FREE with every pizza (ranch default) + paid extra dips. Names: t('dip_'+id). */
-const DIPS=[{id:'ranch'},{id:'marinara'},{id:'garlic'},{id:'bbq'}];
+/* DIPS (owner decision 2026-10-24): exactly these five — 1 FREE with every pizza (ranch default) + paid extra dips at EXTRA_DIP_PRICE. Names: t('dip_'+id). */
+const DIPS=[{id:'marinara'},{id:'ranch'},{id:'bbq'},{id:'hot'},{id:'garlic'}];
 const FREE_DIP_DEFAULT='ranch';
-const EXTRA_DIP_PRICE=149;
+const EXTRA_DIP_PRICE=99;
 /* ---- generic builder configs (subs / salads / drinks) ----
    WINGS: quantity + type choice only (no visual assembly — just an appetizing
    picture that reflects the count and glaze). Counts and types configurable. */
@@ -215,7 +248,7 @@ const SALADDEF={
 };
 const DRINKDEF={
  sizes:[{id:'can',n:{en:'Can 12 oz',ru:'Банка',es:'Lata 12 oz'},p:0},{id:'twol',n:{en:'2-liter bottle',ru:'Бутылка 2 л',es:'Botella 2 l'},p:0}],
- flavors:[{id:'pepsi',n:{en:'Pepsi',ru:'Пепси',es:'Pepsi'},c:'#004B93'},{id:'dietpepsi',n:{en:'Diet Pepsi',ru:'Пепси лайт',es:'Pepsi Light'},c:'#5D6D7E'},{id:'coke',n:{en:'Coca-Cola',ru:'Кока-Кола',es:'Coca-Cola'},c:'#C0392B'},{id:'cokezero',n:{en:'Coca-Cola Zero',ru:'Кола зеро',es:'Coca-Cola Zero'},c:'#2C2C2C'},{id:'dew',n:{en:'Mountain Dew',ru:'Маунтин Дью',es:'Mountain Dew'},c:'#7ED321'},{id:'orange',n:{en:'Orange',ru:'Апельсин',es:'Naranja'},c:'#E67E22'},{id:'gingerale',n:{en:'Ginger Ale',ru:'Джинджер-эль',es:'Ginger Ale'},c:'#D9B44A'},{id:'drpepper',n:{en:'Dr Pepper',ru:'Доктор Пеппер',es:'Dr Pepper'},c:'#7B241C'},{id:'rootbeer',n:{en:'Root Beer',ru:'Рутбир',es:'Root Beer'},c:'#5C3A12'},{id:'brisk',n:{en:'Brisk Iced Tea',ru:'Бриск айс-ти',es:'Brisk helado'},c:'#A67C3D'}],
+ flavors:[{id:'pepsi',n:{en:'Pepsi',ru:'Пепси',es:'Pepsi'},c:'#004B93'},{id:'dietpepsi',n:{en:'Diet Pepsi',ru:'Пепси лайт',es:'Pepsi Light'},c:'#5D6D7E'},{id:'coke',n:{en:'Coca-Cola',ru:'Кока-Кола',es:'Coca-Cola'},c:'#C0392B'},{id:'cokezero',n:{en:'Coca-Cola Zero',ru:'Кола зеро',es:'Coca-Cola Zero'},c:'#2C2C2C'},{id:'dew',n:{en:'Mountain Dew',ru:'Маунтин Дью',es:'Mountain Dew'},c:'#7ED321'},{id:'orange',n:{en:'Orange Crush',ru:'Оранж Краш',es:'Orange Crush'},c:'#E67E22'},{id:'gingerale',n:{en:'Ginger Ale',ru:'Джинджер-эль',es:'Ginger Ale'},c:'#D9B44A'},{id:'drpepper',n:{en:'Dr Pepper',ru:'Доктор Пеппер',es:'Dr Pepper'},c:'#7B241C'},{id:'rootbeer',n:{en:'Root Beer',ru:'Рутбир',es:'Root Beer'},c:'#5C3A12'},{id:'brisk',n:{en:'Brisk Iced Tea',ru:'Бриск айс-ти',es:'Brisk helado'},c:'#A67C3D'},{id:'cherrypepsi',n:{en:'Cherry Pepsi',ru:'Вишнёвая пепси',es:'Pepsi cereza'},c:'#7B1E3B'}],
 };
 
 const TAX_BPS=700, DELIVERY_FEE=399;
