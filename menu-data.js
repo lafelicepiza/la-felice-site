@@ -120,7 +120,6 @@ const CATS=[
  {id:'pizza',nameKey:'menu_pizza'},
  {id:'breakfast',nameKey:'menu_breakfast',hot:true},
  {id:'appetizers',nameKey:'menu_appetizers'},
- {id:'wings',nameKey:'menu_wings'},
  {id:'chicken',nameKey:'menu_chicken'},
  {id:'stromboli',nameKey:'menu_stromboli'},
  {id:'rolls',nameKey:'menu_rolls'},
@@ -156,10 +155,8 @@ appetizers:[
  {id:'ap-fries',name:{en:'Fries',ru:'Картофель фри',es:'Papas fritas'},desc:{en:'Golden and crispy',ru:'Золотистый и хрустящий',es:'Doradas y crujientes'},art:'appetizer',sizes:SZ1(599)},
  {id:'ap-sidefries',name:{en:'Side Fries',ru:'Фри маленькая порция',es:'Papas pequeñas'},desc:{en:'A smaller portion of our fries',ru:'Маленькая порция нашего фри',es:'Porción pequeña de papas'},art:'appetizer',sizes:SZ1(399)},
 ],
-wings:[
- {id:'wg-fresh',name:{en:'Fresh Wings',ru:'Крылышки',es:'Alitas'},desc:{en:'Choose count — fresh, never frozen',ru:'Выбери количество — всегда свежие',es:'Elige cantidad — siempre frescas'},art:'wings',sizes:SZ1(899),builder:'wings'},
-],
 chicken:[
+ {id:'wg-fresh',name:{en:'Wings',ru:'Крылышки',es:'Alitas'},desc:{en:'Fresh wings, breaded Wing Dings, Wing Zings — choose count and style',ru:'Свежие крылышки, винг-дингс и винг-зингс в панировке — выбери количество и вид',es:'Alitas frescas, Wing Dings y Wing Zings empanados — elige cantidad y estilo'},art:'wings',sizes:SZ1(899),builder:'wings'},
  {id:'ch-popcorn',name:{en:'Popcorn Chicken',ru:'Куриный попкорн',es:'Palomitas de pollo'},desc:{en:'Bite-size crispy chicken',ru:'Хрустящие куриные кусочки',es:'Bocados crujientes de pollo'},art:'chicken',sizes:SZ1(999),allergens:['gluten']},
  {id:'ch-tenders',name:{en:'Chicken Tenders',ru:'Куриные стрипсы',es:'Tiras de pollo'},desc:{en:'5 pc, crispy',ru:'5 шт, хрустящие',es:'5 uds., crujientes'},art:'chicken',sizes:SZ1(1099),allergens:['gluten']},
  {id:'ch-nuggets',name:{en:'Chicken Nuggets',ru:'Наггетсы',es:'Nuggets de pollo'},desc:{en:'10 pc, kid-approved crunch',ru:'10 шт, хрустящие',es:'10 uds., crujientes'},art:'chicken',sizes:SZ1(899),allergens:['gluten']},
@@ -230,7 +227,10 @@ const EXTRA_DIP_PRICE=99;
    picture that reflects the count and glaze). Counts and types configurable. */
 const WINGDEF={
  counts:[{id:'w6',n:{en:'6 pc',ru:'6 шт',es:'6 uds.'},p:0},{id:'w12',n:{en:'12 pc',ru:'12 шт',es:'12 uds.'},p:800},{id:'w24',n:{en:'24 pc',ru:'24 шт',es:'24 uds.'},p:2100}],
- types:[{id:'plain',n:{en:'Plain',ru:'Классические',es:'Clásicas'},p:0}],
+ /* Printed menu (owner photo 2026-10-25): FRESH WINGS, WING DINGS, WING
+    ZINGS — one price list for all three styles, so all deltas are +0.
+    Dings and Zings are breaded (owner's words). */
+ types:[{id:'fresh',n:{en:'Fresh Wings',ru:'Свежие крылышки',es:'Alitas frescas'},p:0},{id:'ding',n:{en:'Wing Dings',ru:'Винг-дингс',es:'Wing Dings'},p:0},{id:'zing',n:{en:'Wing Zings',ru:'Винг-зингс',es:'Wing Zings'},p:0}],
 };
 const SUBDEF={
  breads:[{id:'white',n:{en:'White',ru:'Белый',es:'Blanco'},p:0},{id:'wheat',n:{en:'Wheat',ru:'Цельнозерновой',es:'Integral'},p:0},{id:'garlic',n:{en:'Garlic & herb',ru:'Чесночный',es:'Ajo y hierbas'},p:50}],
@@ -257,7 +257,7 @@ const MIN_DELIVERY_TOTAL=1500; /* $15 delivery minimum — pickup has no minimum
 /* SAMPLE promos — each deal adds a bundle line to the cart (real deals: owner edits in admin) */
 /* REAL weekday specials (Mon–Thu) — owner's menu */
 const DEALS=[
- {t:'deal1t',d:'deal1d',alt:false,price:2999,img:PHOTO_DATA['photo-deal1-placeholder.jpg'],contents:{en:'2× 16" Cheese Pizzas + 12 Wings (plain) + 2L Soda',ru:'2× сырные пиццы 16" + 12 крылышек + газировка 2 л',es:'2× pizzas de queso 16" + 12 alitas + refresco 2 l'}},
+ {t:'deal1t',d:'deal1d',alt:false,price:2999,img:PHOTO_DATA['photo-deal1-placeholder.jpg'],contents:{en:'2× 16" Cheese Pizzas + 12 Fresh Wings + 2L Soda',ru:'2× сырные пиццы 16" + 12 крылышек + газировка 2 л',es:'2× pizzas de queso 16" + 12 alitas + refresco 2 l'}},
  {t:'deal2t',d:'deal2d',alt:true,price:2999,img:PHOTO_DATA['photo-deal2-placeholder.jpg'],contents:{en:'2× 16" Cheese Pizzas + One Whole Sub + 2L Soda',ru:'2× сырные пиццы 16" + целый саб + газировка 2 л',es:'2× pizzas de queso 16" + sub entero + refresco 2 l'}},
  {t:'deal3t',d:'deal3d',alt:false,price:1199,img:PHOTO_DATA['photo-pizza-placeholder.jpg'],contents:{en:'16" Cheese Pizza',ru:'Сырная пицца 16"',es:'Pizza de queso 16"'}}
 ];

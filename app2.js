@@ -301,7 +301,7 @@ function openGBuilder(it,edit){
   else{
     if(it.builder==='sub')GB.sel={size:'half',bread:'white',fillings:['turkey'],cheese:'mozz',veggies:['lettuce','tomato'],sauce:'mayo'};
     else if(it.builder==='salad')GB.sel={base:'romaine',protein:'none',ingredients:['croutons','parmesan'],dressing:'ranch'};
-    else if(it.builder==='wings')GB.sel={count:'w6',wtype:'plain'};
+    else if(it.builder==='wings')GB.sel={count:'w6',wtype:'fresh'};
   else GB.sel={size:(it.drinkSizes||DRINKDEF.sizes)[0].id,flavor:'pepsi'};
     GB.editIdx=null;
   }
@@ -407,11 +407,11 @@ function saladSVG(s){
 const WING_ART={
  tray(){return `<path d="M10 34 L66 34 L60 66 L16 66 Z" fill="#C96A2C" stroke="#141414" stroke-width="3"/><path d="M10 34 L66 34 L64 42 L12 42 Z" fill="#A8561F" stroke="#141414" stroke-width="2.5"/>`;},
  wing(type,x,y,rot){
-   const c=type==='plain'?['#C25E2E','#A84E24']:type==='zing'?['#B03A2E','#8E2F22']:['#D9A441','#C08A2E'];
+   const c=type==='fresh'?['#C25E2E','#A84E24']:type==='zing'?['#B03A2E','#8E2F22']:['#D9A441','#C08A2E'];
    let s=`<g transform="rotate(${rot} ${x} ${y})">`;
    s+=`<ellipse cx="${x}" cy="${y}" rx="7" ry="5" fill="${c[0]}" stroke="#141414" stroke-width="2.2"/>`;
    s+=`<rect x="${+x+5}" y="${+y-1.5}" width="7" height="3" rx="1.5" fill="#F3E9D2" stroke="#141414" stroke-width="1.6"/>`;
-   if(type!=='plain')s+=`<circle cx="${+x-2}" cy="${+y-1}" r="1.4" fill="${c[1]}"/><circle cx="${+x+2}" cy="${+y+1.5}" r="1.4" fill="${c[1]}"/>`;
+   if(type!=='fresh')s+=`<circle cx="${+x-2}" cy="${+y-1}" r="1.4" fill="${c[1]}"/><circle cx="${+x+2}" cy="${+y+1.5}" r="1.4" fill="${c[1]}"/>`;
    if(type==='zing')s+=`<path d="M${+x-4} ${+y-2} q4 -3 8 0" stroke="#FF6B4A" stroke-width="1.8" fill="none"/>`;
    return s+'</g>';},
 };
